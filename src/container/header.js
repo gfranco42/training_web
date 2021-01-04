@@ -26,16 +26,6 @@ class Header extends Component {
                         nav_style: { top: 330 }}
     }
 
-    link_home = (e) => {
-        e.preventDefault();
-        console.log('href: ' + window.location.href)
-        console.log('pathname: ' + window.location.pathname)
-        console.log('combo: ' + (window.location.href - window.location.pathname))
-        console.log('last :' + string_cut(window.location.href, window.location.pathname));
-
-
-    }
-
     sticky_nav = (e) => {
         e.preventDefault();
         console.log(window.scrollY)
@@ -79,11 +69,11 @@ class Header extends Component {
 
     render() { 
         return (
-        <div className="header" onClick={this.link_home}>
+        <div className="header">
 
-            <div className="header__background">
+            <a className="header__background" href={'http://localhost:3000' + window.location.pathname}>
                 <img className="header__background--title" alt="title" src={ah_title}/>
-            </div>
+            </a>
 
             <div className="header__navigation" style={this.state.nav_style}>
                 <img className="header__navigation--logo" src={ah_logo} alt="ah_logo"/>
