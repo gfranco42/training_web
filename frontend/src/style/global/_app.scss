@@ -1,0 +1,19 @@
+// PREMIER CONTOUR
+html, body {
+    margin: 0;
+    // border: 10px solid orange;
+    height: auto;
+}
+
+// PAGE INDEX.HTML
+#root {
+   height: auto;
+}
+
+// APPLICATION
+.app {
+    $el: &;
+    margin: 0;
+    height: auto;
+    // border: purple solid 7px;
+}
