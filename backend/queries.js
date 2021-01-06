@@ -1,9 +1,9 @@
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: 'me',
+  user: 'greatjack',
   host: 'localhost',
-  database: 'api',
-  password: 'password',
+  database: 'asylumheroes',
+  password: 'asylumheroes',
   port: 5432,
 })
 
@@ -28,23 +28,25 @@ const getUserById = (request, response) => {
 }
 
 const createUser = (request, response) => {
-  const { name, email } = request.body
-
-  pool.query('INSERT INTO users (name, email) VALUES ($1, $2)', [name, email], (error, results) => {
+  /* modifier les accolades */
+  const { name, pseudo, email, status } = request.body
+  
+  /* modifier la ligne verte et les crochets */
+  pool.query('INSERT INTO users (name, pseudo, email, status) VALUES ($1, $2, $3, $4)', [name, pseudo, email, status], (error, results) => {
     if (error) {
       throw error
     }
-    response.status(201).send(`User added with ID: ${result.insertId}`)
+    response.status(201).send(`User added with ID: ${results}`)
   })
 }
 
 const updateUser = (request, response) => {
     const id = parseInt(request.params.id)
-    const { name, email } = request.body
+    const { name, pseudo, email, status } = request.body
   
     pool.query(
-      'UPDATE users SET name = $1, email = $2 WHERE id = $3',
-      [name, email, id],
+      'UPDATE users SET name = $1, pseudo = $2, email = $3, status = $4 WHERE id = $5',
+      [name, pseudo, email, status],
       (error, results) => {
         if (error) {
           throw error
