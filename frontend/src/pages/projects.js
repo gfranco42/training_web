@@ -1,5 +1,3 @@
-// import '../style/projects.scss';
-
 import {Link} from 'react-router-dom';
 
 const Projects = () => (

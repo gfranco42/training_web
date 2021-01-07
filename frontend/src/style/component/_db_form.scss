@@ -1,3 +1,5 @@
+@import "../utilities/mixins";
+
 .dbform {
     $el: &;
     height: auto;
@@ -15,19 +17,41 @@
 // ******************** TOP ******************** 
 
     #{$el}__top {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        &--logo {
-            z-index: 2;
-            height: 50px;
-            // position: relative;
-            // left: -180px;
-            // top: -35px;
-        }
+        @include flex-centered();
     }
 
+// ******************** TABLE ******************** 
+
+    #{$el}__table {
+        @include flex-centered();
+        flex-wrap: wrap;
+
+        &--title {
+            width: 100%;
+            border: red 1px solid;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &--columntitle {
+            @include flex-centered();
+            border: red 1px solid;
+            width: 24%;
+
+        }
+
+        &--row {
+            @include flex-centered();
+            width: 100%;
+            
+            .cell {
+                @include flex-centered();
+                border: solid green 1px;
+                width: 24%;
+            }
+        }
+    }
 // ******************** BOT ******************** 
 
     // #{$el}__bot {

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-/* STYLE */
-import "../style/component/_popup.scss"
 
 /* IMG */
 import ah_logo from "../img/ah_logo.png"

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
-/* STYLE */
-import "../style/component/_db_form.scss"
+
+/* COMPONENT */
+
+import { AddUser, ShowUsers } from "./user.js"
+
 
 /* IMG */
 // import ah_logo from "../img/ah_logo.png"
@@ -28,35 +31,17 @@ class Dbform extends Component {
             this.setState({status: e.target.value})
     }
 
-    handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const {firstname, pseudo, email, status} = this.state;
-            const body = {firstname, pseudo, email, status};
-            const response =  await fetch(
-                "http://localhost:9000/users", {
-                    method: "POST",
-                    headers: {"Content-type": "application/json"},
-                    body: JSON.stringify(body)
-                }
-            );
-            console.log(response);
-        } catch (error) {
-           console.error(error.message); 
-        }
-    }
-
 
     render () {
         return (
         <div className="dbform">
 
-            <div className="dbform__top" onClick={this.test}>
+            <div className="dbform__top">
                 <h1 className="dbform__top--title">Admin</h1>
                 <p>Add a new user</p>
             </div>
 
-            <form className="dbform__form"  onSubmit={this.handleSubmit}>
+            <form className="dbform__form"  onSubmit={(e) => AddUser(e, this.state)}>
 
                 <label>
                     Prénom:
@@ -80,7 +65,7 @@ class Dbform extends Component {
                     <input type="email"
                         value={this.state.email} onChange={(e) => {this.handleChange(e, "email")}}
                         name="email"
-                        placeholder="ex. labichedesmontagne@gmail.com"
+                        placeholder="ex. bichette06@gmail.com"
                         >
                     </input>
                 </label>
@@ -97,6 +82,7 @@ class Dbform extends Component {
 
             </form>
 
+            <ShowUsers />
         </div>
 
         )

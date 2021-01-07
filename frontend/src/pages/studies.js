@@ -1,5 +1,3 @@
-// import '../style/home.scss';
-
 import { Link } from 'react-router-dom';
 
 const Studies = () =>

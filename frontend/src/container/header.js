@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 // import {Link} from 'react-router-dom';
 
-/* STYLE */
-import "../style/container/_header.scss";
 
 /* FUNCTION */
 // import {string_cut} from "../utils.js";

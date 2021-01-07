@@ -1,6 +1,5 @@
 import Header from "../container/header.js"
 
-import "../style/pages/_home.scss"
 
 const Home = () =>
 <div className="home">
