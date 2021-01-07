@@ -25,10 +25,6 @@ app.get('/', (req,res) => {
 app.post('/users', async(req, res) => {
   try {
     const {firstname, pseudo, email, status} = req.body;
-    console.log('firstname: ' + firstname);
-    console.log('pseudo: ' + pseudo);
-    console.log('email: ' + email);
-    console.log('status: ' + status);
     const newUser = pool.query("INSERT INTO users (name, pseudo, email, status) VALUES ($1, $2, $3, $4) RETURNING *", [firstname, pseudo, email, status]);
     res.json(newUser.rows);
   } catch (error) {
