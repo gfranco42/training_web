@@ -33,7 +33,6 @@ class Header extends Component {
 
     sticky_nav = (e) => {
         e.preventDefault();
-        console.log(window.scrollY)
         if (window.scrollY < 318)
             this.setState({nav_style: {top: 330 - window.scrollY}})
         else
@@ -81,12 +80,14 @@ class Header extends Component {
         return (
         <div className="header">
 
-            <a className="header__background" href={'http://localhost:3000' + window.location.pathname}>
+            <a className="header__background" href={'http://localhost:3000/'}>
                 <img className="header__background--title" alt="title" src={ah_title}/>
             </a>
 
             <div className="header__navigation" style={this.state.nav_style}>
-                <img className="header__navigation--logo" src={ah_logo} alt="ah_logo"/>
+                <a  href={'http://localhost:3000/'}>
+                    <img className="header__navigation--logo" src={ah_logo} alt="ah_logo"/>
+                </a>
 
                 <div className="navigation__rubric">
                     <div className="navigation__rubric--page about">Qui sommes nous?

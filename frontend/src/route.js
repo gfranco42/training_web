@@ -7,6 +7,7 @@ import Home from './pages/home.js';
 import Profil from './pages/profil.js';
 import Projects from './pages/projects.js';
 import Studies from './pages/studies.js';
+import Admin from './pages/admin.js';
 
 
 
@@ -17,6 +18,7 @@ const Router = () => (
         <Route exact path="/profil" component={Profil}/>
         <Route exact path="/projects" component={Projects}/>
         <Route exact path="/studies" component={Studies}/>
+        <Route exact path="/admin" component={Admin}/>
     </Switch>
 )
 

@@ -46,6 +46,7 @@
             left: 50px;
             top: 15px;
             padding-right: 35px;
+            cursor: pointer;
         }
 
         .navigation__rubric {
@@ -62,6 +63,7 @@
                 align-items: center;
                 height: auto;
                 text-align: center;
+                cursor: pointer;
                 .underline {
                     height: 3px; // epaisseur
                     width: 100%; // largeur
@@ -90,6 +92,7 @@
             justify-content: space-around;
             align-items: center;
             &--login, &--signin, &--logout {
+                cursor: pointer;
                 display: flex;
                 align-items: center;
                 justify-content: center;

@@ -1,0 +1,16 @@
+.admin {
+    // border: green 10px solid;
+    height: 100%;
+    $el: &;
+    .body {
+        // border: blue 5px solid;
+        background: linear-gradient(#96C2F4, #BA62F2);
+        height: 2000px;
+        padding-top: 62px;
+    }
+    .footer {
+        height: 500px;
+        background: url("../../img/footer_bg.png");
+        background-size: contain;
+    }
+}

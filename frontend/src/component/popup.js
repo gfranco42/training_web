@@ -6,7 +6,7 @@ import "../style/component/_popup.scss"
 /* IMG */
 import ah_logo from "../img/ah_logo.png"
 
-class loginpopup extends Component {
+class Loginpopup extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -29,7 +29,7 @@ class loginpopup extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        alert("Salut" + " " + this.state.login)
+        alert(`Salut ${this.state.login}`)
     }
 
 
@@ -82,4 +82,4 @@ class loginpopup extends Component {
     }
 }
 
-export default loginpopup;
+export default Loginpopup;
