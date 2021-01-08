@@ -1,23 +1,33 @@
 @import "../utilities/mixins";
 
-.dbform {
+.adminform {
     $el: &;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     height: auto;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 80%;
-    background-image: url("../../img/ah_bg_popup.png");
-    background-size: cover;
-    padding: 20px;
-    border-radius: 10px;
+    width: 100%;
+    padding-top: 160px;
+    background: linear-gradient(#96C2F4, #BB65F0);
+    border: black 1px solid;
 
     
 // ******************** TOP ******************** 
 
     #{$el}__top {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        border: red solid 1px;
+    }
+    
+// ******************** FORM ******************** 
+    
+    #{$el}__form {
         @include flex-centered();
+        border: green solid 1px;
     }
 
 // ******************** TABLE ******************** 
@@ -25,10 +35,11 @@
     #{$el}__table {
         @include flex-centered();
         flex-wrap: wrap;
+        border: blue solid 1px;
+        max-width: 1200px;
 
         &--title {
             width: 100%;
-            border: red 1px solid;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -36,7 +47,6 @@
 
         &--columntitle {
             @include flex-centered();
-            border: red 1px solid;
             width: 24%;
 
         }
@@ -47,7 +57,6 @@
             
             .cell {
                 @include flex-centered();
-                border: solid green 1px;
                 width: 24%;
             }
         }

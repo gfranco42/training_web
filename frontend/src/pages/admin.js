@@ -2,14 +2,13 @@
 import Header from "../container/header.js"
 
 /* COMPONENT */
-import Dbform from "../component/dbform.js"
+import Adminform from "../component/adminform.js"
 
 
 const Admin = () =>
     <div className="admin">
         <Header />
-        <div className="body"></div>
-        <Dbform />
+        <Adminform />
         <div className="footer"></div>
     </div>
 
