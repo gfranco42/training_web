@@ -23,7 +23,7 @@ export class ShowUsers extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            users: [],
+            users: null,
             loading: true
         }
 
@@ -41,30 +41,36 @@ export class ShowUsers extends Component {
     
     render () {
         if (this.state.loading === true)
-            return <div className="adminform--loading">Loading...</div>
+            return <div className="adminform--error">Loading...</div>
         else if (this.state.users === null)
-            return <div className="adminform--nouser">Aucun utilisateur enregistré !</div>
+            return <div className="adminform--error">Aucun utilisateur enregistré !</div>
         else
             return (
-                <div className="adminform__table">
-                    <h2 className="adminform__table--title">Liste des utilisateurs :</h2>
-                    <div className="adminform__table--columntitle">Prénom</div>
-                    <div className="adminform__table--columntitle">Pseudo</div>
-                    <div className="adminform__table--columntitle">Email</div>
-                    <div className="adminform__table--columntitle">Status</div>
-                    <div className="adminform__table--columntitle">Modifier</div>
-                    <div className="adminform__table--columntitle">Supprimer</div>
-                    {this.state.users.map((user) =>
-                    <div className="adminform__table--row" key={user.id}>
-                        <div className="cell">{user.name}</div>
-                        <div className="cell">{user.pseudo}</div>
-                        <div className="cell">{user.email}</div>
-                        <div className="cell">{user.status}</div>
-                        <div className="cell">Modifier</div>
-                        <div className="cell">Supprimer</div>
-                    </div>
-                    )}
-                </div>
+                <table className="adminform__table">
+                    <caption className="adminform__table--title">Liste des utilisateurs :</caption>
+                    <thead>
+                        <tr className="adminform__table__header">
+                            <th className="adminform__table__header--columntitle left">Prénom</th>
+                            <th className="adminform__table__header--columntitle">Pseudo</th>
+                            <th className="adminform__table__header--columntitle">Email</th>
+                            <th className="adminform__table__header--columntitle">Status</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.users.map((user) =>
+                        <tr className="adminform__table__body" key={user.id}>
+                            <th className="adminform__table__body--cell left">{user.name}</th>
+                            <th className="adminform__table__body--cell">{user.pseudo}</th>
+                            <th className="adminform__table__body--cell">{user.email}</th>
+                            <th className="adminform__table__body--cell">{user.status}</th>
+                            <th className="adminform__table__body--button"><button type="button" name="edit">Modifier</button></th>
+                            <th className="adminform__table__body--button"><button type="button" name="delete">Supprimer</button></th>
+                        </tr>
+                        )}
+                    </tbody>
+                </table>
             )
     }
 };
