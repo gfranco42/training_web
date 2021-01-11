@@ -15,18 +15,40 @@ class EditPopup extends Component {
             pseudo: "",
             email: "",
             status: ""
+
+        }
+    }
+
+    editUser = async (e, id) => {
+        e.preventDefault();
+        try {
+        const {firstname, pseudo, email, status} = this.state;
+        const body = {firstname, pseudo, email, status};
+        const response = await fetch(`http://localhost:9000/users/${id}`, {
+            method: 'PUT',
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify(body) 
+        });
+        console.log(this.state);
+        console.log(body);
+        
+
+        if (response === null)
+            console.log(response);
+        } catch (error) {
+           console.error(error.message); 
         }
     }
 
     handleChange = (e, type) => {
         if (type === "firstname")
-            this.setState({firstname: e.target.value})
+            this.setState({firstname: e.target.value});
         else if (type === "pseudo")
-            this.setState({pseudo: e.target.value})
+            this.setState({pseudo: e.target.value});
         else if (type === "email")
-            this.setState({email: e.target.value})
+            this.setState({email: e.target.value});
         else if (type === "status")
-            this.setState({status: e.target.value})
+            this.setState({status: e.target.value});
     }
 
     render() {
@@ -35,10 +57,11 @@ class EditPopup extends Component {
                 trigger={<button>Modifier</button>}
                 modal
                 nested
+                closeOnEscape="true"
             >
                 <div className="editpopup">
                     <div>Modifier un utilisateur</div>
-                    <div>
+                    <form onSubmit={(e) => {this.editUser(e, this.props.userId); close();}}>
                         <label>
                             Nom: 
                             <input type="text"
@@ -76,7 +99,8 @@ class EditPopup extends Component {
                                 <option value="common">Common</option>
                             </select>
                         </label>
-                    </div>
+                        <button>Submit</button>
+                    </form>
                     <div>close</div>
                 </div>
             </Popup>

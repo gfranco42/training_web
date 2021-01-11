@@ -38,7 +38,8 @@ export class ShowUsers extends Component {
             scrollPos: 0
         }
     }
-/* FUNCTION DELETEUSERS */
+
+    /* FUNCTION DELETEUSERS */
     DeleteUsers = async (e, id) => {
         e.preventDefault();
         try {
@@ -77,7 +78,7 @@ export class ShowUsers extends Component {
         else {
             return (
                 <table className="adminform__table">
-                    <caption className="adminform__table--title">Liste des utilisateurs :</caption>
+                    <caption className="adminform__table--title">Liste des utilisateurs: </caption>
                     <thead>
                         <tr className="adminform__table__header">
                             <th className="adminform__table__header--columntitle left">Prénom</th>
@@ -96,7 +97,7 @@ export class ShowUsers extends Component {
                                 <th className="adminform__table__body--cell">{user.email}</th>
                                 <th className="adminform__table__body--cell">{user.status}</th>
                                 <th className="adminform__table__body--button">
-                                    <EditPopup />
+                                    <EditPopup userId={user.id}/>
                                 </th>
                                 <th className="adminform__table__body--button">
                                     <button type="button" name="delete"
