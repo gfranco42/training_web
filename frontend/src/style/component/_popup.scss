@@ -1,3 +1,11 @@
+.editpopup {
+    $el: &;
+
+    background-color: white;
+    border: red 2px solid;
+
+}
+
 .loginpopup {
     $el: &;
     height: auto;

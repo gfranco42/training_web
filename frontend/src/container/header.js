@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 // import {string_cut} from "../utils.js";
 
 /* COMPONENT */
-import LogginPopup from "../component/popup.js"
+import { LoginPopup } from "../component/popup.js"
 
 /* PAGE */
 // import Home from '../pages/home';
@@ -57,7 +57,7 @@ class Header extends Component {
             return (
                 <div className="navigation__button">
                     <button className="navigation__button--logout" onClick={this.handleClick}>Deconnexion</button>
-                    <LogginPopup state={this.state} />
+                    <LoginPopup state={this.state} />
                 </div>
             )
         }

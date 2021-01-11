@@ -1,10 +1,91 @@
 import React, { Component } from 'react';
 
+/* POPUP */
+import Popup from 'reactjs-popup';
 
 /* IMG */
 import ah_logo from "../img/ah_logo.png"
 
-class Loginpopup extends Component {
+/* ADMIN EDIT POPUP */
+class EditPopup extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            firstname: "",
+            pseudo: "",
+            email: "",
+            status: ""
+        }
+    }
+
+    handleChange = (e, type) => {
+        if (type === "firstname")
+            this.setState({firstname: e.target.value})
+        else if (type === "pseudo")
+            this.setState({pseudo: e.target.value})
+        else if (type === "email")
+            this.setState({email: e.target.value})
+        else if (type === "status")
+            this.setState({status: e.target.value})
+    }
+
+    render() {
+        return (
+            <Popup
+                trigger={<button>Modifier</button>}
+                modal
+                nested
+            >
+                <div className="editpopup">
+                    <div>Modifier un utilisateur</div>
+                    <div>
+                        <label>
+                            Nom: 
+                            <input type="text"
+                                value={this.state.firstname}
+                                onChange={(e) => {this.handleChange(e, "firstname")}}
+                                name="name"
+                                >
+                            </input>
+                        </label>
+                        <label>
+                            Pseudo: 
+                            <input type="text"
+                                value={this.state.pseudo}
+                                onChange={(e) => {this.handleChange(e, "pseudo")}}
+                                name="pseudo"
+                                >
+                            </input>
+                        </label>
+                        <label>
+                           Email: 
+                            <input type="text"
+                                value={this.state.email}
+                                onChange={(e) => {this.handleChange(e, "email")}}
+                                name="email"
+                                >
+                            </input>
+                        </label>
+                        <label>
+                            Statut:
+                            <select value={this.state.status}
+                            onChange={(e) => {this.handleChange(e, "status")}}
+                            >
+                                <option value="">Statut de l'utilisateur...</option>
+                                <option value="admin">Admin</option>
+                                <option value="common">Common</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div>close</div>
+                </div>
+            </Popup>
+        )
+    }
+}
+
+/* HEADER LOGIN POPUP */
+class LoginPopup extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -38,6 +119,7 @@ class Loginpopup extends Component {
             <div className="loginpopup__top" onClick={this.test}>
                 <img className="loginpopup__top--logo" src={ah_logo} alt="ah_logo"/>
                 <h1 className="loginpopup__top--title">Connexion</h1>
+                <div className="loginpopup__top--close" >Fermer</div>
             </div>
 
             <form className="loginpopup__form">
@@ -80,4 +162,7 @@ class Loginpopup extends Component {
     }
 }
 
-export default Loginpopup;
+export {
+    LoginPopup,
+    EditPopup
+};
