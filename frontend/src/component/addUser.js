@@ -10,7 +10,10 @@ export const AddUser = async (e, state) => {
                 body: JSON.stringify(body)              // on fait en sorte que ce soit lisible en json
             }
         );
+
+        console.log(state)
         window.location.reload();
+        console.log(state)
         if (response === null)
             console.log(response);
     } catch (error) {

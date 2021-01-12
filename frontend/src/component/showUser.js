@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 
 /* COMPONENT */
 
-/* POPUP MODULE */
+/* MODULES */
 import { EditPopup } from './popup'
+import _ from 'lodash';
 
 
  /******************************************************** EXAMPLE ********************************************************/
@@ -63,20 +64,7 @@ export class ShowUsers extends Component {
         }
     }
 
-    updateUsers =  async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch("http://localhost:9000/users");// recup les infos de la DB
-            const data = await response.json();                         // les infos sont lisibles en json
-            this.setState({users: data, loading: false});               // on met a jour le state local pour pouvoir afficher
-            console.log('yolo');
-            if (response === null)
-                console.log(response);
-        } catch (error) {
-            console.error(error.message);
-        }
-    }
-
+    // UPDATE AN INFORMATION OF ONE USER
     updateUserInfo = (e, type) => {
         e.preventDefault();
         try {
@@ -116,8 +104,10 @@ export class ShowUsers extends Component {
         try {
             const response = await fetch("http://localhost:9000/users");// recup les infos de la DB
             const data = await response.json();                         // les infos sont lisibles en json
-            this.setState({users: data, loading: false});               // on met a jour le state local pour pouvoir afficher
-            // console.log(this.state.users);
+            const newData = _.sortBy(data, 'id', function(n) {
+                return Math.sin(n);
+            });
+            this.setState({users: newData, loading: false});               // on met a jour le state local pour pouvoir afficher
             if (response === null)
                 console.log(response);
         } catch (error) {
@@ -166,9 +156,6 @@ export class ShowUsers extends Component {
                                     <button type="button" name="delete"
                                     onClick={(e) => this.DeleteUsers(e, user.id, )}>Delete</button>
                                 </th>
-                                {/* <th>
-                                    <Parent />
-                                </th> */}
                             </tr>
                         )}
                     </tbody>

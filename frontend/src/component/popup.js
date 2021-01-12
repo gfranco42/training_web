@@ -20,25 +20,13 @@ class EditPopup extends Component {
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify(body) 
             });
-            
-            if (body.firstname !== "" || body.pseudo !== "" || body.email !== "" || body.status !== status)
-                window.location.reload();
+            // window.location.reload(); 
+            window.location.reload();
             if (response === null)
                 console.log(response);
         } catch (error) {
            console.error(error.message); 
         }
-    }
-
-    handleChange = (e, type) => {
-        if (type === "firstname")
-            this.setState({firstname: e.target.value});
-        else if (type === "pseudo")
-            this.setState({pseudo: e.target.value});
-        else if (type === "email")
-            this.setState({email: e.target.value});
-        else if (type === "status")
-            this.setState({status: e.target.value});
     }
 
     render() {
