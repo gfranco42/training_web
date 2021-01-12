@@ -52,23 +52,23 @@ class Header extends Component {
         console.log(this.state.log)
     }
 
-    is_logged = (log) => {
-        if (log === true) {
-            return (
-                <div className="navigation__button">
-                    <button className="navigation__button--logout" onClick={this.handleClick}>Deconnexion</button>
-                    <LoginPopup state={this.state} />
-                </div>
-            )
-        }
-        else {
-            return (
-                <div className="navigation__button">
-                    <button className="navigation__button--login" onClick={this.handleClick}>Connexion</button>
-                </div>
-            )
-        }
-    }
+    // is_logged = (log) => {
+    //     if (log === true) {
+    //         return (
+    //             <div className="navigation__button">
+    //                 <button className="navigation__button--logout" onClick={this.handleClick}>Deconnexion</button>
+    //                 <LoginPopup state={this.state} />
+    //             </div>
+    //         )
+    //     }
+    //     else {
+    //         return (
+    //             <div className="navigation__button">
+    //                 <button className="navigation__button--login" onClick={this.handleClick}>Connexion</button>
+    //             </div>
+    //         )
+    //     }
+    // }
 
     componentDidMount() {
         window.addEventListener('scroll', this.sticky_nav);
@@ -102,8 +102,11 @@ class Header extends Component {
                     </div>
                 </div>
 
-                {this.is_logged(this.state.log)}
+                {/* {this.is_logged(this.state.log)} */}
                 {/* <LogginPopup state={this.state}/> */}
+                <div className="navigation__button">
+                    <LoginPopup />
+                </div>
             </div>
         </div>
         )

@@ -8,16 +8,11 @@
 
 .loginpopup {
     $el: &;
-    height: auto;
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 80%;
     background-image: url("../../img/ah_bg_popup.png");
     background-size: cover;
     padding: 20px;
     border-radius: 10px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 
     
 // ******************** TOP ******************** 
@@ -26,6 +21,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        text-transform: uppercase;
 
         &--logo {
             z-index: 2;
