@@ -66,8 +66,16 @@ app.put('/users/:id', async(req, res) => {
   try {
 
     const {id} = req.params;
-    const {firstname, pseudo, email} = req.body;
-    const updateUser = pool.query("UPDATE users SET name = $1, pseudo = $2, email = $3 WHERE id = $4", [firstname, pseudo, email, id]);
+    const {firstname, pseudo, email, status} = req.body;
+    let updateUser;
+    if (firstname !== "" && firstname !== null)
+      updateUser = pool.query("UPDATE users SET name = $1 WHERE id = $2", [firstname, id]);
+    if (pseudo !== "" && pseudo !== null)
+      updateUser = pool.query("UPDATE users SET pseudo = $1 WHERE id = $2", [pseudo, id]);
+    if (email !== "" && email !== null)
+      updateUser = pool.query("UPDATE users SET email = $1 WHERE id = $2", [email, id]);
+    if (status !== "" && status !== null)
+      updateUser = pool.query("UPDATE users SET status = $1 WHERE id = $2", [status, id]);
     res.json(`User with id ${id} has been updated ! The new user is now => Name: ${firstname} => Pseudo: ${pseudo} => Email: ${email} => Status: ${status}`);
 
   } catch (error) {
