@@ -1,0 +1,179 @@
+import React, { Component } from 'react';
+
+/* COMPONENT */
+
+/* POPUP MODULE */
+import { EditPopup } from './popup'
+
+
+ /******************************************************** EXAMPLE ********************************************************/
+// class Child extends Component {
+//     render() {
+//         return (
+//             <div>
+//                 <div>I am Child</div>
+//                 <input type="text" 
+//                  placeholder="Write text" onChange={(e) => this.props.updateTextCB(e, 'yolo')} />
+//             </div>
+//         )
+//     }
+// }
+
+// class Parent extends Component {
+//     constructor(props) {
+//         super(props)
+//         this.state = {text: "Initial Text"}
+//         // this.updateText1 = this.updateText1
+//     }
+
+//     updateText1 = (e, text) => {
+//         e.preventDefault();
+//         this.setState({ text: text })
+//     }
+
+//     render() {
+//         return (
+//             <div>
+//                 <div>I am Parent</div>
+//                 <div>{this.state.text}</div>
+//                 <Child updateTextCB={this.updateText1} />
+//             </div>
+//         )
+//     }
+// }
+
+ /******************************************************** EXAMPLE ********************************************************/
+
+
+
+
+
+
+/* CLASS SHOWUSERS */
+export class ShowUsers extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            users: null, 
+            loading: true,
+            firstname: "",
+            pseudo: "",
+            email: "",
+            status: ""
+        }
+    }
+
+    updateUsers =  async (e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch("http://localhost:9000/users");// recup les infos de la DB
+            const data = await response.json();                         // les infos sont lisibles en json
+            this.setState({users: data, loading: false});               // on met a jour le state local pour pouvoir afficher
+            console.log('yolo');
+            if (response === null)
+                console.log(response);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    updateUserInfo = (e, type) => {
+        e.preventDefault();
+        try {
+            if (type === "firstname")
+                this.setState({firstname: e.target.value});
+            else if (type === "pseudo")
+                this.setState({pseudo: e.target.value});
+            else if (type === "email")
+                this.setState({email: e.target.value});
+            else if (type === "status")
+                this.setState({status: e.target.value});
+            
+        } catch (error) {
+            console.error(error.message);        
+        }
+    }
+    
+    // DELETE USER
+    DeleteUsers = async (e, id) => {
+        e.preventDefault();
+        try {
+            const response = await fetch(
+                `http://localhost:9000/users/${id}`, {
+                    method: "DELETE"
+                });
+            const data = this.state.users;
+            this.setState({users: data.filter(user => user.id !== id)});
+            if (response === null)
+                console.log(response);
+        } catch (error) {
+            console.error(error.message); 
+        }
+    }
+
+    // UPDATE USER LIST FROM DB
+    async componentDidMount() {
+        try {
+            const response = await fetch("http://localhost:9000/users");// recup les infos de la DB
+            const data = await response.json();                         // les infos sont lisibles en json
+            this.setState({users: data, loading: false});               // on met a jour le state local pour pouvoir afficher
+            // console.log(this.state.users);
+            if (response === null)
+                console.log(response);
+        } catch (error) {
+            console.error(error.message);
+        }
+    }
+
+    render () {
+        if (this.state.loading === true)
+            return <div className="adminform--error">Loading...</div>
+        else if (this.state.users === null || this.state.users.length === 0)
+            return <div className="adminform--error">Aucun utilisateur enregistré !</div>
+        else {
+            return (
+                <table className="adminform__table">
+                    <caption className="adminform__table--title">Liste des utilisateurs: </caption>
+                    <thead>
+                        <tr className="adminform__table__header">
+                            <th className="adminform__table__header--columntitle left">Prénom</th>
+                            <th className="adminform__table__header--columntitle">Pseudo</th>
+                            <th className="adminform__table__header--columntitle">Email</th>
+                            <th className="adminform__table__header--columntitle">Status</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {this.state.users.map((user) =>
+                            <tr className="adminform__table__body" key={user.id}>
+                                <th className="adminform__table__body--cell left">{user.name}</th>
+                                <th className="adminform__table__body--cell">{user.pseudo}</th>
+                                <th className="adminform__table__body--cell">{user.email}</th>
+                                <th className="adminform__table__body--cell">{user.status}</th>
+                                <th className="adminform__table__body--button">
+                                    <EditPopup
+                                        updateUserInfo={this.updateUserInfo}
+                                        userId={user.id}
+                                        firstname={this.state.firstname}
+                                        pseudo={this.state.pseudo}
+                                        email={this.state.email}
+                                        status={this.state.status}
+                                        users={this.state.users}
+                                    />
+                                </th>
+                                <th className="adminform__table__body--button">
+                                    <button type="button" name="delete"
+                                    onClick={(e) => this.DeleteUsers(e, user.id, )}>Delete</button>
+                                </th>
+                                {/* <th>
+                                    <Parent />
+                                </th> */}
+                            </tr>
+                        )}
+                    </tbody>
+                </table>
+            )
+        }
+    }
+};

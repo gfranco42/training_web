@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 
 /* COMPONENT */
 
-import { AddUser, ShowUsers } from "./user.js"
+import { AddUser } from "./addUser.js"
+import { ShowUsers } from "./showUser.js"
 
 
 /* IMG */

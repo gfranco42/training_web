@@ -8,33 +8,23 @@ import ah_logo from "../img/ah_logo.png"
 
 /* ADMIN EDIT POPUP */
 class EditPopup extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            firstname: "",
-            pseudo: "",
-            email: "",
-            status: ""
-
-        }
-    }
 
     editUser = async (e, id) => {
         e.preventDefault();
         try {
-        const {firstname, pseudo, email, status} = this.state;
-        const body = {firstname, pseudo, email, status};
-        const response = await fetch(`http://localhost:9000/users/${id}`, {
-            method: 'PUT',
-            headers: {"Content-type": "application/json"},
-            body: JSON.stringify(body) 
-        });
-        console.log(this.state);
-        console.log(body);
-        
-
-        if (response === null)
-            console.log(response);
+            this.setState({loading: true});
+            const {firstname, pseudo, email, status} = this.props;
+            let body = {firstname, pseudo, email, status};
+            const response = await fetch(`http://localhost:9000/users/${id}`, {
+                method: 'PUT',
+                headers: {"Content-type": "application/json"},
+                body: JSON.stringify(body) 
+            });
+            
+            if (body.firstname !== "" || body.pseudo !== "" || body.email !== "" || body.status !== status)
+                window.location.reload();
+            if (response === null)
+                console.log(response);
         } catch (error) {
            console.error(error.message); 
         }
@@ -52,21 +42,24 @@ class EditPopup extends Component {
     }
 
     render() {
-        return (
-            <Popup
+        if (this.props.loading === true)
+            return <div className="adminform--error">Loading...</div>
+        else {
+            return (
+                <Popup
                 trigger={<button>Modifier</button>}
                 modal
-                nested
-                closeOnEscape="true"
-            >
-                <div className="editpopup">
+                nested>
+               { close => (
+                   <div className="editpopup">
                     <div>Modifier un utilisateur</div>
-                    <form onSubmit={(e) => {this.editUser(e, this.props.userId); close();}}>
+                    <form onSubmit={(e) => {this.editUser(e, this.props.userId)}}>
                         <label>
                             Nom: 
                             <input type="text"
-                                value={this.state.firstname}
-                                onChange={(e) => {this.handleChange(e, "firstname")}}
+                                value={this.props.users.firstname}
+                                onChange={(e) => {this.props.updateUserInfo(e, "firstname")}}
+                                pattern="[^\s]+"
                                 name="name"
                                 >
                             </input>
@@ -74,8 +67,8 @@ class EditPopup extends Component {
                         <label>
                             Pseudo: 
                             <input type="text"
-                                value={this.state.pseudo}
-                                onChange={(e) => {this.handleChange(e, "pseudo")}}
+                                value={this.props.users.pseudo}
+                                onChange={(e) => {this.props.updateUserInfo(e, "pseudo")}}
                                 name="pseudo"
                                 >
                             </input>
@@ -83,16 +76,16 @@ class EditPopup extends Component {
                         <label>
                            Email: 
                             <input type="text"
-                                value={this.state.email}
-                                onChange={(e) => {this.handleChange(e, "email")}}
+                                value={this.props.users.email}
+                                onChange={(e) => {this.props.updateUserInfo(e, "email")}}
                                 name="email"
                                 >
                             </input>
                         </label>
                         <label>
                             Statut:
-                            <select value={this.state.status}
-                            onChange={(e) => {this.handleChange(e, "status")}}
+                            <select value={this.props.users.status}
+                            onChange={(e) => {this.props.updateUserInfo(e, "status")}}
                             >
                                 <option value="">Statut de l'utilisateur...</option>
                                 <option value="admin">Admin</option>
@@ -101,10 +94,12 @@ class EditPopup extends Component {
                         </label>
                         <button>Submit</button>
                     </form>
-                    <div>close</div>
+                    <button onClick={close}>Close</button>
+                    <button onClick={this.test}>test</button>
                 </div>
+               )}
             </Popup>
-        )
+        )}
     }
 }
 

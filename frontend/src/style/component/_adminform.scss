@@ -131,15 +131,14 @@
                 text-transform: capitalize;
                 padding: 9px 7px 7px 7px;
             }
+            &--button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100px;
+            }
         }
         
-        &--button {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: red solid 1px;
-            width: 100px;
-        }
          .left {
              margin-left: 20px;
          }
