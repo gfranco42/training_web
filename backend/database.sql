@@ -1,9 +1,12 @@
 CREATE DATABASE asylumheroes;
 
 CREATE TABLE users(
-    id SERIAL PRIMARY KEY,
-    name VARCHAR(255),
-    pseudo VARCHAR(255),
-    email VARCHAR(255),
-    status VARCHAR(255)
+    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    name VARCHAR(255) NOT NULL,
+    pseudo VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    status VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL 
 );
+
+INSERT INTO users (name, pseudo, email, status, password) VALUES ('Guillaume', 'Great Jack', 'fake@mail.com', 'admin', 'qwerty');
