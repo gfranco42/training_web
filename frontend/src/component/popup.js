@@ -154,16 +154,12 @@ class LoginPopup extends Component {
                         </form>
 
                         <div className="loginpopup__bot">
-                            <form className="loginpopup__bot--signin">
-                                <label>
-                                    Pas de compte? Inscrivez vous !
-                                    <button value="Inscription"/>
-                                </label>
-                                <label>
-                                    Mot de passe oublié ?
-                                    <button value="Recupérer"/>
-                                </label>
-                            </form>
+                            <button className="loginpopup__bot--signin">
+                                Inscription
+                            </button>
+                            <button className="loginpopup__bot--forgotpwd">
+                                Mot de passe oublié ?
+                            </button>
                         </div>
                     </div>
                 )}

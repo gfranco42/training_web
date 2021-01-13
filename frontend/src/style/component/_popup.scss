@@ -19,42 +19,65 @@
 
     #{$el}__top {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         text-transform: uppercase;
+        border: blue solid 1px;
 
         &--logo {
             z-index: 2;
             height: 50px;
-            // position: relative;
-            // left: -180px;
-            // top: -35px;
+            position: relative;
+            top: -30px;
+            left: -10px;
+        
         }
+        &--close {
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+            color: white;
+            border: none;
+            font-size: 15px;
+            position: relative;
+            top: -52px;
+            right: -21px;
+            outline: none;
+        }
+    }
+
+// ******************** FORM ******************** 
+
+    #{$el}__form {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: green solid 1px;
     }
 
 // ******************** BOT ******************** 
 
     #{$el}__bot {
         display: flex;
+        justify-content: space-around;
+        align-items: center;
         border: red 1px solid;
         
-        &--signin {
+        &--signin, &--forgotpwd {
+            cursor: pointer;
             display: flex;
-            justify-content: space-between;
-            border: blue 1px solid;
-            width: 100%;
-            
-            label {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-
-        button {
-            height: 20px;
-            width: 40px;
+            justify-content: center;
+            align-items: center;
+            height: 35px;
+            width: 100px;
+            background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+            border: none;
+            border-radius: 50px;
+            color: white;
         }
     }
-
 }

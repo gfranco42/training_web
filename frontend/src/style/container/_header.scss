@@ -84,7 +84,9 @@
             align-items: center;
             &--login, &--signin, &--logout {
                 cursor: pointer;
-                @include flex-centered();
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 height: 35px;
                 width: 100px;
                 background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
