@@ -1,5 +1,8 @@
 CREATE DATABASE asylumheroes;
 
+-- create extension if doesn't exist
+create extension if not exists "uuid-ossp";
+
 CREATE TABLE users(
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     name VARCHAR(255) NOT NULL,
@@ -9,4 +12,5 @@ CREATE TABLE users(
     password VARCHAR(255) NOT NULL 
 );
 
+-- insert fake user
 INSERT INTO users (name, pseudo, email, status, password) VALUES ('Guillaume', 'Great Jack', 'fake@mail.com', 'admin', 'qwerty');

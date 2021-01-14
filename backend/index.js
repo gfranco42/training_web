@@ -13,6 +13,11 @@ app.use(express.json())
 
 // ROUTES
 
+// register and login routes
+app.use('/auth', require('./routes/auth'));
+
+// dashboard routes
+app.use('/dashboard', require('./routes/dashboard'));
 
 // home lambda
 
@@ -20,12 +25,13 @@ app.get('/', (req,res) => {
   res.json("Main page");
 })
 
+
 // create
 
 app.post('/users', async(req, res) => {
   try {
     const {firstname, pseudo, email, status} = req.body;
-    const newUser = pool.query("INSERT INTO users (name, pseudo, email, status) VALUES ($1, $2, $3, $4) RETURNING *", [firstname, pseudo, email, status]);
+    const newUser = pool.query("INSERT INTO users (name, pseudo, email, status) VALUES ($1, $2, $3, $4) RETURNING", [firstname, pseudo, email, status]);
     res.json(newUser.rows);
   } catch (error) {
     console.error(error.message);
