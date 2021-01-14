@@ -104,7 +104,7 @@ export class ShowUsers extends Component {
         try {
             const response = await fetch("http://localhost:9000/users");// recup les infos de la DB
             const data = await response.json();                         // les infos sont lisibles en json
-            const newData = _.sortBy(data, 'id', function(n) {
+            const newData = _.sortBy(data, 'name', function(n) {
                 return Math.sin(n);
             });
             this.setState({users: newData, loading: false});               // on met a jour le state local pour pouvoir afficher
@@ -154,7 +154,7 @@ export class ShowUsers extends Component {
                                 </th>
                                 <th className="adminform__table__body--button">
                                     <button type="button" name="delete"
-                                    onClick={(e) => this.DeleteUsers(e, user.id, )}>Delete</button>
+                                    onClick={(e) => this.DeleteUsers(e, user.id, )}>{user.id}</button>
                                 </th>
                             </tr>
                         )}

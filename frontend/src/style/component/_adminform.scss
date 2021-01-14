@@ -108,7 +108,7 @@
             &--columntitle {
                 border-bottom: solid black 2px;
                 font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-                text-transform: capitalize;
+                text-transform: none;
                 padding: 7px;
             }
         }
@@ -128,7 +128,7 @@
                 height: 20px;
                 border-bottom: solid black 1px;
                 font-family: 'Arial Narrow Bold', sans-serif;
-                text-transform: capitalize;
+                text-transform: none;
                 padding: 9px 7px 7px 7px;
             }
             &--button {
