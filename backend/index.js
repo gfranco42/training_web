@@ -17,7 +17,7 @@ app.use(express.json())
 app.use('/auth', require('./routes/auth'));
 
 // dashboard routes
-app.use('/dashboard', require('./routes/dashboard'));
+app.use('/profil', require('./routes/profil'));
 
 // home lambda
 
