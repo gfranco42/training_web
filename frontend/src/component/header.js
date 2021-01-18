@@ -49,8 +49,6 @@ class Header extends Component {
             this.setState({log: false});
         else
             this.setState({log: true})
-
-        console.log(this.state.log)
     }
 
     // is_logged = (log) => {
@@ -70,6 +68,27 @@ class Header extends Component {
     //         )
     //     }
     // }
+    logout = (e) => {
+        e.preventDefault();
+        localStorage.removeItem("token");
+        window.location = "/";
+    }
+
+    connectionButton = () => {
+        if (!localStorage.token)
+            return (
+                <div className="navigation__button">
+                    <LoginPopup />
+                </div>
+            )
+        else
+            return (
+                <div className="navigation__button">
+                    <button className="navigation__button--logout" onClick={this.logout}>Deconnexion</button>
+                </div>
+            )
+            
+    }
 
     componentDidMount() {
         window.addEventListener('scroll', this.sticky_nav);
@@ -105,9 +124,7 @@ class Header extends Component {
 
                 {/* {this.is_logged(this.state.log)} */}
                 {/* <LogginPopup state={this.state}/> */}
-                <div className="navigation__button">
-                    <LoginPopup />
-                </div>
+                <this.connectionButton />
             </div>
         </div>
         )

@@ -2,10 +2,11 @@
 
 // component
 @import "./component/adminform";
+@import "./component/dashboard";
+@import "./component/header";
 @import "./component/popup";
 
 // container
-@import "./container/header";
 
 // global
 @import "./global/app";

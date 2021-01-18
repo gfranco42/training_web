@@ -5,7 +5,6 @@ const Home = () =>
 <div className="home">
     <Header />
     <Dashboard />
-    <div className="body">CECI EST LA PAGE PROFIL</div>
     <div className="footer"></div>
 </div>
 

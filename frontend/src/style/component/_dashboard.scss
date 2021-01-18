@@ -1,0 +1,9 @@
+
+@import "../utilities/mixins";
+
+.dashboard {
+    $el: &;
+    background: linear-gradient(#96C2F4, #BA62F2);
+    height: 2000px;
+    padding-top: 62px;
+}

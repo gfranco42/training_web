@@ -41,20 +41,18 @@ class LoginPopup extends Component {
     login = async (e) => {
         e.preventDefault();
         try {
-            // NEED TOKEN
             const {email, password} = this.state;
             const body = {email, password};
             const response = await fetch("http://localhost:9000/auth/login", {
                 method: "POST",
                 headers: {"Content-type": "application/json"},
-                // headers: {"keys": "token"},
                 body: JSON.stringify(body)
             });
 
             const parseRes = await response.json();
     
-            localStorage.setItem('token', parseRes);
-            // window.location.reload();
+            localStorage.setItem("token", parseRes.token);
+            window.location = "/profil"
         if (response === null)
             console.log("No Response from server");
         } catch (error) {
