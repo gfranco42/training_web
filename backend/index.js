@@ -30,8 +30,8 @@ app.get('/', (req,res) => {
 
 app.post('/users', async(req, res) => {
   try {
-    const {firstname, pseudo, email, status} = req.body;
-    const newUser = pool.query("INSERT INTO users (name, pseudo, email, status) VALUES ($1, $2, $3, $4) RETURNING", [firstname, pseudo, email, status]);
+    const {age, pseudo, email, password, status} = req.body;
+    const newUser = pool.query("INSERT INTO users (age, pseudo, email, password, status) VALUES ($1, $2, $3, $4, $5)", [age, pseudo, email, password, status]);
     res.json(newUser.rows);
   } catch (error) {
     console.error(error.message);
@@ -72,17 +72,17 @@ app.put('/users/:id', async(req, res) => {
   try {
 
     const {id} = req.params;
-    const {firstname, pseudo, email, status} = req.body;
+    const {age, pseudo, email, status} = req.body;
     let updateUser;
-    if (firstname !== "" && firstname !== null)
-      updateUser = pool.query("UPDATE users SET name = $1 WHERE id = $2", [firstname, id]);
+    if (age !== "" && age !== null)
+      updateUser = pool.query("UPDATE users SET age = $1 WHERE id = $2", [age, id]);
     if (pseudo !== "" && pseudo !== null)
       updateUser = pool.query("UPDATE users SET pseudo = $1 WHERE id = $2", [pseudo, id]);
     if (email !== "" && email !== null)
       updateUser = pool.query("UPDATE users SET email = $1 WHERE id = $2", [email, id]);
     if (status !== "" && status !== null)
       updateUser = pool.query("UPDATE users SET status = $1 WHERE id = $2", [status, id]);
-    res.json(`User with id ${id} has been updated ! The new user is now => Name: ${firstname} => Pseudo: ${pseudo} => Email: ${email} => Status: ${status}`);
+    res.json(`User with id ${id} has been updated ! The new user is now => Age: ${age} => Pseudo: ${pseudo} => Email: ${email} => Status: ${status}`);
 
   } catch (error) {
     console.error(error.message);
