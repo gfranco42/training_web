@@ -14,7 +14,7 @@ class adminform extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            firstname: "",
+            age: "",
             pseudo: "",
             email: "",
             status: ""
@@ -22,8 +22,8 @@ class adminform extends Component {
     }
 
     handleChange = (e, type) => {
-        if (type === "firstname")
-            this.setState({firstname: e.target.value})
+        if (type === "age")
+            this.setState({age: e.target.value})
         else if (type === "pseudo")
             this.setState({pseudo: e.target.value})
         else if (type === "email")
@@ -45,12 +45,11 @@ class adminform extends Component {
                 <p className="adminform__form--title">Add a new user:</p>
                 <form onSubmit={(e) => AddUser(e, this.state)}>
                     <label>
-                        Prénom:
-                        <input type="text"
+                        Date de naissance:
+                        <input type="date"
                             value={this.state.login}
-                            onChange={(e) => {this.handleChange(e, "firstname")}}
-                            name="firstname"
-                            placeholder="ex. Lancelot"
+                            onChange={(e) => {this.handleChange(e, "age")}}
+                            name="age"
                             className="adminform__form--input"
                             required
                             >

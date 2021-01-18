@@ -3,8 +3,11 @@ import React, { Component } from 'react';
 /* COMPONENT */
 
 /* MODULES */
-import { EditPopup } from './popup'
+import { EditPopup } from './editUser'
 import _ from 'lodash';
+
+// FUNCTIONS
+import {translate_date} from "../utils"
 
 
  /******************************************************** EXAMPLE ********************************************************/
@@ -57,7 +60,7 @@ export class ShowUsers extends Component {
         this.state = {
             users: null, 
             loading: true,
-            firstname: "",
+            age: "",
             pseudo: "",
             email: "",
             status: ""
@@ -68,15 +71,14 @@ export class ShowUsers extends Component {
     updateUserInfo = (e, type) => {
         e.preventDefault();
         try {
-            if (type === "firstname")
-                this.setState({firstname: e.target.value});
+            if (type === "age")
+                this.setState({age: e.target.value});
             else if (type === "pseudo")
                 this.setState({pseudo: e.target.value});
             else if (type === "email")
                 this.setState({email: e.target.value});
             else if (type === "status")
                 this.setState({status: e.target.value});
-            
         } catch (error) {
             console.error(error.message);        
         }
@@ -126,8 +128,8 @@ export class ShowUsers extends Component {
                     <caption className="adminform__table--title">Liste des utilisateurs: </caption>
                     <thead>
                         <tr className="adminform__table__header">
-                            <th className="adminform__table__header--columntitle left">Prénom</th>
-                            <th className="adminform__table__header--columntitle">Pseudo</th>
+                            <th className="adminform__table__header--columntitle left">Pseudo</th>
+                            <th className="adminform__table__header--columntitle">Âge</th>
                             <th className="adminform__table__header--columntitle">Email</th>
                             <th className="adminform__table__header--columntitle">Status</th>
                             <th></th>
@@ -137,24 +139,27 @@ export class ShowUsers extends Component {
                     <tbody>
                         {this.state.users.map((user) =>
                             <tr className="adminform__table__body" key={user.id}>
-                                <th className="adminform__table__body--cell left">{user.name}</th>
-                                <th className="adminform__table__body--cell">{user.pseudo}</th>
+                                <th className="adminform__table__body--cell left">{user.pseudo}</th>
+                                <th className="adminform__table__body--cell">{translate_date(user.age)}</th>
                                 <th className="adminform__table__body--cell">{user.email}</th>
                                 <th className="adminform__table__body--cell">{user.status}</th>
-                                <th className="adminform__table__body--button">
+                                <th className="adminform__table__body--button-cell">
                                     <EditPopup
                                         updateUserInfo={this.updateUserInfo}
                                         userId={user.id}
-                                        firstname={this.state.firstname}
+                                        age={this.state.age}
                                         pseudo={this.state.pseudo}
                                         email={this.state.email}
                                         status={this.state.status}
                                         users={this.state.users}
                                     />
                                 </th>
-                                <th className="adminform__table__body--button">
+                                <th className="adminform__table__body--button-cell">
                                     <button type="button" name="delete"
-                                    onClick={(e) => this.DeleteUsers(e, user.id, )}>{user.id}</button>
+                                    onClick={(e) => this.DeleteUsers(e, user.id, )}
+                                    className="adminform__table__body--button">
+                                        Supprimer
+                                    </button>
                                 </th>
                             </tr>
                         )}

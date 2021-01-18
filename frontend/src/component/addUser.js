@@ -1,8 +1,8 @@
 export const AddUser = async (e, state) => {
     e.preventDefault();
     try {
-        const {firstname, pseudo, email, status} = state;// rendre lecriture + propre
-        const body = {firstname, pseudo, email, status};// creation d'un objet 'users'
+        const {age, pseudo, email, status} = state;// rendre lecriture + propre
+        const body = {age, pseudo, email, status};// creation d'un objet 'users'
         const response =  await fetch(                  // recup le resultat d'un 'POST'
             "http://localhost:9000/users", {
                 method: "POST",
@@ -11,7 +11,8 @@ export const AddUser = async (e, state) => {
             }
         );
 
-        console.log(state)
+        console.log(response)
+        console.log('yolo')
         window.location.reload();
         console.log(state)
         if (response === null)

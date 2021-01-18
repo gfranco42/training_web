@@ -13,13 +13,13 @@ import Admin from './pages/admin.js';
 
 /* Ajouter le path et la page ou le component a afficher*/
 const Router = () => (
-    <Switch>
-        <Route exact path="/" component={Home}/>
-        <Route exact path="/profil" component={Profil}/>
-        <Route exact path="/projects" component={Projects}/>
-        <Route exact path="/studies" component={Studies}/>
-        <Route exact path="/admin" component={Admin}/>
-    </Switch>
+        <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route exact path="/profil" component={Profil}/>
+            <Route exact path="/projects" component={Projects}/>
+            <Route exact path="/studies" component={Studies}/>
+            <Route exact path="/admin" component={Admin}/>
+        </Switch>
 )
 
 export default Router;

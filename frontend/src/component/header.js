@@ -6,7 +6,8 @@ import React, { Component } from 'react';
 // import {string_cut} from "../utils.js";
 
 /* COMPONENT */
-import { LoginPopup } from "../component/popup.js"
+// import { EditPopup } from "./editUser.js"
+import { LoginPopup } from "./login.js"
 
 /* PAGE */
 // import Home from '../pages/home';

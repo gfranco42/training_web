@@ -1,7 +1,33 @@
-export const string_cut = (base, cutter) => {
-    const len = cutter.length - 1;
+import moment from 'moment';
+
+export const string_cut = (base, len) => {
+    // const len = cutter.length - 1;
     if (len >= 1)
         return base.slice(0, len * -1);
     else
         return base;
+}
+
+export const translate_date = (date) => {
+    const localTime = moment.utc().format('YYYY-MM-DD')
+    const today = new Date(localTime);
+    const birthDate = new Date(date);
+    var age_now = today.getFullYear() - birthDate.getFullYear();
+    var m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age_now--;
+    }
+    return (age_now);
+    // if (m < 0 || (m === 0 && today.getDate() < .getDate())) 
+    // {
+    //     age_now--;
+    // }
+    // console.log(age_now);
+    // console.log(age);
+    // console.log(localTime);
+    // console.log(date);
+    // console.log(string);
+    // console.log(string2);
+    // return (age);
 }

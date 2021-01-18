@@ -1,5 +1,5 @@
 /* CONTAINER */
-import Header from "../container/header.js"
+import Header from "../component/header.js"
 
 /* COMPONENT */
 import Adminform from "../component/adminform.js"

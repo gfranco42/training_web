@@ -37,3 +37,15 @@
      align-items: center;
      justify-content: center;
  }
+ @mixin standard-btn() {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 35px;
+    width: 100px;
+    background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+    border: none;
+    border-radius: 50px;
+    color: white;
+ }

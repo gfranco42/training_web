@@ -1,3 +1,9 @@
+@import "../utilities/mixins";
+
+
+
+
+// ******************************* E D I T ******************************* 
 .editpopup {
     $el: &;
 
@@ -6,30 +12,32 @@
 
 }
 
+
+
+
+// ******************************* L O G I N ******************************* 
 .loginpopup {
     $el: &;
-    background-image: url("../../img/ah_bg_popup.png");
-    background-size: cover;
-    padding: 20px;
-    border-radius: 10px;
+    // background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+    background: rgb(189, 222, 249);
+    padding: 30px;
+    border-radius: 50px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    width: 400px;
 
-    
-// ******************** TOP ******************** 
-
+// *** TOP *** 
     #{$el}__top {
         display: flex;
         justify-content: space-between;
         align-items: center;
         text-transform: uppercase;
-        border: blue solid 1px;
 
         &--logo {
             z-index: 2;
             height: 50px;
             position: relative;
-            top: -30px;
-            left: -10px;
+            top: -25px;
+            left: -5px;
         
         }
         &--close {
@@ -44,40 +52,143 @@
             border: none;
             font-size: 15px;
             position: relative;
-            top: -58px;
-            right: -27px;
+            top: -60px;
+            right: -35px;
             outline: none;
         }
     }
 
-// ******************** FORM ******************** 
-
+// *** FORM *** 
     #{$el}__form {
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        border: green solid 1px;
+        height: 100px;
+        width: 100%;
+        margin-top: 20px;
+        border-top: black 2px solid;
+        border-bottom: black 2px solid;
+        padding: 15px 0 15px 0;
+
+        &__label {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &--submit {
+            @include standard-btn();
+        }
     }
 
-// ******************** BOT ******************** 
-
+// *** BOT *** 
     #{$el}__bot {
         display: flex;
         justify-content: space-around;
         align-items: center;
-        border: red 1px solid;
+        margin-top: 35px;
         
         &--signin, &--forgotpwd {
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 35px;
-            width: 100px;
-            background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-            border: none;
-            border-radius: 50px;
-            color: white;
+            @include standard-btn();
+            // cursor: pointer;
+            // display: flex;
+            // justify-content: center;
+            // align-items: center;
+            // height: 35px;
+            // width: 100px;
+            // background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+            // border: none;
+            // border-radius: 50px;
+            // color: white;
         }
     }
+}
+
+
+
+
+// ******************************* R E G I S T R A T I O N ******************************* 
+.registrationpopup {
+    $el: &;
+    // background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+    background: rgb(218, 193, 213);
+    width: 400px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 50px;
+
+    // *** TOP ***
+    #{$el}__top {
+        
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        text-transform: uppercase;
+        width: 100%;
+        height: 50px;
+
+        &--logo {
+            z-index: 2;
+            height: 50px;
+            position: relative;
+            top: -35px;
+            left: -25px;
+        }
+        &--title {
+            align-self: flex-start;
+            margin: 0;
+        }
+        &--close {
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            border-radius: 20px;
+            background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+            color: white;
+            border: none;
+            font-size: 15px;
+            position: relative;
+            top: -85px;
+            right: -55px;
+            outline: none;
+        }
+    }
+
+    // *** FORM ***
+    #{$el}__form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-around;
+        width: 100%;
+        height: 200px;;
+        margin-top: 20px;
+        padding: 15px 0 15px 0;
+        border-top: solid black 2px;
+        border-bottom: solid black 2px;
+
+        &__label {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+             &--input {
+                 width: 150px;
+             }
+        }
+
+        &--submit {
+            @include standard-btn();
+            align-self: center;;
+        }
+    }
+
+    // *** BOT ***
 }
