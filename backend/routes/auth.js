@@ -14,7 +14,7 @@ router.post('/register', validInfo, async (req, res) => {
 
         // 2. check if user exists (if not, throw error)
         if (user.rows.length !== 0)
-            return res.status(401).send("User already exists");
+            return res.status(401).json("Cet email existe déjà !");
 
         // 3. bcrypt the user password
         const saltRound = 10;
@@ -44,12 +44,12 @@ router.post('/login', validInfo, async (req, res) => {
 
         // 2. check if user exists (if not, throw error)
         if (user.rows.length === 0)
-            return res.status(401).send("Email or Password is invalid");
+            return res.status(401).json("Email ou mot de passe invalide !");
 
         // 3. check if incomming password matchs user (if not, throw error)
         const validPassword = await bcrypt.compare(password, user.rows[0].password);
         if (!validPassword)
-            return res.status(401).send("Email or Password is invalid");
+            return res.status(401).json("Email ou mot de passe invalide !");
 
         // 4. generate token
         const token = jwtGenerator(user.rows[0].id);
