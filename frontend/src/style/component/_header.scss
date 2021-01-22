@@ -57,7 +57,19 @@
                 .underline {
                     height: 3px; // epaisseur
                     width: 100%; // largeur
+
+                    // WINTER
                     background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+
+                    // SPRING
+                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+
+                    // SUMMER
+                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+
+                    // FALL
+                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+
                     animation: fadeout 0.5s forwards;
                     // display: none;
                 }
@@ -81,7 +93,7 @@
             display: flex;
             justify-content: space-around;
             align-items: center;
-            &--login, &--signin, &--logout {
+            &--login, &--signin, &--logout, &--profil-page {
                 @include standard-btn();
                 // cursor: pointer;
                 // display: flex;

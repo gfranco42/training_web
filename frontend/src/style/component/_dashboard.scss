@@ -3,7 +3,7 @@
 
 .dashboard {
     $el: &;
-    background: linear-gradient(#96C2F4, #BA62F2);
+    @include body-background();
     height: 2000px;
     padding-top: 62px;
 }

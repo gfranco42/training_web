@@ -1,0 +1,26 @@
+
+@import "../utilities/mixins";
+
+.errorComponent {
+    $el: &;
+    height: 500px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-transform: uppercase;
+    @include body-background();
+    font-size: 400px;
+    padding-top: 150px;
+
+}
+
+.toastError {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: purple;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    text-align: center;
+}

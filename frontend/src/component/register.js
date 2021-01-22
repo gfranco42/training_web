@@ -5,6 +5,10 @@ import ah_logo from "../img/ah_logo.png"
 
 // POPUP
 import Popup from "reactjs-popup";
+import { toast } from 'react-toastify';
+
+// TOAST
+// import {toast} from 'react-toastify';
 
 class RegisterPopup extends Component {
     constructor(props) {
@@ -37,9 +41,16 @@ class RegisterPopup extends Component {
             }) 
             
             const parseRes = await response.json();
-            localStorage.setItem('token', parseRes.token);
-            if (!response)
-                console.log("No Response from server");
+            if (parseRes.token) {
+                toast.success(`Bienvenue chez Asylum Heroes ${body.pseudo} !`, {
+                    position: "top-center",
+                    hideProgressBar: true,
+                    closeButton: false,
+                });
+                localStorage.setItem('token', parseRes.token);
+            }
+            else
+                toast.error(parseRes);
         } catch (error) {
             console.error(error.message);
         }

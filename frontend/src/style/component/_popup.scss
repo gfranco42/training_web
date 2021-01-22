@@ -16,6 +16,10 @@
 
 
 // ******************************* L O G I N ******************************* 
+.loginToast {
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
 .loginpopup {
     $el: &;
     // background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);

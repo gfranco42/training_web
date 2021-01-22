@@ -6,46 +6,65 @@
  }
  
  // Medium devices
- @mixin md {
-    @media (min-width: #{$screen-md-min}) {
-        @content;
-    }
- }
+@mixin md {
+   @media (min-width: #{$screen-md-min}) {
+       @content;
+   }
+}
  
- // Large devices
- @mixin lg {
-    @media (min-width: #{$screen-lg-min}) {
-        @content;
-    }
- }
+// Large devices
+@mixin lg {
+   @media (min-width: #{$screen-lg-min}) {
+       @content;
+   }
+}
  
- // Extra large devices
- @mixin xl {
-    @media (min-width: #{$screen-xl-min}) {
+// Extra large devices
+@mixin xl {
+   @media (min-width: #{$screen-xl-min}) {
+       @content;
+   }
+}
+
+@mixin rwd($screen) {
+    @media (min-width: $screen + 'px') {
         @content;
     }
- }
+}
 
- @mixin rwd($screen) {
-     @media (min-width: $screen + 'px') {
-         @content;
-     }
- }
+@mixin flex-centered() {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
- @mixin flex-centered() {
-     display: flex;
-     align-items: center;
-     justify-content: center;
- }
- @mixin standard-btn() {
+
+$winter-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+$spring-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+$summer-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+$fall-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+
+@mixin standard-btn() {
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 35px;
     width: 100px;
-    background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+    // /!\ CHANGEMENT DE SAISON ICI /!\
+    background: $winter-button;
     border: none;
     border-radius: 50px;
     color: white;
- }
+}
+
+
+$winter-background: linear-gradient(#96C2F4, #B965F0);
+$spring-background: linear-gradient(#58FF93, #B965F0);
+$summer-background: linear-gradient(#96C2F4, #B965F0);
+$fall-background: linear-gradient(#96C2F4, #B965F0);
+
+@mixin body-background() {
+    // /!\ CHANGEMENT DE SAISON ICI /!\
+    background: $spring-background;
+}

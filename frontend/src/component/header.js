@@ -17,6 +17,7 @@ import { LoginPopup } from "./login.js"
 /* IMG */
 import ah_logo from "../img/ah_logo.png";
 import ah_title from "../img/ah_title.png";
+// import ah_title from "../img/winter/ah_title.png";
 // import header_bg from "../img/header_bg.png";
 
 
@@ -26,7 +27,6 @@ class Header extends Component {
         super(props)
         this.state = {
             log: false,
-            popup: false,
             nav_style: { top: 330 }}
     }
 
@@ -39,59 +39,51 @@ class Header extends Component {
 
     }
 
-    pop_up = (e) => {
-        e.preventDefault();
-    }
-
-    handleClick = (e) => {
-        e.preventDefault();
-        if (this.state.log === true)
-            this.setState({log: false});
-        else
-            this.setState({log: true})
-    }
-
-    // is_logged = (log) => {
-    //     if (log === true) {
-    //         return (
-    //             <div className="navigation__button">
-    //                 <button className="navigation__button--logout" onClick={this.handleClick}>Deconnexion</button>
-    //                 <LoginPopup state={this.state} />
-    //             </div>
-    //         )
-    //     }
-    //     else {
-    //         return (
-    //             <div className="navigation__button">
-    //                 <button className="navigation__button--login" onClick={this.handleClick}>Connexion</button>
-    //             </div>
-    //         )
-    //     }
-    // }
     logout = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
         window.location = "/";
     }
 
+    updateLogState = (bool) => {
+        this.setState({log: bool});
+    }
+
     connectionButton = () => {
-        if (!localStorage.token)
+
+        if (this.state.log === false)
             return (
                 <div className="navigation__button">
-                    <LoginPopup />
+                    <LoginPopup updateLogState={this.updateLogState}/>
                 </div>
             )
         else
             return (
                 <div className="navigation__button">
+                    <button className="navigation__button--profil-page" onClick={() => {window.location = "/profil"}}>Profil</button>
                     <button className="navigation__button--logout" onClick={this.logout}>Deconnexion</button>
                 </div>
             )
             
     }
 
-    componentDidMount() {
+    componentDidMount = async () => {
         window.addEventListener('scroll', this.sticky_nav);
+
+        // VERIFY TOKEN
+        const responseVerify = await fetch("http://localhost:9000/auth/token-verify", {
+            method: "GET",
+            headers: {token: localStorage.token}
+        });
+        const parseResVerify = await responseVerify.json();
+        console.log(parseResVerify)
+        if (!parseResVerify || parseResVerify === "Not Authorized"){
+            localStorage.removeItem("token");
+            this.setState({log: false});
+        }
+        else
+            this.setState({log: true})
+
     }
 
     render() { 

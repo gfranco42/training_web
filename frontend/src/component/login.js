@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 
 // POPUP
 import Popup from "reactjs-popup";
@@ -18,6 +19,7 @@ class LoginPopup extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            log: false,
             email: "",
             password: "",
         }
@@ -51,8 +53,25 @@ class LoginPopup extends Component {
 
             const parseRes = await response.json();
     
-            localStorage.setItem("token", parseRes.token);
-            window.location = "/profil"
+            if (parseRes.token) {
+                localStorage.setItem("token", parseRes.token);
+                toast.success(`Bon retour !`, {
+                    position: "top-center",
+                    hideProgressBar: true,
+                    closeButton: false,
+                    className: "loginToast",
+                });
+                this.props.updateLogState(true);
+            }
+            else {
+                toast.error(parseRes, {
+                    position: "top-center",
+                    hideProgressBar: true,
+                    closeButton: false,
+                    className: "loginToast",
+                });
+                this.props.updateLogState(false);
+            }
         if (response === null)
             console.log("No Response from server");
         } catch (error) {
@@ -106,7 +125,10 @@ class LoginPopup extends Component {
                             </label>
                             <input type="submit"
                                 value="Et zé partiiiii !"
-                                onClick={this.login}
+                                onClick={(e) => {
+                                    this.login(e);
+                                    close()
+                                }}
                                 className="loginpopup__form--submit"
                                 ></input>
                         </form>

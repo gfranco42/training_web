@@ -8,7 +8,7 @@
     align-items: center;
     height: auto;
     width: 100%;
-    background: linear-gradient(#96C2F4, #BB65F0);
+    @include body-background();
 
     &--error {
         display: flex;
@@ -46,7 +46,19 @@
         width: 1200px;
         border: 10px solid;
         border-radius: 50px;
+
+        // WINTER
         border-image-source: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+
+        // SPRING
+        // border-image-source: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+
+        // SUMMER
+        // border-image-source: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+
+        // FALL
+        // border-image-source: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+
         border-image-slice: 1;
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         &--title {

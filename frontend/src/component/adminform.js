@@ -32,6 +32,28 @@ class adminform extends Component {
             this.setState({status: e.target.value})
     }
 
+    componentDidMount = async () => {
+        try {
+            if (!localStorage.token){
+                localStorage.setItem("error", "Vous n'êtes pas autorisé à pénétrer cet espace !!")
+                window.location = "/error";
+            }
+
+            // VERIFY TOKEN
+            const responseVerify = await fetch("http://localhost:9000/auth/token-verify", {
+                method: "GET",
+                headers: {token: localStorage.token}
+            });
+            const parseResVerify = await responseVerify.json();
+            if (!parseResVerify || parseResVerify === "Not Authorized"){
+                localStorage.removeItem("token");
+                localStorage.setItem("error", "Vous n'êtes pas autorisé à pénétrer cet espace !!")
+                window.location = "/error";
+            }
+        } catch (error) {
+            console.error(error.message);    
+        }
+    }
 
     render () {
         return (
