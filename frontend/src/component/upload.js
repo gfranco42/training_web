@@ -5,11 +5,10 @@ class Upload extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            access_key: "AKIA6ATD7R65UKPNI2OO",
-            secret_key: "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",
-            bucket_name: "asylum-heroes",
-            region: "eu-west-3",
-            testImg: "./test-img.png",
+            access_key: process.env.REACT_APP_ACCESS_KEY,
+            secret_key: process.env.REACT_APP_SECRET_KEY,
+            bucket_name: process.env.REACT_APP_BUCKET,
+            region: process.env.REACT_APP_REGION,
             finalImg: ""
         }
     }
@@ -40,6 +39,13 @@ class Upload extends Component {
             return (<img alt="finalImg" src={this.state.finalImg}/>);
         else
             return null;
+    }
+    
+    componentDidMount = () => {
+        console.log(this.state.access_key);
+        console.log(this.state.secret_key);
+        console.log(this.state.bucket_name);
+        console.log(this.state.region);
     }
 
     render() {
