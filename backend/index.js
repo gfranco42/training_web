@@ -19,6 +19,9 @@ app.use('/auth', require('./routes/auth'));
 // dashboard routes
 app.use('/profil', require('./routes/profil'));
 
+// images
+app.use('/img', require('./routes/img'));
+
 // home lambda
 
 app.get('/', (req,res) => {
@@ -90,7 +93,6 @@ app.put('/users/:id', async(req, res) => {
 })
 
 // delete
-
 app.delete('/users/:id', async(req, res) => {
   try {
     const {id} = req.params;
