@@ -76,7 +76,6 @@ class Header extends Component {
             headers: {token: localStorage.token}
         });
         const parseResVerify = await responseVerify.json();
-        console.log(parseResVerify)
         if (!parseResVerify || parseResVerify === "Not Authorized"){
             localStorage.removeItem("token");
             this.setState({log: false});

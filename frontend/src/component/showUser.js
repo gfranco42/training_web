@@ -94,8 +94,6 @@ export class ShowUsers extends Component {
                 });
             const data = this.state.users;
             this.setState({users: data.filter(user => user.id !== id)});
-            if (response === null)
-                console.log(response);
         } catch (error) {
             console.error(error.message); 
         }
@@ -119,7 +117,7 @@ export class ShowUsers extends Component {
 
     render () {
         if (this.state.loading === true)
-            return <div className="adminform--error">Loading...</div>
+            return <div className="adminform--error">Chargement...</div>
         else if (this.state.users === null || this.state.users.length === 0)
             return <div className="adminform--error">Aucun utilisateur enregistré !</div>
         else {
@@ -137,7 +135,7 @@ export class ShowUsers extends Component {
                         </tr>
                     </thead>
                     <tbody>
-                        {this.state.users.map((user) =>
+                        {this.state.users.map( (user) =>
                             <tr className="adminform__table__body" key={user.id}>
                                 <th className="adminform__table__body--cell left">{user.pseudo}</th>
                                 <th className="adminform__table__body--cell">{translate_date(user.age)}</th>
@@ -156,7 +154,7 @@ export class ShowUsers extends Component {
                                 </th>
                                 <th className="adminform__table__body--button-cell">
                                     <button type="button" name="delete"
-                                    onClick={(e) => this.DeleteUsers(e, user.id, )}
+                                    onClick={(e) => this.DeleteUsers(e, user.id)}
                                     className="adminform__table__body--button">
                                         Supprimer
                                     </button>

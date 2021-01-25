@@ -30,13 +30,6 @@ class Dashboard extends Component {
             return null;
     }
 
-    testError = () => {
-        console.log("prout");
-        // window.location = "/error"
-
-
-    }
-
     componentDidMount = async () => {
         try {
             if (!localStorage.token) {

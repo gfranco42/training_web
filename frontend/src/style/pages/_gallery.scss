@@ -1,10 +1,10 @@
-.profil {
+.home {
     // border: green 10px solid;
     height: 100%;
     $el: &;
-    .body {
+    .gallery {
         @include body-background();
-        height: 2000px;
+        height: 2000px;;
         padding-top: 62px;
     }
     .footer {

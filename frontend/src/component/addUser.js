@@ -11,10 +11,7 @@ export const AddUser = async (e, state) => {
             }
         );
 
-        console.log(response)
-        console.log('yolo')
         window.location.reload();
-        console.log(state)
         if (response === null)
             console.log(response);
     } catch (error) {
