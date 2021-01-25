@@ -1,8 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express()
-// const db = require('./queries')
-const pool = require('./db');
 const port = 9000
 const cors = require("cors");
 
@@ -22,86 +20,11 @@ app.use('/profil', require('./routes/profil'));
 // images
 app.use('/img', require('./routes/img'));
 
-// home lambda
+// users
+app.use('/users', require('./routes/users'));
 
 app.get('/', (req,res) => {
   res.json("Main page");
-})
-
-
-// create
-
-app.post('/users', async(req, res) => {
-  try {
-    const {age, pseudo, email, password, status} = req.body;
-    const newUser = pool.query("INSERT INTO users (age, pseudo, email, password, status) VALUES ($1, $2, $3, $4, $5)", [age, pseudo, email, password, status]);
-    res.json(newUser.rows);
-  } catch (error) {
-    console.error(error.message);
-  }
-})
-
-// get all
-
-app.get('/users', async(req, res) => {
-  try {
-
-    const usersList = await pool.query("SELECT * FROM users");
-    res.json(usersList.rows);
-
-  } catch (err) {
-    console.error(err.message);    
-  }
-});
-
-
-// get one
-
-app.get('/users/:id', async(req,res) => {
-  try {
-
-    const {id} = req.params;
-    const user = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
-    res.json(user.rows[0]);
-
-  } catch (error) {
-    console.error(error.message);
-  }
-})
-
-// update
-
-app.put('/users/:id', async(req, res) => {
-  try {
-
-    const {id} = req.params;
-    const {age, pseudo, email, status} = req.body;
-    let updateUser;
-    if (age !== "" && age !== null)
-      updateUser = pool.query("UPDATE users SET age = $1 WHERE id = $2", [age, id]);
-    if (pseudo !== "" && pseudo !== null)
-      updateUser = pool.query("UPDATE users SET pseudo = $1 WHERE id = $2", [pseudo, id]);
-    if (email !== "" && email !== null)
-      updateUser = pool.query("UPDATE users SET email = $1 WHERE id = $2", [email, id]);
-    if (status !== "" && status !== null)
-      updateUser = pool.query("UPDATE users SET status = $1 WHERE id = $2", [status, id]);
-    res.json(`User with id ${id} has been updated ! The new user is now => Age: ${age} => Pseudo: ${pseudo} => Email: ${email} => Status: ${status}`);
-
-  } catch (error) {
-    console.error(error.message);
-  }
-})
-
-// delete
-app.delete('/users/:id', async(req, res) => {
-  try {
-    const {id} = req.params;
-    const deleteUser = pool.query("DELETE FROM users WHERE id= $1", [id]);
-    res.json(`User with id ${id} has been deleted !`);
-    
-  } catch (error) {
-    console.error(error.message);
-  }
 })
 
 // app.get('/users', db.getUsers)
