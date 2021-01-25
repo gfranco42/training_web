@@ -99,18 +99,44 @@ class Header extends Component {
                 </a>
 
                 <div className="navigation__rubric">
-                    <div className="navigation__rubric--page about">Qui sommes nous?
+                    <a className="navigation__rubric--page">
+                        Qui sommes nous?
+                        <div className="underline"></div>
+                    </a>
+
+
+                    <div className="navigation__rubric--page videos-rubric">
+                        <div className="rubric-title">Videos</div>
+                        <div className="menu">
+                            <div className="menu__choice">
+                                <a className="title" href="/videos/true-warriors">True Warriors</a>
+                                <div className="choice-underline"></div>
+                            </div>
+                            <div className="menu__choice">
+                                <a className="title">League of Lesglands</a>
+                                <div className="choice-underline"></div>
+                            </div>
+                            <div className="menu__choice last">
+                                <a className="title">Hors-Séries</a>
+                                <div className="choice-underline"></div>
+                            </div>
+                        </div>
                         <div className="underline"></div>
                     </div>
-                    <div className="navigation__rubric--page videos">Videos
+
+
+                    <a className="navigation__rubric--page" href="/gallery">
+                        Gallerie
                         <div className="underline"></div>
-                    </div>
-                    <div className="navigation__rubric--page project">Autres projets
+                    </a>
+                    <a className="navigation__rubric--page">
+                        Autres projets
                         <div className="underline"></div>
-                    </div>
-                    <div className="navigation__rubric--page forum">Forum
+                    </a>
+                    <a className="navigation__rubric--page">
+                        Forum
                         <div className="underline"></div>
-                    </div>
+                    </a>
                 </div>
 
                 {/* {this.is_logged(this.state.log)} */}

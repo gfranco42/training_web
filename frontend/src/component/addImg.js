@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import S3FileUpload from 'react-s3';
 
-class Upload extends Component {
+class ImgUpload extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -61,4 +61,4 @@ class Upload extends Component {
     }
 }
 
-export default Upload;
+export default ImgUpload;

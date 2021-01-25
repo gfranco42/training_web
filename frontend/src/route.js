@@ -9,9 +9,11 @@ import Projects from './pages/projects.js';
 import Studies from './pages/studies.js';
 import Admin from './pages/admin.js';
 import Gallery from './pages/gallery.js';
+import Videos from './pages/videos.js';
 import ErrorPage from './pages/errorPage.js';
 
 
+import TrueWarriors from './pages/videos/trueWarriors.js';
 
 /* Ajouter le path et la page ou le component a afficher*/
 const Router = () => (
@@ -22,6 +24,8 @@ const Router = () => (
             <Route exact path="/studies" component={Studies}/>
             <Route exact path="/gallery" component={Gallery}/>
             <Route exact path="/admin" component={Admin}/>
+            <Route exact path="/videos" component={Videos}/>
+            <Route exact path="/videos/true-warriors" component={TrueWarriors}/>
             <Route exact path="/error" component={ErrorPage}/>
             <Route path="/" component={ErrorPage} />
         </Switch>

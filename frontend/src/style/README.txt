@@ -21,10 +21,10 @@ Passage hiver => printemps
 cd ~/Projects/training_web/asylum_heroes/frontend/src/img/ && mv ah_logo.png ah_title.png header_bg.png ./winter/ && mv ./spring/* ./
 
 Passage printemps => été
-cd ~/Projects/training_web/asylum_heroes/frontend/src/img/ && mv ah_logo.png ah_title.png header_bg.png ./winter/ && mv ./spring/* ./
+cd ~/Projects/training_web/asylum_heroes/frontend/src/img/ && mv ah_logo.png ah_title.png header_bg.png ./spring/ && mv ./summer/* ./
 
 Passage été => automne
-cd ~/Projects/training_web/asylum_heroes/frontend/src/img/ && mv ah_logo.png ah_title.png header_bg.png ./winter/ && mv ./spring/* ./
+cd ~/Projects/training_web/asylum_heroes/frontend/src/img/ && mv ah_logo.png ah_title.png header_bg.png ./summer/ && mv ./fall/* ./
 
 Passage automne => hiver
-cd ~/Projects/training_web/asylum_heroes/frontend/src/img/ && mv ah_logo.png ah_title.png header_bg.png ./winter/ && mv ./spring/* ./
+cd ~/Projects/training_web/asylum_heroes/frontend/src/img/ && mv ah_logo.png ah_title.png header_bg.png ./fall/ && mv ./winter/* ./

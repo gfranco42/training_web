@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ShowImgs from './showImgs';
-import Upload from './addImg';
+import ImgUpload from './addImg';
 
 class ImgGallery extends Component {
     constructor(props) {
@@ -38,7 +38,7 @@ class ImgGallery extends Component {
             <div className="gallery">
                 <h1 className="gallery--title">Gallerie de photos Asylum Heroes</h1>
                 <ShowImgs />
-                <Upload />
+                <ImgUpload />
             </div>
         )
     }

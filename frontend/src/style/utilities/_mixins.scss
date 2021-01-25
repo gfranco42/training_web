@@ -32,13 +32,6 @@
     }
 }
 
-@mixin flex-centered() {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
 $winter-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
 $spring-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
 $summer-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
@@ -61,7 +54,7 @@ $fall-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
 
 $winter-background: linear-gradient(#96C2F4, #B965F0);
 $spring-background: linear-gradient(#58FF93, #B965F0);
-$summer-background: linear-gradient(#96C2F4, #B965F0);
+$summer-background: linear-gradient(#FFFE52, #B965F0);
 $fall-background: linear-gradient(#96C2F4, #B965F0);
 
 @mixin body-background() {

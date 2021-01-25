@@ -2,14 +2,14 @@
 import Header from "../component/header.js"
 
 /* COMPONENT */
-import ImgGallery from "../component/imgGallery.js"
+import TwGallery from "../component/twGallery.js"
 
 
-const Gallery = () =>
+const Videos = () =>
     <div className="home">
         <Header />
-        <ImgGallery />
+        <div>ANCIENNE PAGE VIDEOS</div>
         <div className="footer"></div>
     </div>
 
-export default Gallery;
+export default Videos;

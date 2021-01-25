@@ -8,6 +8,7 @@ const Home = () =>
         <a className="adminLink" href="/admin">Page Admin !</a>
         <a className="adminLink" href="/profil">Page Profil !</a>
         <a className="adminLink" href="/gallery">Page Gallery !</a>
+        <a className="adminLink" href="/videos">Page Videos !</a>
     </div>
     <div className="footer"></div>
 </div>

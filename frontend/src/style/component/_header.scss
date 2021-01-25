@@ -2,7 +2,11 @@
 
 .header {
     $el: &;
-    @include flex-centered();
+    // @include flex-centered();
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     text-transform: uppercase;
     width: 100%;
@@ -10,7 +14,10 @@
 
 
     #{$el}__background {
-        @include flex-centered();
+        // @include flex-centered();
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 100%;
         background: url("../../img/header_bg.png");
         background-size: cover;
@@ -44,22 +51,30 @@
         .navigation__rubric {
             display: flex;
             justify-content: space-around;
-            align-items: center;
             width: 1300px;
             min-width: 600px;
             
+
             &--page {
-                @include flex-centered();
+                outline: none;
+                text-decoration: none;
+                color: black;
+                display: flex;
                 flex-direction: column;
+                align-items: center;
                 height: auto;
-                text-align: center;
+                position: relative;
+                padding-top: 14px;
                 cursor: pointer;
+                width: 150px;
+
+                // *********** RUBRICS GENERAL ***********
                 .underline {
                     height: 3px; // epaisseur
                     width: 100%; // largeur
+                    background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
 
                     // WINTER
-                    background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
 
                     // SPRING
                     // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
@@ -72,12 +87,86 @@
 
                     animation: fadeout 0.5s forwards;
                     // display: none;
+
                 }
-                &:hover {
+                // *********** ************** ***********
+
+
+                // *********** MENU RELATED ***********
+                // Hide menu
+                .menu {
+                    opacity: 0;
+                    display: none;
+                    width: 150%;
+                }
+                .choice-underline {
+                    height: 3px; // epaisseur
+                    width: 70%;
+                    background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+
+                    // WINTER
+
+                    // SPRING
+                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+
+                    // SUMMER
+                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+
+                    // FALL
+                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+                    animation: fadeout 0.5s forwards;
+                }
+
+
+                &:hover{
+                    height: auto;
+                    .rubric-title {
+                        position: relative;
+                        top: -8px;
+                        padding: 4px;
+                        border: 4px solid;
+                        border-image-source: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+                        border-image-slice: 1;
+                    }
                     .underline {
                         animation: fadein 0.5s forwards;
                     }
+                    .menu {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        justify-content: space-between;
+                        animation: fadein 0.5s forwards;
+                        // border: red solid 1px;
+                    
+                        &__choice {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            padding: 15px 0 15px 0;
+                            height: 30px;
+                            width: 100%;
+                            background: white;
+                            .title {
+                                outline: none;
+                                text-decoration: none;
+                                color: black;
+                            }
+                            &:hover {
+                                .choice-underline {
+                                    animation: fadein 0.5s forwards;
+                                }
+                            }
+                        }
+                    }
                 }
+
+                // *********** ************** ***********
+
+
+
+                // *********** KEYFRAMES FOR ANIMATIONS ***********
                 @keyframes fadein {
                     from {opacity: 0;}
                     to {opacity: 1;}
@@ -87,6 +176,9 @@
                     to {opacity: 0;}
                 }
             }
+            // Recenter the rubric (menu)
+
+
         }
         .navigation__button {
             min-width: 290px;
