@@ -34,6 +34,7 @@ class ShowImgs extends Component {
             const response = await fetch("http://localhost:9000/img");
             const data = await response.json();
             this.setState({img: data, loading: false});
+            console.log(this.state)
         } catch (error) {
             console.error(error.message); 
         }

@@ -24,33 +24,38 @@ class Upload extends Component {
             region: region,
         };
 
-        const data = await S3FileUpload.uploadFile(e.target.files[0], config)
-        const url = data.location;
-        const body = {url};
-        const response = await fetch(
-            "http://localhost:9000/img", {
-                method: "POST",
-                headers: {"Content-type": "application/json"},
-                body: JSON.stringify(body)
+        const len = e.target.files.length;
+        for (let i = 0; i < len; i++) {
+            const data = await S3FileUpload.uploadFile(e.target.files[i], config)
+            const url = data.location;
+            const body = {url};
+            const response = await fetch(
+                "http://localhost:9000/img", {
+                    method: "POST",
+                    headers: {"Content-type": "application/json"},
+                    body: JSON.stringify(body)
             });
-            
+            if (response === null)
+                console.log(response);
+        }
         window.location.reload();
-        if (response === null)
-            console.log(response);
     }
 
     render() {
         return (
             <div className="gallery__upload">
                 <label
-                className="gallery__upload--label">
+                className="gallery__upload--label"
+                htmlFor="uploadBtn">
                     Selectionner une image</label>
                 <input
-                type="file"
-                accept="image/*"
-                onChange={this.uploadingImg}
-                className="gallery__upload--input"
-                name="upload"/>
+                    type="file"
+                    accept="image/*"
+                    onChange={this.uploadingImg}
+                    className="gallery__upload--input"
+                    id="uploadBtn"
+                    name="upload"
+                    multiple/>
             </div>
         )
     }
