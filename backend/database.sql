@@ -16,3 +16,11 @@ CREATE TABLE images(
     id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
     url VARCHAR(255) NOT NULL
 );
+
+CREATE TABLE ytvideos(
+    id uuid PRIMARY KEY DEFAULT uuid_generate_v4(),
+    title VARCHAR(255) NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    ep_nb INTEGER NOT NULL
+);

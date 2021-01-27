@@ -43,7 +43,6 @@ router.get('/:id', async(req,res) => {
 })
 
 // update
-
 router.put('/:id', async(req, res) => {
   try {
 

@@ -23,6 +23,9 @@ app.use('/img', require('./routes/img'));
 // users
 app.use('/users', require('./routes/users'));
 
+// youtube videos
+app.use('/ytvideos', require('./routes/ytVideos'));
+
 app.get('/', (req,res) => {
   res.json("Main page");
 })
