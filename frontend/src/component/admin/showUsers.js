@@ -90,6 +90,8 @@ export class ShowUsers extends Component {
                 `http://localhost:9000/users/${id}`, {
                     method: "DELETE"
                 });
+            if (response === null)
+                console.log(response);
             const data = this.state.users;
             this.setState({users: data.filter(user => user.id !== id)});
         } catch (error) {

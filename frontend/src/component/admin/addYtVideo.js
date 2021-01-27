@@ -1,4 +1,5 @@
-import react, {Component} from 'react'
+import React, {Component} from 'react'
+import { toast } from 'react-toastify';
 
 
 export class AddYtVideo extends Component {
@@ -29,9 +30,13 @@ export class AddYtVideo extends Component {
                     body: JSON.stringify(body)              // on fait en sorte que ce soit lisible en json
                 }
             );
-            window.location.reload();
             if (response === null)
                 console.log(response);
+            const parseRes = await response.json();
+            parseRes === "Ajout réussi !" ?
+                toast.success(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false})
+                : toast.error(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false});
+            // window.location.reload();
         } catch (error) {
            console.error(error.message); 
         }

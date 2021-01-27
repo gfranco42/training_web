@@ -12,18 +12,18 @@ export class ShowYTVideos extends Component {
         this.state = {
             videos: null,
             loading: true,
-            title: "",
-            url: "",
-            category: "",
-            ep_nb: ""
+            // title: "",
+            // url: "",
+            // category: "",
+            // ep_nb: ""
         }
     }
 
     // UPDATE AN INFORMATION OF ONE YT VIDEO
-    updateVideoInfo = (e) => {
-        e.preventDefault();
-        this.setState({[e.target.name]: e.target.value});
-    }
+    // updateVideoInfo = (e) => {
+    //     e.preventDefault();
+    //     this.setState({[e.target.name]: e.target.value});
+    // }
 
     // DELETE YT VIDEO
 
@@ -34,6 +34,8 @@ export class ShowYTVideos extends Component {
                 `http://localhost:9000/ytvideos/${id}`, {
                     method: "DELETE"
                 });
+            if (response === null)
+                console.log(response);
             const data = this.state.videos;
             this.setState({videos: data.filter(video => video.id !== id)});
         } catch (error) {
@@ -44,14 +46,16 @@ export class ShowYTVideos extends Component {
     // UPDATE YT VIDEO LIST FROM DB
     componentDidMount = async () => {
         try {
+            console.log('yolo');
             const response = await fetch("http://localhost:9000/ytvideos");// recup les infos de la DB
-            const data = await response.json();                         // les infos sont lisibles en json
-            const newData = _.sortBy(data, 'ep_nb', function(n) {
-                return Math.sin(n);
-            });
-            this.setState({videos: newData, loading: false});               // on met a jour le state local pour pouvoir afficher
             if (response === null)
                 console.log(response);
+            const data = await response.json();                         // les infos sont lisibles en json
+            // const newData = _.sortBy(data, 'ep_nb', function(n) {
+            //     return Math.sin(n);
+            // });
+            const newData = _.sortBy(data, ['title', 'ep_nb']);
+            this.setState({videos: newData, loading: false});               // on met a jour le state local pour pouvoir afficher
         } catch (error) {
             console.error(error.message);
         }
@@ -59,11 +63,12 @@ export class ShowYTVideos extends Component {
 
     render () {
         const opts = {
-            height: '185',
-            width: '320',
+            height: '200',
+            width: '200',
             playerVars: {
               // https://developers.google.com/youtube/player_parameters
               autoplay: 0,
+              showinfo: 0,
             },
         }
         if (this.state.loading === true)
@@ -80,7 +85,6 @@ export class ShowYTVideos extends Component {
                             <th className="">Lien</th>
                             <th className="">Catégorie</th>
                             <th className="">Nº de l'épisode</th>
-                            <th className="">Pré-visualisation</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -92,16 +96,15 @@ export class ShowYTVideos extends Component {
                                 <th className="">{video.url}</th>
                                 <th className="">{video.category}</th>
                                 <th className="">{video.ep_nb}</th>
-                                <th className=""><YouTube videoId={getYouTubeID(video.url)} opts={opts}/></th>
                                 <th className="">
                                     <EditPopup
-                                        updateVideoInfo={this.updateVideoInfo}
+                                        // updateVideoInfo={this.updateVideoInfo}
                                         videoId={video.id}
-                                        title={this.state.title}
-                                        url={this.state.url}
-                                        category={this.state.category}
-                                        ep_nb={this.state.ep_nb}
-                                        videos={this.state.videos}
+                                        title={video.title}
+                                        url={video.url}
+                                        category={video.category}
+                                        ep_nb={video.ep_nb}
+                                        videos={video.videos}
                                     />
                                 </th>
                                 <th className="">

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 
 /* POPUP */
 import Popup from 'reactjs-popup';
@@ -6,27 +7,44 @@ import Popup from 'reactjs-popup';
 
 /* ADMIN EDIT POPUP */
 class EditPopup extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            title: props.title,
+            url: props.url,
+            category: props.category,
+            ep_nb: props.ep_nb,
+        }
+    }
+
+    updateVideoInfo = (e) => {
+        e.preventDefault();
+        this.setState({[e.target.name]: e.target.value});
+    }
 
     editVideo = async (e, id) => {
         e.preventDefault();
         try {
             this.setState({loading: true});
-            const {title, url, category, ep_nb} = this.props;
+            const {title, url, category, ep_nb} = this.state;
             let body = {title, url, category, ep_nb};
             const response = await fetch(`http://localhost:9000/ytvideos/${id}`, {
                 method: 'PUT',
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify(body) 
             });
-            window.location.reload();
             if (response === null)
                 console.log(response);
+            const parseRes = await response.json();
+            window.location.reload();
         } catch (error) {
            console.error(error.message); 
         }
     }
 
+
     render() {
+        // console.log(this.props)
         if (this.props.loading === true)
             return <div className="">Loading...</div>
         else {
@@ -43,8 +61,8 @@ class EditPopup extends Component {
                                 <label>
                                     Titre: 
                                     <input type="text"
-                                        value={this.props.videos.title}
-                                        onChange={(e) => {this.props.updateVideoInfo(e)}}
+                                        value={this.state.title}
+                                        onChange={(e) => {this.updateVideoInfo(e)}}
                                         name="title"
                                         >
                                     </input>
@@ -52,16 +70,16 @@ class EditPopup extends Component {
                                 <label>
                                     Lien: 
                                     <input type="text"
-                                        value={this.props.videos.url}
-                                        onChange={(e) => {this.props.updateVideoInfo(e)}}
+                                        value={this.state.url}
+                                        onChange={(e) => {this.updateVideoInfo(e)}}
                                         name="url"
                                         >
                                     </input>
                                 </label>
                                 <label>
                                    Catégorie: 
-                                    <select value={this.props.videos.category}
-                                    onChange={(e) => {this.props.updateVideoInfo(e)}}
+                                    <select value={this.state.category}
+                                    onChange={(e) => {this.updateVideoInfo(e)}}
                                     name="category"
                                     >
                                         <option value="">Catégorie de la vidéo...</option>
@@ -73,8 +91,8 @@ class EditPopup extends Component {
                                 <label>
                                     Nº de l'épisode:
                                     <input type="number"
-                                        value={this.props.videos.ep_nb}
-                                        onChange={(e) => {this.props.updateVideoInfo(e)}}
+                                        value={this.state.ep_nb}
+                                        onChange={(e) => {this.updateVideoInfo(e)}}
                                         name="ep_nb"
                                         >
                                     </input>

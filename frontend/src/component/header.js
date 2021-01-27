@@ -99,7 +99,8 @@ class Header extends Component {
                 </a>
 
                 <div className="navigation__rubric">
-                    <a className="navigation__rubric--page">
+                    <a className="navigation__rubric--page"
+                        href="/">
                         Qui sommes nous?
                         <div className="underline"></div>
                     </a>
@@ -109,15 +110,24 @@ class Header extends Component {
                         <div className="rubric-title">Videos</div>
                         <div className="menu">
                             <div className="menu__choice">
-                                <a className="title" href="/videos/tw">True Warriors</a>
+                                <a className="title"
+                                    href="/videos/tw">
+                                        True Warriors
+                                </a>
                                 <div className="choice-underline"></div>
                             </div>
                             <div className="menu__choice">
-                                <a className="title" href="/videos/lol">League of Lesglands</a>
+                                <a className="title"
+                                    href="/videos/lol">
+                                        League of Lesglands
+                                </a>
                                 <div className="choice-underline"></div>
                             </div>
                             <div className="menu__choice last">
-                                <a className="title" href="/videos/hs">Hors-Séries</a>
+                                <a className="title"
+                                    href="/videos/hs">
+                                        Hors-Séries
+                                </a>
                                 <div className="choice-underline"></div>
                             </div>
                         </div>
@@ -125,15 +135,18 @@ class Header extends Component {
                     </div>
 
 
-                    <a className="navigation__rubric--page" href="/gallery">
+                    <a className="navigation__rubric--page"
+                        href="/gallery">
                         Gallerie
                         <div className="underline"></div>
                     </a>
-                    <a className="navigation__rubric--page">
+                    <a className="navigation__rubric--page"
+                        href="/">
                         Autres projets
                         <div className="underline"></div>
                     </a>
-                    <a className="navigation__rubric--page">
+                    <a className="navigation__rubric--page"
+                        href="/">
                         Forum
                         <div className="underline"></div>
                     </a>
