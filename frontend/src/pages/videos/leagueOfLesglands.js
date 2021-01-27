@@ -1,14 +1,14 @@
 import Header from "../../component/header.js"
 
 /* COMPONENT */
-import TWGallery from "../../component/videos/twGallery.js"
+import LOLGallery from "../../component/videos/lolGallery.js"
 
 
-const TrueWarriors = () =>
+const LeagueOfLesglands = () =>
     <div className="home">
         <Header />
-        <TWGallery />
+        <LOLGallery />
         <div className="footer"></div>
     </div>
 
-export default TrueWarriors;
+export default LeagueOfLesglands;

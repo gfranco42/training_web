@@ -109,15 +109,15 @@ class Header extends Component {
                         <div className="rubric-title">Videos</div>
                         <div className="menu">
                             <div className="menu__choice">
-                                <a className="title" href="/videos/true-warriors">True Warriors</a>
+                                <a className="title" href="/videos/tw">True Warriors</a>
                                 <div className="choice-underline"></div>
                             </div>
                             <div className="menu__choice">
-                                <a className="title">League of Lesglands</a>
+                                <a className="title" href="/videos/lol">League of Lesglands</a>
                                 <div className="choice-underline"></div>
                             </div>
                             <div className="menu__choice last">
-                                <a className="title">Hors-Séries</a>
+                                <a className="title" href="/videos/hs">Hors-Séries</a>
                                 <div className="choice-underline"></div>
                             </div>
                         </div>

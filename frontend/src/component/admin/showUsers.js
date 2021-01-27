@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-/* COMPONENT */
-
 /* MODULES */
 import { EditPopup } from './editUser'
 import _ from 'lodash';
 
 // FUNCTIONS
-import {translate_date} from "../utils"
+import {translate_date} from "../../utils"
 
 
  /******************************************************** EXAMPLE ********************************************************/
@@ -117,31 +115,31 @@ export class ShowUsers extends Component {
 
     render () {
         if (this.state.loading === true)
-            return <div className="adminform--error">Chargement...</div>
+            return <div className="">Chargement...</div>
         else if (this.state.users === null || this.state.users.length === 0)
-            return <div className="adminform--error">Aucun utilisateur enregistré !</div>
+            return <div className="">Aucun utilisateur enregistré !</div>
         else {
             return (
-                <table className="adminform__table">
-                    <caption className="adminform__table--title">Liste des utilisateurs: </caption>
+                <table className="">
+                    <caption className="">Liste des utilisateurs: </caption>
                     <thead>
-                        <tr className="adminform__table__header">
-                            <th className="adminform__table__header--columntitle left">Pseudo</th>
-                            <th className="adminform__table__header--columntitle">Âge</th>
-                            <th className="adminform__table__header--columntitle">Email</th>
-                            <th className="adminform__table__header--columntitle">Status</th>
+                        <tr className="">
+                            <th className="">Pseudo</th>
+                            <th className="">Âge</th>
+                            <th className="">Email</th>
+                            <th className="">Status</th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.state.users.map( (user) =>
-                            <tr className="adminform__table__body" key={user.id}>
-                                <th className="adminform__table__body--cell left">{user.pseudo}</th>
-                                <th className="adminform__table__body--cell">{translate_date(user.age)}</th>
-                                <th className="adminform__table__body--cell">{user.email}</th>
-                                <th className="adminform__table__body--cell">{user.status}</th>
-                                <th className="adminform__table__body--button-cell">
+                            <tr className="" key={user.id}>
+                                <th className="">{user.pseudo}</th>
+                                <th className="">{translate_date(user.age)}</th>
+                                <th className="">{user.email}</th>
+                                <th className="">{user.status}</th>
+                                <th className="">
                                     <EditPopup
                                         updateUserInfo={this.updateUserInfo}
                                         userId={user.id}
@@ -152,10 +150,10 @@ export class ShowUsers extends Component {
                                         users={this.state.users}
                                     />
                                 </th>
-                                <th className="adminform__table__body--button-cell">
+                                <th className="">
                                     <button type="button" name="delete"
                                     onClick={(e) => this.DeleteUsers(e, user.id)}
-                                    className="adminform__table__body--button">
+                                    className="">
                                         Supprimer
                                     </button>
                                 </th>

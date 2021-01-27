@@ -13,7 +13,10 @@ import Videos from './pages/videos.js';
 import ErrorPage from './pages/errorPage.js';
 
 
+// VIDEOS SPECIFIC PAGES
 import TrueWarriors from './pages/videos/trueWarriors.js';
+import LeagueOfLesglands from './pages/videos/leagueOfLesglands.js';
+import HorsSeries from './pages/videos/horsSeries.js';
 
 /* Ajouter le path et la page ou le component a afficher*/
 const Router = () => (
@@ -25,7 +28,9 @@ const Router = () => (
             <Route exact path="/gallery" component={Gallery}/>
             <Route exact path="/admin" component={Admin}/>
             <Route exact path="/videos" component={Videos}/>
-            <Route exact path="/videos/true-warriors" component={TrueWarriors}/>
+            <Route exact path="/videos/tw" component={TrueWarriors}/>
+            <Route exact path="/videos/lol" component={LeagueOfLesglands}/>
+            <Route exact path="/videos/hs" component={HorsSeries}/>
             <Route exact path="/error" component={ErrorPage}/>
             <Route path="/" component={ErrorPage} />
         </Switch>

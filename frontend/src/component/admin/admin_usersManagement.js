@@ -3,14 +3,14 @@ import React, { Component } from 'react';
 
 /* COMPONENT */
 
-import { AddUser } from "./addUser.js"
-import { ShowUsers } from "./showUser.js"
+// import { AddUser } from "./addUser.js"
+import { ShowUsers } from "./showUsers.js"
 
 
 /* IMG */
 // import ah_logo from "../img/ah_logo.png"
 
-class adminform extends Component {
+class Admin_usersManagement extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -21,16 +21,16 @@ class adminform extends Component {
         }
     }
 
-    handleChange = (e, type) => {
-        if (type === "age")
-            this.setState({age: e.target.value})
-        else if (type === "pseudo")
-            this.setState({pseudo: e.target.value})
-        else if (type === "email")
-            this.setState({email: e.target.value})
-        else if (type === "status")
-            this.setState({status: e.target.value})
-    }
+    // handleChange = (e, type) => {
+    //     if (type === "age")
+    //         this.setState({age: e.target.value})
+    //     else if (type === "pseudo")
+    //         this.setState({pseudo: e.target.value})
+    //     else if (type === "email")
+    //         this.setState({email: e.target.value})
+    //     else if (type === "status")
+    //         this.setState({status: e.target.value})
+    // }
 
     componentDidMount = async () => {
         try {
@@ -57,13 +57,10 @@ class adminform extends Component {
 
     render () {
         return (
-        <div className="adminform">
+        <div>
+            <ShowUsers />
 
-            <div className="adminform__top">
-                <h1 className="adminform__top--title">Admin</h1>
-            </div>
-
-            <div className="adminform__form">
+            {/* <div className="adminform__form">
                 <p className="adminform__form--title">Add a new user:</p>
                 <form onSubmit={(e) => AddUser(e, this.state)}>
                     <label>
@@ -117,13 +114,12 @@ class adminform extends Component {
                     className="adminform__form--submit">
                     </input>
                 </form>
-            </div>
+            </div> */}
 
-            <ShowUsers />
         </div>
 
         )
     }
 }
 
-export default adminform;
+export default Admin_usersManagement;

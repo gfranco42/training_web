@@ -25,7 +25,6 @@ class TWGallery extends Component {
             <div className="videoGallery">
                 <h1 className="videoGallery--title">True Warriors</h1>
                 <div className="videoGallery__upload">
-                    <label>Lien youtube:</label>
                     <YouTube videoId={getYoutubeID(this.state.url)} opts={opts}/>
                 </div>
             </div>

@@ -2,7 +2,7 @@
 import Header from "../component/header.js"
 
 /* COMPONENT */
-import TwGallery from "../component/twGallery.js"
+// import TwGallery from "../component/twGallery.js"
 
 
 const Videos = () =>
