@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 /* MODULES */
 import { EditPopup } from './editYtVideos'
 import _ from 'lodash';
-import YouTube from "react-youtube";
-import getYouTubeID from 'get-youtube-id';
 
 export class ShowYTVideos extends Component {
     constructor(props) {
@@ -14,20 +12,8 @@ export class ShowYTVideos extends Component {
             loading: true,
             sort: true,
             last: ""
-            // title: "",
-            // url: "",
-            // category: "",
-            // ep_nb: ""
         }
     }
-
-    // UPDATE AN INFORMATION OF ONE YT VIDEO
-    // updateVideoInfo = (e) => {
-    //     e.preventDefault();
-    //     this.setState({[e.target.name]: e.target.value});
-    // }
-
-    // DELETE YT VIDEO
 
     tableSort = (e, type) => {
         e.preventDefault();
@@ -52,6 +38,8 @@ export class ShowYTVideos extends Component {
         }
     }
 
+
+    // DELETE YT VIDEO
     deleteYtVideo = async (e, id) => {
         e.preventDefault();
         try {
@@ -71,14 +59,10 @@ export class ShowYTVideos extends Component {
     // UPDATE YT VIDEO LIST FROM DB
     componentDidMount = async () => {
         try {
-            console.log('yolo');
             const response = await fetch("http://localhost:9000/ytvideos");// recup les infos de la DB
             if (response === null)
                 console.log(response);
             const data = await response.json();                         // les infos sont lisibles en json
-            // const newData = _.sortBy(data, 'ep_nb', function(n) {
-            //     return Math.sin(n);
-            // });
             const newData = _.sortBy(data, ['category', 'ep_nb']);
             this.setState({videos: newData, loading: false});               // on met a jour le state local pour pouvoir afficher
         } catch (error) {
@@ -87,15 +71,6 @@ export class ShowYTVideos extends Component {
     }
 
     render () {
-        const opts = {
-            height: '200',
-            width: '200',
-            playerVars: {
-              // https://developers.google.com/youtube/player_parameters
-              autoplay: 0,
-              showinfo: 0,
-            },
-        }
         if (this.state.loading === true)
             return <div className="">Chargement...</div>
         else if (this.state.videos === null || this.state.videos.length === 0)
@@ -110,6 +85,7 @@ export class ShowYTVideos extends Component {
                             <th className="" onClick={ (e) => {this.tableSort(e, "url")}}>Lien</th>
                             <th className="" onClick={ (e) => {this.tableSort(e, "category")}}>Catégorie</th>
                             <th className="" onClick={ (e) => {this.tableSort(e, "ep_nb")}}>Nº de l'épisode</th>
+                            <th className="">Description</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -121,6 +97,7 @@ export class ShowYTVideos extends Component {
                                 <th className="">{video.url}</th>
                                 <th className="">{video.category}</th>
                                 <th className="">{video.ep_nb}</th>
+                                <th className="">{video.description}</th>
                                 <th className="">
                                     <EditPopup
                                         // updateVideoInfo={this.updateVideoInfo}
@@ -129,6 +106,7 @@ export class ShowYTVideos extends Component {
                                         url={video.url}
                                         category={video.category}
                                         ep_nb={video.ep_nb}
+                                        description={video.description = "empty"}
                                         videos={video.videos}
                                     />
                                 </th>

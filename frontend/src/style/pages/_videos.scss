@@ -2,6 +2,7 @@
     // border: green 10px solid;
     height: 100%;
     $el: &;
+    // padding-top: 100px;
     .videoGallery {
         @include body-background();
         height: 2000px;;

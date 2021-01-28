@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
 
 /* POPUP */
 import Popup from 'reactjs-popup';
@@ -19,9 +20,12 @@ class EditPopup extends Component {
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify(body) 
             });
-            window.location.reload();
             if (response === null)
                 console.log(response);
+            const parseRes = await response.json();// Message: "Modification reussi !"
+            parseRes === "Modification réussi !" ?
+                toast.success(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false})
+                : toast.error(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false});
         } catch (error) {
            console.error(error.message); 
         }

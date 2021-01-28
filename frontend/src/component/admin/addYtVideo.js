@@ -9,7 +9,8 @@ export class AddYtVideo extends Component {
             title: "",
             url: "",
             category: "",
-            ep_nb: ""
+            ep_nb: "",
+            description: "",
         }
     }
 
@@ -21,8 +22,8 @@ export class AddYtVideo extends Component {
     addVideo = async (e, state) => {
         e.preventDefault();
         try {
-            const {title, url, category, ep_nb} = state;// rendre lecriture + propre
-            const body = {title, url, category, ep_nb};// creation d'un objet 'users'
+            const {title, url, category, ep_nb, description} = state;// rendre lecriture + propre
+            const body = {title, url, category, ep_nb, description};// creation d'un objet 'users'
             const response =  await fetch(                  // recup le resultat d'un 'POST'
                 "http://localhost:9000/ytvideos", {
                     method: "POST",
@@ -79,9 +80,9 @@ export class AddYtVideo extends Component {
                         className=""
                         required>
                             <option value="">Catégorie de la vidéo...</option>
-                            <option value="True Warriors">True Warriors</option>
-                            <option value="League of Lesglands">League of Lesglands</option>
-                            <option value="Hors Séries">Hors-Série</option>
+                            <option value="TW">True Warriors</option>
+                            <option value="LOL">League of Lesglands</option>
+                            <option value="HS">Hors-Série</option>
                         </select>
                     </label>
                     <label>
@@ -94,6 +95,17 @@ export class AddYtVideo extends Component {
                             required
                             >
                         </input>
+                    </label>
+                    <label>
+                        Description:
+                        <textarea
+                            value={this.state.description}
+                            onChange={(e) => {this.handleChange(e)}}
+                            name="description"
+                            className=""
+                            placeholder="ex: Dans cette vidéo, vous verrez comment arroser des Hamsters..."
+                            >
+                        </textarea>
                     </label>
                     <input type="submit"
                         value="Et zé partiiiii !"

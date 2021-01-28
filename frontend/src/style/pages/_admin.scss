@@ -2,7 +2,11 @@
     // border: green 10px solid;
     height: 100%;
     $el: &;
-    margin-top: 100px;
+    // margin-top: 100px;
+
+    #{$el}__title {
+        padding-top: 62px;
+    }
 
     .footer {
         height: 500px;

@@ -14,6 +14,7 @@ class EditPopup extends Component {
             url: props.url,
             category: props.category,
             ep_nb: props.ep_nb,
+            description: props.description,
         }
     }
 
@@ -25,9 +26,8 @@ class EditPopup extends Component {
     editVideo = async (e, id) => {
         e.preventDefault();
         try {
-            this.setState({loading: true});
-            const {title, url, category, ep_nb} = this.state;
-            let body = {title, url, category, ep_nb};
+            const {title, url, category, ep_nb, description} = this.state;
+            let body = {title, url, category, ep_nb, description};
             const response = await fetch(`http://localhost:9000/ytvideos/${id}`, {
                 method: 'PUT',
                 headers: {"Content-type": "application/json"},
@@ -35,8 +35,11 @@ class EditPopup extends Component {
             });
             if (response === null)
                 console.log(response);
-            const parseRes = await response.json();
-            window.location.reload();
+            const parseRes = await response.json();// Message: "Modification reussi !"
+            parseRes === "Modification réussi !" ?
+                toast.success(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false})
+                : toast.error(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false});
+            // window.location.reload();
         } catch (error) {
            console.error(error.message); 
         }
@@ -44,8 +47,7 @@ class EditPopup extends Component {
 
 
     render() {
-        // console.log(this.props)
-        if (this.props.loading === true)
+        if (this.state.loading === true)
             return <div className="">Loading...</div>
         else {
             return (
@@ -57,6 +59,9 @@ class EditPopup extends Component {
                     {close => (
                         <div className="">
                             <div>Modifier une video</div>
+                            {/* <button className="close" onClick={close}>
+                                &times;
+                            </button> */}
                             <form onSubmit={(e) => {this.editVideo(e, this.props.videoId)}}>
                                 <label>
                                     Titre: 
@@ -83,9 +88,9 @@ class EditPopup extends Component {
                                     name="category"
                                     >
                                         <option value="">Catégorie de la vidéo...</option>
-                                        <option value="trueWarriors">True Warriors</option>
-                                        <option value="leagueofLesglands">League of Lesglands</option>
-                                        <option value="horsSeries">Hors-Série</option>
+                                        <option value="TW">True Warriors</option>
+                                        <option value="LOL">League of Lesglands</option>
+                                        <option value="HS">Hors-Série</option>
                                     </select>
                                 </label>
                                 <label>
@@ -97,7 +102,24 @@ class EditPopup extends Component {
                                         >
                                     </input>
                                 </label>
-                                <button>Submit</button>
+                                <label>
+                                    Description:
+                                    <textarea
+                                        value={this.state.description}
+                                        onChange={(e) => {this.updateVideoInfo(e)}}
+                                        name="description"
+                                        >
+                                    </textarea>
+                                </label>
+                                <input
+                                className="registrationpopup__form--submit"
+                                type="submit"
+                                value="Modifier"
+                                onClick={(e) => {
+                                    this.editVideo(e, this.props.videoId);
+                                    close()
+                                }}
+                                ></input>
                             </form>
                             <button onClick={close}>Close</button>
                         </div>

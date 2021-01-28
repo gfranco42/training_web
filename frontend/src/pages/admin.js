@@ -9,7 +9,7 @@ import AdminYTVideosManagement from "../component/admin/admin_ytvideosManagement
 const Admin = () =>
     <div className="admin">
         <Header />
-        <div className="">
+        <div className="admin__title">
             <h1>Admin</h1>
         </div>
         <AdminUserManagement />
