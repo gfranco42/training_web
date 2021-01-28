@@ -12,6 +12,8 @@ export class ShowYTVideos extends Component {
         this.state = {
             videos: null,
             loading: true,
+            sort: true,
+            last: ""
             // title: "",
             // url: "",
             // category: "",
@@ -26,6 +28,29 @@ export class ShowYTVideos extends Component {
     // }
 
     // DELETE YT VIDEO
+
+    tableSort = (e, type) => {
+        e.preventDefault();
+        const {sort, last} = this.state;
+        const data = this.state.videos;
+        const newState = _.sortBy(data, [type]);
+        if (sort === true || last !== type) {
+            this.setState({
+                videos: newState,
+                loading: false,
+                sort: false,
+                last: type
+            });               // on met a jour le state local pour pouvoir afficher
+        }
+        else if (sort === false || last === type) {
+            this.setState({
+                videos: newState.reverse(),
+                loading: false,
+                sort: true,
+                last: type
+            });               // on met a jour le state local pour pouvoir afficher
+        }
+    }
 
     deleteYtVideo = async (e, id) => {
         e.preventDefault();
@@ -54,7 +79,7 @@ export class ShowYTVideos extends Component {
             // const newData = _.sortBy(data, 'ep_nb', function(n) {
             //     return Math.sin(n);
             // });
-            const newData = _.sortBy(data, ['title', 'ep_nb']);
+            const newData = _.sortBy(data, ['category', 'ep_nb']);
             this.setState({videos: newData, loading: false});               // on met a jour le state local pour pouvoir afficher
         } catch (error) {
             console.error(error.message);
@@ -81,10 +106,10 @@ export class ShowYTVideos extends Component {
                     <caption className="">Liste des utilisateurs: </caption>
                     <thead>
                         <tr className="">
-                            <th className="">Titre</th>
-                            <th className="">Lien</th>
-                            <th className="">Catégorie</th>
-                            <th className="">Nº de l'épisode</th>
+                            <th className="" onClick={ (e) => {this.tableSort(e, "title")}}>Titre</th>
+                            <th className="" onClick={ (e) => {this.tableSort(e, "url")}}>Lien</th>
+                            <th className="" onClick={ (e) => {this.tableSort(e, "category")}}>Catégorie</th>
+                            <th className="" onClick={ (e) => {this.tableSort(e, "ep_nb")}}>Nº de l'épisode</th>
                             <th></th>
                             <th></th>
                         </tr>
