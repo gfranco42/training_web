@@ -22,5 +22,6 @@ CREATE TABLE ytvideos(
     title VARCHAR(255) NOT NULL,
     url VARCHAR(255) NOT NULL,
     category VARCHAR(255) NOT NULL,
-    ep_nb INTEGER NOT NULL
+    ep_nb INTEGER NOT NULL,
+    description VARCHAR(255),
 );

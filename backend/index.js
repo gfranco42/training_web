@@ -1,13 +1,13 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const app = express()
-const port = 9000
 const cors = require("cors");
+const port = 9000
+const app = express()
 
 // MIDDLEWARE
 app.use(bodyParser.json())
-app.use(cors());
 app.use(express.json())
+app.use(cors());
 
 // ROUTES
 

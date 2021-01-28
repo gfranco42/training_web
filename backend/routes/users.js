@@ -57,7 +57,7 @@ router.put('/:id', async(req, res) => {
       updateUser = pool.query("UPDATE users SET email = $1 WHERE id = $2", [email, id]);
     if (status !== "" && status !== null)
       updateUser = pool.query("UPDATE users SET status = $1 WHERE id = $2", [status, id]);
-    res.json(`User with id ${id} has been updated ! The new user is now => Age: ${age} => Pseudo: ${pseudo} => Email: ${email} => Status: ${status}`);
+    res.json("Modification réussi !");
 
   } catch (error) {
     console.error(error.message);
@@ -69,7 +69,7 @@ router.delete('/:id', async(req, res) => {
   try {
     const {id} = req.params;
     const deleteUser = pool.query("DELETE FROM users WHERE id= $1", [id]);
-    res.json(`User with id ${id} has been deleted !`);
+    res.json("Utilisateur supprimé !");
     
   } catch (error) {
     console.error(error.message);
