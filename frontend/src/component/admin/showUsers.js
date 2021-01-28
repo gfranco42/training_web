@@ -61,7 +61,9 @@ export class ShowUsers extends Component {
             age: "",
             pseudo: "",
             email: "",
-            status: ""
+            status: "",
+            sort: true,
+            last: ""
         }
     }
 
@@ -79,6 +81,29 @@ export class ShowUsers extends Component {
                 this.setState({status: e.target.value});
         } catch (error) {
             console.error(error.message);        
+        }
+    }
+
+    tableSort = (e, type) => {
+        e.preventDefault();
+        const {sort, last} = this.state;
+        const data = this.state.users;
+        const newState = _.sortBy(data, [type]);
+        if (sort === true || last !== type) {
+            this.setState({
+                users: newState,
+                loading: false,
+                sort: false,
+                last: type
+            });               // on met a jour le state local pour pouvoir afficher
+        }
+        else if (sort === false || last === type) {
+            this.setState({
+                users: newState.reverse(),
+                loading: false,
+                sort: true,
+                last: type
+            });               // on met a jour le state local pour pouvoir afficher
         }
     }
     
@@ -126,10 +151,10 @@ export class ShowUsers extends Component {
                     <caption className="">Liste des utilisateurs: </caption>
                     <thead>
                         <tr className="">
-                            <th className="">Pseudo</th>
-                            <th className="">Âge</th>
-                            <th className="">Email</th>
-                            <th className="">Status</th>
+                            <th className="" onClick={ (e) => {this.tableSort(e, "pseudo")}}>Pseudo</th>
+                            <th className="" onClick={ (e) => {this.tableSort(e, "age")}}>Âge</th>
+                            <th className="" onClick={ (e) => {this.tableSort(e, "email")}}>Email</th>
+                            <th className="" onClick={ (e) => {this.tableSort(e, "status")}}>Status</th>
                             <th></th>
                             <th></th>
                         </tr>
