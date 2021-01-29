@@ -6,15 +6,33 @@
     flex-direction: column;
     align-items: center;
     height: 2000px;
+
+    #{$el}__title {
+        font-size: 50px;
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-transform: uppercase;
+    }
+
+
     .slide-container {
+        border: red solid 2px;
         z-index: 0;
         width: 800px;
 
-        .video {
+        .each-slide {
+            border: green solid 5px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+
+            &__video {
+                border: blue solid 2px;
+                // display: flex;
+                // flex-direction: column;
+                // justify-content: center;
+                // align-items: center;
+            }
         }
     }
 }

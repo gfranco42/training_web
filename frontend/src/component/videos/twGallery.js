@@ -22,7 +22,28 @@ class TWGallery extends Component {
                 width: '640',
             },
             loading: false,
+            display: null,
+            index: 0,
         }
+    }
+
+    handleClick = (e) => {
+        e.preventDefault();
+        this.setState({display: e.target.name})
+    }
+
+    //temp
+    specificDisplay = () => {
+        const {index} = this.state;
+        const video = this.state.videos[index];
+        if (this.state.display === "description")
+            return <div>{video.description}</div>
+        else if (this.state.display === "bonus")
+            return <div>Et maintenant, voila les bonus !</div>
+        else if (this.state.display === "commentary")
+            return <div>Finalement, voici les comms !</div>
+        else
+            return null;
     }
 
 
@@ -49,7 +70,10 @@ class TWGallery extends Component {
             indicators: true,
             arrows: true,
             autoplay: false,
-        }
+            onChange: (previous, current) => {
+                this.setState({index: current});
+            }
+        };
         
         if (this.state.loading === true)
             return <div className="videoGallery">Chargement...</div>
@@ -64,7 +88,7 @@ class TWGallery extends Component {
                             {this.state.videos.map( (item) => {
                                 return (
                                     <div key={item.id} className="each-slide">
-                                        <div className="video">
+                                        <div className="each-slide__video">
                                             <h2>{item.title}</h2>
                                             <YouTube videoId={getYoutubeID(item.url)} opts={this.state.opts} />
                                         </div>
@@ -72,7 +96,17 @@ class TWGallery extends Component {
                                 )
                             })}
                         </Slide>
+                        
                     </div>
+                    <div className="videoGallery__navigation">
+                        <button name="description" onClick={this.handleClick}>Description</button>
+                        <button name="bonus" onClick={this.handleClick}>Bonus</button>
+                        <button name="commentary" onClick={this.handleClick}>Commentaires</button>
+                    </div>
+                    <div>
+                        <this.specificDisplay/>
+                    </div>
+
                 </div>
             )
         }
