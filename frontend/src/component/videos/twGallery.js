@@ -9,6 +9,8 @@ import ReactPlayer from 'react-player';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
+import test from "../../test.png";
+
 import _ from 'lodash';
 
 
@@ -67,7 +69,7 @@ class TWGallery extends Component {
 
     render() {
         const slideProps = {
-            transitionDuration: 500,
+            transitionDuration: 250,
             indicators: true,
             arrows: true,
             autoplay: false,
@@ -83,7 +85,7 @@ class TWGallery extends Component {
         else {
             return (
                 <div className="videoGallery">
-                    <h1 className="videoGallery__title">True Warriors</h1>
+                    <img src={test} alt="title" className="videoGallery__title"></img>
                     <div className="slide-container">
                         <Slide {...slideProps}>
                             {this.state.videos.map( (item) => {
@@ -91,14 +93,17 @@ class TWGallery extends Component {
                                     <div key={item.id} className="each-slide">
                                         <div className="each-slide__video">
                                             <h2>{item.title}</h2>
-                                            <ReactPlayer url={item.url}/>
-                                            {/* <YouTube videoId={getYoutubeID(item.url)} opts={this.state.opts} /> */}
+                                            <ReactPlayer url={item.url}
+                                                controls={true}
+                                                light={true}
+                                                volume={0.5}
+                                                />
                                         </div>
                                     </div>
                                 )
                             })}
                         </Slide>
-                        
+                            {/* <YouTube videoId={getYoutubeID(item.url)} opts={this.state.opts} /> */}
                     </div>
                     <div className="videoGallery__navigation">
                         <button name="description" onClick={this.handleClick}>Description</button>
