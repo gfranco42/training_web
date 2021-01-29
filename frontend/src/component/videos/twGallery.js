@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // YOUTUBE
 import YouTube from "react-youtube";
 import getYoutubeID from "get-youtube-id";
+import ReactPlayer from 'react-player';
 
 // SLIDESHOW
 import { Slide } from 'react-slideshow-image';
@@ -90,7 +91,8 @@ class TWGallery extends Component {
                                     <div key={item.id} className="each-slide">
                                         <div className="each-slide__video">
                                             <h2>{item.title}</h2>
-                                            <YouTube videoId={getYoutubeID(item.url)} opts={this.state.opts} />
+                                            <ReactPlayer url={item.url}/>
+                                            {/* <YouTube videoId={getYoutubeID(item.url)} opts={this.state.opts} /> */}
                                         </div>
                                     </div>
                                 )
