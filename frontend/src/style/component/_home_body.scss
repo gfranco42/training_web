@@ -5,12 +5,12 @@
     width: 100%;
     height: auto;
     @include body-background();
-    padding: 50px;
-    padding-top: 100px;
+    padding: 100px 0 100px 0;
 
     #{$el}__video{
         border: red solid 3px;
     }
+
 
 
     .aboutVideos {
@@ -25,3 +25,4 @@
         margin-top: 150px;
     }
 }
+

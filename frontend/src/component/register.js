@@ -51,6 +51,7 @@ class RegisterPopup extends Component {
             }
             else
                 toast.error(parseRes);
+            setInterval( () => window.location.reload(), 1500);
         } catch (error) {
             console.error(error.message);
         }

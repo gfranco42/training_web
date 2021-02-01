@@ -6,6 +6,7 @@ class ShowImgs extends Component {
         this.state = {
             img: null,
             loading: true,
+            user: null,
         }
     }
 
@@ -25,11 +26,39 @@ class ShowImgs extends Component {
         }
     }
 
+    deleteButton = (itemId) => {
+        console.log(this.state.user.status)
+        if (this.state.user.status === 'admin') {
+            return (
+                <button
+                type="button"
+                onClick={ (e) => {this.deleteImg(e, itemId)}}
+                className="gallery__list__item--delete"
+                name="delete">
+                    Supprimer
+                </button>
+            )
+        }
+        else
+            return null;
+
+    }
+
     componentDidMount = async () => {
         try {
-            const response = await fetch("http://localhost:9000/img");
-            const data = await response.json();
-            this.setState({img: data, loading: false});
+            const answer = await fetch("http://localhost:9000/img");
+            const data = await answer.json();
+            
+            // GET USER INFOS
+            const response = await fetch("http://localhost:9000/profil/", {
+                method: "GET",
+                headers: {token: localStorage.token}
+            });
+            const parseRes = await response.json();
+            const {id, age, pseudo, email, status} = parseRes;
+            // this.setState({img: data, loading: false});
+            this.setState({user: parseRes, img: data, loading: false});
+            console.log(this.state.user);
         } catch (error) {
             console.error(error.message); 
         }
@@ -49,13 +78,7 @@ class ShowImgs extends Component {
                     {this.state.img.map( (item) =>
                         <div className="gallery__list__item" key={item.id}>
                             <img src={item.url} alt="" className="gallery__list__item--img"/>
-                            <button
-                            type="button"
-                            onClick={ (e) => {this.deleteImg(e, item.id)}}
-                            className="gallery__list__item--delete"
-                            name="delete">
-                                Supprimer
-                            </button>
+                            {this.deleteButton(item.id)}
                         </div>
                     )}
                 </div>

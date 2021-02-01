@@ -27,16 +27,10 @@ class HomeBody extends Component {
                         controls={false}
                         playing={true}
                         loop={true}
-                        volume={0}/>
+                        volume={0}
+                        />
                 </div>
                 <div className="who-presentation"></div>
-                <div>
-                    <ReactPlayer url={"https://asylum-heroes.s3.eu-west-3.amazonaws.com/Ending_tw15.mp4"}
-                        controls={false}
-                        playing={true}
-                        loop={true}
-                        volume={0}/>
-                </div>
             </div>
         )
     }

@@ -6,7 +6,7 @@ class ImgGallery extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            type: ""
+            user: null,
         }
     }
 
@@ -23,11 +23,13 @@ class ImgGallery extends Component {
                 headers: {token: localStorage.token}
             });
             const parseResVerify = await responseVerify.json();
+            console.log(parseResVerify)
             if (!parseResVerify || parseResVerify === "Not Authorized"){
                 localStorage.removeItem("token");
                 localStorage.setItem("error", "Vous n'êtes pas autorisé à pénétrer cet espace !!")
                 window.location = "/error";
             }
+
         } catch (error) {
             console.error(error.message); 
         }       
