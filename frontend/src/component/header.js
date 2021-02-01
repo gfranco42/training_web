@@ -100,7 +100,7 @@ class Header extends Component {
 
                 <div className="navigation__rubric">
                     <a className="navigation__rubric--page"
-                        href="/">
+                        href="/about">
                         Qui sommes nous?
                         <div className="underline"></div>
                     </a>

@@ -60,7 +60,16 @@ $spring-background: linear-gradient(#52ff93, #b2b8f9);
 $summer-background: linear-gradient(#FFFE52, #b2b8f9);
 $fall-background: linear-gradient(#96C2F4, #b2b8f9);
 
+$standard-font: gotham, bold;
+
 @mixin body-background() {
     // /!\ CHANGEMENT DE SAISON ICI /!\
     background: $spring-background;
+}
+
+
+// FONTS
+@font-face {
+    font-family: 'Gotham Bold';
+    src: local('Gotham Bold'), url('../../fonts/gotham_bold.otf') format('truetype');
 }

@@ -7,6 +7,11 @@
     @include body-background();
     padding: 100px 0 100px 0;
 
+    #{$el}__title{
+        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        text-transform: uppercase;
+    }
+
     #{$el}__video{
         border: red solid 3px;
     }
@@ -17,6 +22,10 @@
         display: flex;
         justify-content: flex-start;
         margin-top: 150px;
+        p {
+            font-family: 'Gotham Bold';
+            // font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        }
     }
 
     .aboutGallery {
