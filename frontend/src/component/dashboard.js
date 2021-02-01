@@ -72,10 +72,8 @@ class Dashboard extends Component {
                     <div>{this.state.pseudo}</div>
                     <div>{this.state.email}</div>
                     <div>{this.state.status}</div>
-                    <a href="/admin">Page Admin !</a>
                     <a href="/profil">Page Profil !</a>
                     <a href="/gallery">Page Gallery !</a>
-                    <a href="/videos">Page Videos !</a>
                 </div>
                 <this.adminPage />
             </div>
