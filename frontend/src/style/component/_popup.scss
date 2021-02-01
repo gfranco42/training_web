@@ -23,10 +23,12 @@
 .loginpopup {
     $el: &;
     // background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-    background: rgb(189, 222, 249);
+    // background: rgb(189, 222, 249);
+    background: white;
     padding: 30px;
     border-radius: 50px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #444;
     width: 400px;
 
 // *** TOP *** 
@@ -51,8 +53,8 @@
             width: 20px;
             height: 20px;
             border-radius: 20px;
-            background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-            color: white;
+            background: white;
+            color: black;
             border: none;
             font-size: 15px;
             position: relative;
@@ -116,10 +118,12 @@
 .registrationpopup {
     $el: &;
     // background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-    background: rgb(218, 193, 213);
+    // background: rgb(218, 193, 213);
+    background: white;
     width: 400px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     padding: 50px;
+    color: #444;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -154,8 +158,9 @@
             width: 20px;
             height: 20px;
             border-radius: 20px;
-            background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-            color: white;
+            // background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+            background: white;
+            color: black;
             border: none;
             font-size: 15px;
             position: relative;

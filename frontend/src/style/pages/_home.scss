@@ -2,15 +2,4 @@
     // border: green 10px solid;
     height: 100%;
     $el: &;
-    .body {
-        // border: blue 5px solid;
-        @include body-background();
-        height: 2000px;
-        padding-top: 62px;
-    }
-    .footer {
-        height: 500px;
-        background: url("../../img/footer_bg.png");
-        background-size: contain;
-    }
 }

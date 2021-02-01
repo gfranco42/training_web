@@ -1,9 +1,9 @@
-/* CONTAINER */
-import Header from "../component/header.js"
 
 /* COMPONENT */
 import AdminUserManagement from "../component/admin/admin_usersManagement.js"
 import AdminYTVideosManagement from "../component/admin/admin_ytvideosManagement.js"
+import Header from "../component/header.js"
+import Footer from "../component/footer"
 
 
 const Admin = () =>
@@ -14,7 +14,7 @@ const Admin = () =>
         </div>
         <AdminUserManagement />
         <AdminYTVideosManagement />
-        <div className="footer"></div>
+        <Footer />
     </div>
 
 export default Admin;

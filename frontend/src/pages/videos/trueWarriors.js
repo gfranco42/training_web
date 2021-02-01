@@ -1,14 +1,14 @@
-import Header from "../../component/header.js"
-
 /* COMPONENT */
 import TWGallery from "../../component/videos/twGallery.js"
+import Header from "../../component/header.js"
+import Footer from "../../component/footer.js"
 
 
 const TrueWarriors = () =>
     <div className="home">
         <Header />
         <TWGallery />
-        <div className="footer"></div>
+        <Footer />
     </div>
 
 export default TrueWarriors;

@@ -1,0 +1,10 @@
+@import "../utilities/mixins";
+
+.footer {
+    $el: &;
+    width: 100%;
+    
+    #{$el}__bg {
+        width: 100%;
+    }
+}

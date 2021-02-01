@@ -1,14 +1,14 @@
-import Header from "../../component/header.js"
-
 /* COMPONENT */
+import Header from "../../component/header.js"
 import HSGallery from "../../component/videos/hsGallery.js"
+import Footer from "../../component/footer.js"
 
 
 const HorsSeries = () =>
     <div className="home">
         <Header />
         <HSGallery />
-        <div className="footer"></div>
+        <Footer />
     </div>
 
 export default HorsSeries;

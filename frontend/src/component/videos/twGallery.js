@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 // YOUTUBE
-import YouTube from "react-youtube";
-import getYoutubeID from "get-youtube-id";
+// import YouTube from "react-youtube";
+// import getYoutubeID from "get-youtube-id";
 import ReactPlayer from 'react-player';
 
 // SLIDESHOW
@@ -95,7 +95,7 @@ class TWGallery extends Component {
                                             <h2>{item.title}</h2>
                                             <ReactPlayer url={item.url}
                                                 controls={true}
-                                                light={true}
+                                                light={test}
                                                 volume={0.5}
                                                 />
                                         </div>

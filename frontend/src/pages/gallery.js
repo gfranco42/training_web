@@ -1,15 +1,14 @@
-/* CONTAINER */
-import Header from "../component/header.js"
-
 /* COMPONENT */
 import ImgGallery from "../component/imgGallery.js"
+import Header from "../component/header.js"
+import Footer from "../component/footer"
 
 
 const Gallery = () =>
-    <div className="home">
+    <div>
         <Header />
         <ImgGallery />
-        <div className="footer"></div>
+        <Footer />
     </div>
 
 export default Gallery;

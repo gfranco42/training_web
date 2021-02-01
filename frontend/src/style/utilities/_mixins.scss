@@ -33,9 +33,9 @@
 }
 
 $winter-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-$spring-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-$summer-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-$fall-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
+$spring-button: linear-gradient(#52ff93, #ffcbcb);
+$summer-button: linear-gradient(#fde147, #7bfff4);
+$fall-button: linear-gradient(#aefc51, #fdd447, #fda147, #ff7e7e);
 
 @mixin standard-btn() {
     cursor: pointer;
@@ -45,17 +45,20 @@ $fall-button: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
     height: 35px;
     width: 100px;
     // /!\ CHANGEMENT DE SAISON ICI /!\
-    background: $winter-button;
+    // background: $fall-button;
+    // background: $summer-button;
+    // background: $winter-button;
+    background: $spring-button;
     border: none;
     border-radius: 50px;
     color: white;
 }
 
 
-$winter-background: linear-gradient(#96C2F4, #B965F0);
-$spring-background: linear-gradient(#58FF93, #B965F0);
-$summer-background: linear-gradient(#FFFE52, #B965F0);
-$fall-background: linear-gradient(#96C2F4, #B965F0);
+$winter-background: linear-gradient(#96C2F4, #b2b8f9);
+$spring-background: linear-gradient(#52ff93, #b2b8f9);
+$summer-background: linear-gradient(#FFFE52, #b2b8f9);
+$fall-background: linear-gradient(#96C2F4, #b2b8f9);
 
 @mixin body-background() {
     // /!\ CHANGEMENT DE SAISON ICI /!\

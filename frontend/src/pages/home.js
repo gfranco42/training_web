@@ -1,16 +1,13 @@
 import Header from "../component/header.js"
+import Footer from "../component/footer.js"
+import HomeBody from "../component/homeBody.js"
 
 
 const Home = () =>
-<div className="home">
-    <Header />
-    <div className="body">
-        <a className="adminLink" href="/admin">Page Admin !</a>
-        <a className="adminLink" href="/profil">Page Profil !</a>
-        <a className="adminLink" href="/gallery">Page Gallery !</a>
-        <a className="adminLink" href="/videos">Page Videos !</a>
+    <div className="home">
+        <Header />
+        <HomeBody />
+        <Footer />
     </div>
-    <div className="footer"></div>
-</div>
 
 export default Home;

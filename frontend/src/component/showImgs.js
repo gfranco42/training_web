@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
 
-// COMPONENT
-// import Upload from "./addImg.js";
-
 class ShowImgs extends Component {
     constructor(props) {
         super(props)
@@ -26,15 +23,13 @@ class ShowImgs extends Component {
         } catch (error) {
             console.error(error.message);
         }
-    } 
-
+    }
 
     componentDidMount = async () => {
         try {
             const response = await fetch("http://localhost:9000/img");
             const data = await response.json();
             this.setState({img: data, loading: false});
-            console.log(this.state)
         } catch (error) {
             console.error(error.message); 
         }

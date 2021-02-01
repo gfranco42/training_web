@@ -57,7 +57,7 @@ class HSGallery extends Component {
         else {
             return (
                 <div className="videoGallery">
-                    <h1 className="videoGallery__title">League of Lesglands</h1>
+                    <h1 className="videoGallery__title">Hors-Séries</h1>
                     <div className="slide-container">
                         <Slide {...slideProps}>
                             {this.state.videos.map( (item) => {

@@ -9,7 +9,6 @@ class ImgUpload extends Component {
             secret_key: process.env.REACT_APP_SECRET_KEY,
             bucket_name: process.env.REACT_APP_BUCKET,
             region: process.env.REACT_APP_REGION,
-            url: ""
         }
     }
 
@@ -35,11 +34,12 @@ class ImgUpload extends Component {
                     headers: {"Content-type": "application/json"},
                     body: JSON.stringify(body)
             });
-            if (response === null)
-                console.log(response);
+            if (!response)
+                console.log(response)
         }
         window.location.reload();
     }
+
 
     render() {
         return (

@@ -1,0 +1,27 @@
+@import "../utilities/mixins";
+
+.home-body {
+    $el: &;
+    width: 100%;
+    height: auto;
+    @include body-background();
+    padding: 50px;
+    padding-top: 100px;
+
+    #{$el}__video{
+        border: red solid 3px;
+    }
+
+
+    .aboutVideos {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 150px;
+    }
+
+    .aboutGallery {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 150px;
+    }
+}
