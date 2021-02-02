@@ -3,8 +3,20 @@
 .footer {
     $el: &;
     width: 100%;
-    
-    #{$el}__bg {
+    display: flex;
+    flex-direction: column;
+
+
+    #{$el}__wave {
         width: 100%;
+        margin-top: 100px;
     }
+
+
+    #{$el}__main {
+        background: #444;
+        height: 300px;
+        margin: none;
+    }
+    
 }

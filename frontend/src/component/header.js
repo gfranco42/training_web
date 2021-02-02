@@ -17,6 +17,7 @@ import { LoginPopup } from "./login.js"
 /* IMG */
 import ah_logo from "../img/ah_logo.png";
 import ah_title from "../img/ah_title.png";
+import header_wave from "../img/header_wave.gif";
 // import ah_title from "../img/winter/ah_title.png";
 // import header_bg from "../img/header_bg.png";
 
@@ -27,15 +28,16 @@ class Header extends Component {
         super(props)
         this.state = {
             log: false,
-            nav_style: { top: 330 }}
+            nav_style: {}
+        }
     }
 
     sticky_nav = (e) => {
         e.preventDefault();
-        if (window.scrollY < 318)
-            this.setState({nav_style: {top: 330 - window.scrollY}})
+        if (window.scrollY > 318)
+            this.setState({nav_style: { 'background':  'rgba(0, 0, 0, 0.5)' }})
         else
-            this.setState({nav_style: {top: 12}})
+            this.setState({nav_style: { 'background':  'rgba(68, 68, 68, 0)' }})
 
     }
 
@@ -156,6 +158,8 @@ class Header extends Component {
                 {/* <LogginPopup state={this.state}/> */}
                 <this.connectionButton />
             </div>
+
+            <img src={header_wave} alt="header_wave" className="header__wave"></img>
         </div>
         )
     }

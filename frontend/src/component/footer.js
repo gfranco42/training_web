@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import footer_img from '../img/footer_bg.png'
+import footer_wave from '../img/footer_wave.gif'
+import ReactFreezeframe from 'react-freezeframe';
 
 class Footer extends Component {
     constructor(props) {
@@ -12,7 +13,15 @@ class Footer extends Component {
     render() {
         return (
             <div className ="footer">
-                <img className="footer__bg" alt="footer" src={footer_img}/>
+                {/* <img className="footer__wave" src={footer_wave} /> */}
+                <ReactFreezeframe
+                    options={{
+                        trigger: false,
+                    }}
+                    src={footer_wave} />
+                <div className="footer__main">
+                </div>
+
             </div>
         )
     }
