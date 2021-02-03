@@ -3,20 +3,84 @@
 .footer {
     $el: &;
     width: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    color: white;
+    background: #444;
+    margin-top: 100px;
 
 
     #{$el}__wave {
         width: 100%;
-        margin-top: 100px;
+        background: white;
     }
 
 
     #{$el}__main {
-        background: #444;
-        height: 300px;
-        margin: none;
+        width: 900px;
+        margin-right: 50px;
+        margin-left: 50px;
+
+        @include flex-centered();
+        flex-direction: column;
+
+        #{$el}__title {
+            width: 100%;
+            @include flex-centered();
+
+            img {
+                width: 800px;
+            }
+        }
+
+        #{$el}__navbar {
+            width: 900px;
+            @include flex-centered();
+            justify-content: space-between;
+            padding: 25px 0 25px 0;
+            border-top: solid 2px white;
+            border-bottom: solid 2px white;
+        }
+
+
+        #{$el}__partner {
+            @include flex-centered();
+            width: 900px;
+            flex-wrap: wrap;
+            padding: 100px 0 100px 0;
+            border-bottom: white solid 2px;
+            
+            p {
+                @include flex-centered();
+                flex-direction: column;
+                width: 100%;
+
+                .partner__name {
+                    font-size: 25px;
+                }
+            }
+
+            &--pslc {
+                width: 250px;
+                margin-right: 100px;    
+            }
+
+            &--broccoli {
+                width: 180px;
+            }
+        }
+
+        #{$el}__networks {
+            width: 900px;
+            @include flex-centered();
+            justify-content: space-around;
+
+            img {
+                width: 150px;
+                margin: 100px 0 100px 0;
+            }
+        }
     }
-    
 }

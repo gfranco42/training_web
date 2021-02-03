@@ -17,7 +17,11 @@ import { LoginPopup } from "./login.js"
 /* IMG */
 import ah_logo from "../img/ah_logo.png";
 import ah_title from "../img/ah_title.png";
-import header_wave from "../img/header_wave.gif";
+
+// GIFS
+import wave_header from "../img/gifs/wave_header.gif";
+// import wave_body from "../img/gifs/wave_body.gif";
+// import wave_footer from "../img/gifs/wave_footer.gif";
 // import ah_title from "../img/winter/ah_title.png";
 // import header_bg from "../img/header_bg.png";
 
@@ -159,7 +163,7 @@ class Header extends Component {
                 <this.connectionButton />
             </div>
 
-            <img src={header_wave} alt="header_wave" className="header__wave"></img>
+            <img src={wave_header} alt="header_wave" className="header__wave"></img>
         </div>
         )
     }
