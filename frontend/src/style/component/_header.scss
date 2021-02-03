@@ -17,15 +17,12 @@
 
 
     #{$el}__background {
-        // @include flex-centered();
-        display: flex;
-        align-items: center;
+        @include flex-centered();
         justify-content: flex-start;
         width: 100%;
         height: 45.6vmax;
         background: url("../../img/header_bg.png");
         background-size: 100% 100%;
-        border: solid red 3px;
 
         &--title {
             width: 50%;
@@ -64,6 +61,7 @@
             cursor: pointer;
         }
 
+
         .navigation__rubric {
             display: flex;
             justify-content: space-around;
@@ -90,88 +88,71 @@
                     height: 3px; // epaisseur
                     width: 100%; // largeur
                     background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+                    opacity: 0;
+                }
+                .underline-menu {
+                    height: 3px; // epaisseur
+                    width: 100%; // largeur
+                    background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+                    opacity: 0;
+                }
 
-                    // WINTER
-
-                    // SPRING
-                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
-
-                    // SUMMER
-                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
-
-                    // FALL
-                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
-
-                    animation: fadeout 0.5s forwards;
-                    // display: none;
-
+                .rubric-title {
+                    width: 100%;
+                    @include flex-centered();
+                    flex-direction: column;
                 }
                 // *********** ************** ***********
 
 
-                // *********** MENU RELATED ***********
-                // Hide menu
+                // HIDE MENU
                 .menu {
                     opacity: 0;
                     display: none;
                     width: 150%;
+                    text-decoration: none;
+                    outline: none;
+                    margin-top: 12px;
                 }
-                .choice-underline {
-                    height: 3px; // epaisseur
-                    width: 70%;
-                    background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
-
-                    // WINTER
-
-                    // SPRING
-                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
-
-                    // SUMMER
-                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
-
-                    // FALL
-                    // background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
-                    animation: fadeout 0.5s forwards;
-                }
-
 
                 &:hover{
                     height: auto;
-                    .rubric-title {
-                        position: relative;
-                        top: -8px;
-                        padding: 4px;
-                        border: 4px solid;
-                        border-image-source: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-                        border-image-slice: 1;
+
+                    
+                    .first {
+                        border-top: solid 2px #444;
                     }
+
                     .underline {
                         animation: fadein 0.5s forwards;
                     }
+
+                    // MENU RELATED
                     .menu {
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         justify-content: space-between;
                         animation: fadein 0.5s forwards;
-                        // border: red solid 1px;
-                    
+
                         &__choice {
-                            display: flex;
+                            @include flex-centered();
                             flex-direction: column;
-                            align-items: center;
-                            justify-content: center;
                             padding: 15px 0 15px 0;
                             height: 30px;
                             width: 100%;
                             background: white;
+                            border-bottom: solid 2px #444;
+                            
                             .title {
                                 outline: none;
                                 text-decoration: none;
+                                color: #444;
                             }
                             &:hover {
-                                .choice-underline {
-                                    animation: fadein 0.5s forwards;
+                                background: linear-gradient(0.25turn, #5e9ce5, #f2dce7);
+                                .title {
+                                    color: white;
                                 }
                             }
                         }
@@ -203,16 +184,6 @@
             align-items: center;
             &--login, &--signin, &--logout, &--profil-page {
                 @include standard-btn();
-                // cursor: pointer;
-                // display: flex;
-                // justify-content: center;
-                // align-items: center;
-                // height: 35px;
-                // width: 100px;
-                // background: linear-gradient(#f2dce7, #ddc2d5, #5e9ce5);
-                // border: none;
-                // border-radius: 50px;
-                // color: white;
             }
         }
     }

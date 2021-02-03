@@ -9,7 +9,6 @@ import ReactPlayer from 'react-player';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
-import test from "../../test.png";
 
 import _ from 'lodash';
 
@@ -95,7 +94,7 @@ class TWGallery extends Component {
                                             <h2>{item.title}</h2>
                                             <ReactPlayer url={item.url}
                                                 controls={true}
-                                                light={test}
+                                                light={true}
                                                 volume={0.5}
                                                 />
                                         </div>
