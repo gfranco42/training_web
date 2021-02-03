@@ -1,7 +1,7 @@
 /* COMPONENT */
 import ImgGallery from "../component/imgGallery.js"
-import Header from "../component/header.js"
-import Footer from "../component/footer"
+import Header from "../component/layout/header.js"
+import Footer from "../component/layout/footer"
 
 
 const Gallery = () =>

@@ -1,5 +1,5 @@
-import Header from "../component/header.js"
-import Footer from "../component/footer.js"
+import Header from "../component/layout/header.js"
+import Footer from "../component/layout/footer.js"
 import HomeBody from "../component/homeBody.js"
 
 

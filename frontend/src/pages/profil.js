@@ -1,6 +1,6 @@
-import Header from "../component/header.js"
+import Header from "../component/layout/header.js"
 import Dashboard from "../component/dashboard"
-import Footer from "../component/footer"
+import Footer from "../component/layout/footer"
 
 const Home = () =>
 <div className="home">

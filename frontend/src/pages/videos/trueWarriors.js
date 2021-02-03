@@ -1,7 +1,7 @@
 /* COMPONENT */
 import TWGallery from "../../component/videos/twGallery.js"
-import Header from "../../component/header.js"
-import Footer from "../../component/footer.js"
+import Header from "../../component/layout/header.js"
+import Footer from "../../component/layout/footer.js"
 
 
 const TrueWarriors = () =>

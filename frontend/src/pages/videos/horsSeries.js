@@ -1,7 +1,7 @@
 /* COMPONENT */
-import Header from "../../component/header.js"
+import Header from "../../component/layout/header.js"
 import HSGallery from "../../component/videos/hsGallery.js"
-import Footer from "../../component/footer.js"
+import Footer from "../../component/layout/footer.js"
 
 
 const HorsSeries = () =>

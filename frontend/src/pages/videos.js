@@ -1,5 +1,5 @@
 /* CONTAINER */
-import Header from "../component/header.js"
+import Header from "../component/layout/header.js"
 
 /* COMPONENT */
 // import TwGallery from "../component/twGallery.js"

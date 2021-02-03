@@ -1,6 +1,6 @@
-import Header from "../component/header.js";
+import Header from "../component/layout/header.js";
 import ErrorComponent  from "../component/errorComponent.js";
-import Footer from "../component/footer"
+import Footer from "../component/layout/footer"
 
 const ErrorPage = () =>
 <div className="home">
