@@ -8,6 +8,10 @@ export class ArticleContent extends Component {
             loading: true,
         }
     }
+
+
+
+
     render() {
         if (this.state.loading === true)
             return <div>Chargement...</div>
