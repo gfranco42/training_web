@@ -11,6 +11,7 @@ import Admin from './pages/admin.js';
 import Gallery from './pages/gallery.js';
 import Videos from './pages/videos.js';
 import About from './pages/about.js';
+import Article from './pages/article.js';
 import ErrorPage from './pages/errorPage.js';
 
 
@@ -33,6 +34,7 @@ const Router = () => (
             <Route exact path="/videos/lol" component={LeagueOfLesglands}/>
             <Route exact path="/videos/hs" component={HorsSeries}/>
             <Route exact path="/about" component={About}/>
+            <Route exact path="/article" component={Article}/>
             <Route exact path="/error" component={ErrorPage}/>
             <Route path="/" component={ErrorPage} />
         </Switch>

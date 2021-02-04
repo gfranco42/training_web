@@ -106,7 +106,7 @@ export class ShowYTVideos extends Component {
                                         url={video.url}
                                         category={video.category}
                                         ep_nb={video.ep_nb}
-                                        description={video.description = "empty"}
+                                        description={video.description}
                                         videos={video.videos}
                                     />
                                 </th>

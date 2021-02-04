@@ -2,6 +2,7 @@
 
 // component
 @import "./component/adminform";
+@import "./component/articleContent";
 @import "./component/dashboard";
 @import "./component/header";
 @import "./component/popup";
@@ -20,6 +21,7 @@
 
 // pages
 @import "./pages/admin";
+@import "./pages/article";
 @import "./pages/home";
 @import "./pages/profil";
 // @import "./pages/gallery";

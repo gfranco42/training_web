@@ -84,7 +84,6 @@ class TWGallery extends Component {
         else {
             return (
                 <div className="videoGallery">
-                    <img src={test} alt="title" className="videoGallery__title"></img>
                     <div className="slide-container">
                         <Slide {...slideProps}>
                             {this.state.videos.map( (item) => {
@@ -94,7 +93,6 @@ class TWGallery extends Component {
                                             <h2>{item.title}</h2>
                                             <ReactPlayer url={item.url}
                                                 controls={true}
-                                                light={true}
                                                 volume={0.5}
                                                 />
                                         </div>

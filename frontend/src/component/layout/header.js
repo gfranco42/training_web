@@ -9,12 +9,6 @@ import ah_title from "../../img/ah_title.png";
 
 // GIFS
 import wave_header from "../../img/gifs/wave_header.gif";
-// import wave_body from "../img/gifs/wave_body.gif";
-// import wave_footer from "../img/gifs/wave_footer.gif";
-// import ah_title from "../img/winter/ah_title.png";
-// import header_bg from "../img/header_bg.png";
-
-
 
 class Header extends Component {
     constructor(props) {
@@ -23,6 +17,7 @@ class Header extends Component {
             log: false,
             nav_style: {},
             avatar: null,
+            status: "",
         }
     }
 
@@ -51,9 +46,25 @@ class Header extends Component {
             })
             const parseRes = await response.json();
             // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
-            const {avatar} = parseRes;
-            this.setState({avatar: avatar});
+            const {avatar, status} = parseRes;
+            this.setState({avatar: avatar, status: status});
         }
+    }
+
+    adminRubric = () => {
+        if (this.state.status === 'admin') {
+            return (
+                <div className="menu__choice">
+                    <a className="title"
+                        href="/admin">
+                            Admin
+                    </a>
+                </div>
+            )
+        }
+        else
+            return null;
+
     }
 
     connectionButton = () => {
@@ -87,6 +98,7 @@ class Header extends Component {
                                         Mes messages
                                 </a>
                             </div>
+                            <this.adminRubric/>
                             <div className="menu__choice">
                                 <div className="title"
                                     onClick={this.logout}>
@@ -126,8 +138,8 @@ class Header extends Component {
             })
             const parseRes = await response.json();
             // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
-            const {avatar} = parseRes;
-            this.setState({avatar: avatar});
+            const {avatar, status} = parseRes;
+            this.setState({avatar: avatar, status: status});
         }
 
     }

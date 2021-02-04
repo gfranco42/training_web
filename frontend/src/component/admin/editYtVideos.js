@@ -49,7 +49,6 @@ class EditPopup extends Component {
                     hideProgressBar: true,
                     closeButton: false,
                 });
-            // window.location.reload();
         } catch (error) {
            console.error(error.message); 
         }
@@ -69,9 +68,6 @@ class EditPopup extends Component {
                     {close => (
                         <div className="">
                             <div>Modifier une video</div>
-                            {/* <button className="close" onClick={close}>
-                                &times;
-                            </button> */}
                             <form onSubmit={(e) => {this.editVideo(e, this.props.videoId)}}>
                                 <label>
                                     Titre: 
