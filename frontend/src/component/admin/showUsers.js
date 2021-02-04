@@ -122,8 +122,18 @@ export class ShowUsers extends Component {
             this.setState({users: data.filter(user => user.id !== id)});
             const parseRes = await response.json();// Message: "Modification reussi !"
             parseRes === "Utilisateur supprimé !" ?
-                toast.success(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false})
-                : toast.error(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false});
+                toast.success(parseRes, {
+                    className: "toast",
+                    position: "top-center",
+                    hideProgressBar: true,
+                    closeButton: false,
+                })
+                : toast.error(parseRes, {
+                    className: "toast",
+                    position: "top-center",
+                    hideProgressBar: true,
+                    closeButton: false,
+                });
         } catch (error) {
             console.error(error.message); 
         }

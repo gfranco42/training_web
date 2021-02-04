@@ -1,5 +1,5 @@
 /* COMPONENT */
-import ImgGallery from "../component/imgGallery.js"
+import ImgGallery from "../component/imgs/imgGallery.js"
 import Header from "../component/layout/header.js"
 import Footer from "../component/layout/footer"
 

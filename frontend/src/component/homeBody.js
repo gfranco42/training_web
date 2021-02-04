@@ -18,14 +18,14 @@ class HomeBody extends Component {
         return (
             <div className="home-body">
                 <div className="home-header">
-                    <h1 className="">Bienvenue sur le site Asylum Heroes !</h1>
+                    <h1 className="home-header__title">Bienvenue sur le site Asylum Heroes !</h1>
                 </div>
-                <div className="home-main">
-                    <img src={wave_body} alt="wave_gif" className="home-main__wave"/>
+                <div className="home-foot">
+                    <img src={wave_body} alt="wave_gif" className="home-foot__wave"/>
                     <ReactPlayer url={"https://asylum-heroes.s3.eu-west-3.amazonaws.com/ending_tw.mp4"}
                         loop={true} onReady={ () => {} } playing={true} volume={0}
                         width="100%" height="100%"
-                        className="home-main__video"/>
+                        className="home-foot__video"/>
                 </div>
             </div>
         )

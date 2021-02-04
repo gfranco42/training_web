@@ -13,14 +13,4 @@
     @include body-background();
     font-size: 400px;
     padding-top: 150px;
-
-}
-
-.toastError {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: purple;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-align: center;
 }

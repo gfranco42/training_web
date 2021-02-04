@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // IMG
-import ah_logo from "../img/ah_logo.png"
+import ah_logo from "../../img/ah_logo.png"
 
 // POPUP
 import Popup from "reactjs-popup";
@@ -43,6 +43,7 @@ class RegisterPopup extends Component {
             const parseRes = await response.json();
             if (parseRes.token) {
                 toast.success(`Bienvenue chez Asylum Heroes ${body.pseudo} !`, {
+                    className: "toast",
                     position: "top-center",
                     hideProgressBar: true,
                     closeButton: false,
@@ -50,7 +51,12 @@ class RegisterPopup extends Component {
                 localStorage.setItem('token', parseRes.token);
             }
             else
-                toast.error(parseRes);
+                toast.error(parseRes, {
+                    className: "toast",
+                    position: "top-center",
+                    hideProgressBar: true,
+                    closeButton: false,
+                });
             setInterval( () => window.location.reload(), 1500);
         } catch (error) {
             console.error(error.message);
@@ -61,9 +67,9 @@ class RegisterPopup extends Component {
     render() {
         return (
                 <Popup
-                trigger={<button className="loginpopup__bot--signin">Inscription</button>}
-                modal
-                nested
+                    trigger={<button className="loginpopup__bot--signin">Inscription</button>}
+                    modal
+                    nested
                 >
                     {close => (
                         <div className="registrationpopup">

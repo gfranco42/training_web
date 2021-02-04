@@ -19,15 +19,4 @@ export const translate_date = (date) => {
         age_now--;
     }
     return (age_now);
-    // if (m < 0 || (m === 0 && today.getDate() < .getDate())) 
-    // {
-    //     age_now--;
-    // }
-    // console.log(age_now);
-    // console.log(age);
-    // console.log(localTime);
-    // console.log(date);
-    // console.log(string);
-    // console.log(string2);
-    // return (age);
 }

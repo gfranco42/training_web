@@ -35,8 +35,18 @@ export class AddYtVideo extends Component {
                 console.log(response);
             const parseRes = await response.json();
             parseRes === "Ajout réussi !" ?
-                toast.success(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false})
-                : toast.error(parseRes, {position: "top-center", hideProgressBar: true, closeButton: false});
+                toast.success(parseRes, {
+                    className: "toast",
+                    position: "top-center",
+                    hideProgressBar: true,
+                    closeButton: false,
+                })
+                : toast.error(parseRes, {
+                    className: "toast",
+                    position: "top-center",
+                    hideProgressBar: true,
+                    closeButton: false,
+                });
             // window.location.reload();
         } catch (error) {
            console.error(error.message); 

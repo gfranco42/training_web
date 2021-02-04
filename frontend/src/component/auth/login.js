@@ -5,11 +5,8 @@ import { toast } from 'react-toastify';
 import Popup from "reactjs-popup";
 
 // IMG
-import ah_logo from "../img/ah_logo.png"
+import ah_logo from "../../img/ah_logo.png"
 
-// TOAST
-// import { ToastContainer, toast } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
 
 // COMPONENT
 import RegisterPopup from './register'
@@ -30,16 +27,6 @@ class LoginPopup extends Component {
         this.setState({[e.target.name]: e.target.value})
     }
 
-    // handleSubmit = () => {
-    //     toast("test");
-    // }
-
-    // test = (e) => {
-    //     e.preventDefault();
-    //     console.log("login test");
-    // }
-
-
     login = async (e) => {
         e.preventDefault();
         try {
@@ -56,19 +43,19 @@ class LoginPopup extends Component {
             if (parseRes.token) {
                 localStorage.setItem("token", parseRes.token);
                 toast.success(`Bon retour !`, {
+                    className: "toast",
                     position: "top-center",
                     hideProgressBar: true,
                     closeButton: false,
-                    className: "loginToast",
                 });
                 this.props.updateLogState(true);
             }
             else {
                 toast.error(parseRes, {
+                    className: "toast",
                     position: "top-center",
                     hideProgressBar: true,
                     closeButton: false,
-                    className: "loginToast",
                 });
                 this.props.updateLogState(false);
             }

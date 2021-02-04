@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 // COMPONENT
-import { LoginPopup } from "../login.js"
+import { LoginPopup } from "../auth/login.js"
 
 // IMGS
 import ah_logo from "../../img/ah_logo.png";

@@ -55,7 +55,7 @@ class ShowImgs extends Component {
                 headers: {token: localStorage.token}
             });
             const parseRes = await response.json();
-            const {id, age, pseudo, email, status} = parseRes;
+            // const {id, age, pseudo, email, status} = parseRes;
             // this.setState({img: data, loading: false});
             this.setState({user: parseRes, img: data, loading: false});
             console.log(this.state.user);
