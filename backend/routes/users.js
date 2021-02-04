@@ -6,8 +6,8 @@ const pool = require('../db');
 
 router.post('/', async(req, res) => {
   try {
-    const {age, pseudo, email, password, status} = req.body;
-    const newUser = pool.query("INSERT INTO users (age, pseudo, email, password, status) VALUES ($1, $2, $3, $4, $5)", [age, pseudo, email, password, status]);
+    const {age, pseudo, email, password, status, avatar} = req.body;
+    const newUser = pool.query("INSERT INTO users (age, pseudo, email, password, status, avatar) VALUES ($1, $2, $3, $4, $5, $6)", [age, pseudo, email, password, status, "https://asylum-heroes.s3.eu-west-3.amazonaws.com/default_avatar.png"]);
     res.json(newUser.rows);
   } catch (error) {
     console.error(error.message);
@@ -47,7 +47,7 @@ router.put('/:id', async(req, res) => {
   try {
 
     const {id} = req.params;
-    const {age, pseudo, email, status} = req.body;
+    const {age, pseudo, email, status, avatar} = req.body;
     let updateUser;
     if (age !== "" && age !== null)
       updateUser = pool.query("UPDATE users SET age = $1 WHERE id = $2", [age, id]);
@@ -57,12 +57,30 @@ router.put('/:id', async(req, res) => {
       updateUser = pool.query("UPDATE users SET email = $1 WHERE id = $2", [email, id]);
     if (status !== "" && status !== null)
       updateUser = pool.query("UPDATE users SET status = $1 WHERE id = $2", [status, id]);
+    if (avatar !== "" && avatar !== null)
+      updateUser = pool.query("UPDATE users SET avatar = $1 WHERE id = $2", [avatar, id]);
     res.json("Modification réussi !");
 
   } catch (error) {
     console.error(error.message);
   }
 })
+
+// update avatar
+router.post('/avatar/:id', async (req, res) => {
+    try {
+        const {id} = req.params;
+        console.log(id)
+        const {avatar} = req.body;
+        const user = await pool.query("UPDATE users SET avatar = $1 WHERE id = $2", [avatar, id])
+        res.json(200);
+        
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).json("Server Error");
+    }
+})
+
 
 // delete
 router.delete('/:id', async(req, res) => {

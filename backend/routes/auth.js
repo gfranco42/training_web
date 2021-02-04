@@ -22,7 +22,7 @@ router.post('/register', validInfo, async (req, res) => {
         const bcryptPassword = await bcrypt.hash(password, salt); 
 
         // 4. add the user to the database
-        const newUser = await pool.query("INSERT INTO users (age, pseudo, email, status, password) VALUES ($1, $2, $3, $4, $5) RETURNING *", [age, pseudo, email, 'common', bcryptPassword])
+        const newUser = await pool.query("INSERT INTO users (age, pseudo, email, status, password, avatar) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *", [age, pseudo, email, 'common', bcryptPassword, "https://asylum-heroes.s3.eu-west-3.amazonaws.com/default_avatar.png"])
 
         // 5. generate jwt token
         const token = jwtGenerator(newUser.rows[0].id);
