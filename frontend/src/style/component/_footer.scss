@@ -9,12 +9,14 @@
     align-items: center;
     color: white;
     background: #444;
-    margin-top: 100px;
 
 
     #{$el}__wave {
         width: 100%;
-        background: white;
+        background: transparent;
+        height: 100px;
+        position: relative;
+        top: -100px;
     }
 
 

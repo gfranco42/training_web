@@ -9,31 +9,24 @@
     flex-direction: column;
     align-items: center;
 
-    #{$el}__title{
+    .home-header {
         font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
         text-transform: uppercase;
     }
 
-    #{$el}__video{
-        border: red solid 3px;
-    }
+    .home-main {
+        background: #ECECEC;
+        width: 100%;
 
-
-
-    .aboutVideos {
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 150px;
-        p {
-            font-family: 'Gotham Bold';
-            // font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+        &__wave {
+            width: 100%;
+            background: white;
+            height: 100px;
         }
-    }
 
-    .aboutGallery {
-        display: flex;
-        justify-content: flex-end;
-        margin-top: 150px;
+        &__video {
+            margin-top: 100px;
+        }
     }
 }
 
