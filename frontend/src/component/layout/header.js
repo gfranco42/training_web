@@ -21,7 +21,8 @@ class Header extends Component {
         super(props)
         this.state = {
             log: false,
-            nav_style: {}
+            nav_style: {},
+            avatar: null,
         }
     }
 
@@ -40,8 +41,19 @@ class Header extends Component {
         window.location = "/";
     }
 
-    updateLogState = (bool) => {
+    updateLogState = async (bool) => {
         this.setState({log: bool});
+        if (bool === true) {
+            // RECUP USER AVATAR
+            const response = await fetch("http://localhost:9000/profil/", {
+                method: "GET",
+                headers: {token: localStorage.token}
+            })
+            const parseRes = await response.json();
+            // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
+            const {avatar} = parseRes;
+            this.setState({avatar: avatar});
+        }
     }
 
     connectionButton = () => {
@@ -52,19 +64,48 @@ class Header extends Component {
                     <LoginPopup updateLogState={this.updateLogState}/>
                 </div>
             )
-        else
+        else {
             return (
-                <div className="navigation__button">
-                    <button className="navigation__button--profil-page" onClick={() => {window.location = "/profil"}}>Profil</button>
-                    <button className="navigation__button--logout" onClick={this.logout}>Deconnexion</button>
+                <div className="account-block">
+                    <div className="account-block__pipe"></div>
+                    <img src={this.state.avatar} className="account-block__avatar" alt="avatar_img"/>
+                    <div className="navigation__rubric--page account-block__menu">
+                        <div className="rubric-title">
+                            Profil
+                            <div className="underline"></div>
+                        </div>
+                        <div className="menu">
+                            <div className="menu__choice first">
+                                <a className="title"
+                                    href="/profil">
+                                        Mon compte
+                                </a>
+                            </div>
+                            <div className="menu__choice">
+                                <a className="title"
+                                    href="/">
+                                        Mes messages
+                                </a>
+                            </div>
+                            <div className="menu__choice">
+                                <div className="title"
+                                    onClick={this.logout}>
+                                        Déconnexion
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             )
-            
+        }
     }
+        
+        // <button className="navigation__button--logout" onClick={this.logout}>Deconnexion</button>
+    // https://asylum-heroes.s3.eu-west-3.amazonaws.com/ending_tw.mp4
 
     componentDidMount = async () => {
         window.addEventListener('scroll', this.sticky_nav);
-        console.log(window.innerWidth)
 
         // VERIFY TOKEN
         const responseVerify = await fetch("http://localhost:9000/auth/token-verify", {
@@ -76,8 +117,18 @@ class Header extends Component {
             localStorage.removeItem("token");
             this.setState({log: false});
         }
-        else
+        else {
             this.setState({log: true})
+            // RECUP USER AVATAR
+            const response = await fetch("http://localhost:9000/profil/", {
+                method: "GET",
+                headers: {token: localStorage.token}
+            })
+            const parseRes = await response.json();
+            // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
+            const {avatar} = parseRes;
+            this.setState({avatar: avatar});
+        }
 
     }
 
@@ -89,18 +140,24 @@ class Header extends Component {
                 <img className="header__background--title" alt="title" src={ah_title}/>
             </a>
 
+
+
             <div className="header__navigation" style={this.state.nav_style}>
+
+
+                            {/* LOGO SECTION  */}
                 <a  href={'http://localhost:3000/'}>
                     <img className="header__navigation--logo" src={ah_logo} alt="ah_logo"/>
                 </a>
 
+
+                            {/* RUBRICS SECTION */}
                 <div className="navigation__rubric">
                     <a className="navigation__rubric--page"
                         href="/about">
                         Qui sommes nous?
                         <div className="underline"></div>
                     </a>
-
 
                     {/* VIDEO MENU */}
                     <div className="navigation__rubric--page videos-rubric">
@@ -121,7 +178,7 @@ class Header extends Component {
                                         League of Lesglands
                                 </a>
                             </div>
-                            <div className="menu__choice last">
+                            <div className="menu__choice">
                                 <a className="title"
                                     href="/videos/hs">
                                         Hors-Séries
@@ -129,6 +186,7 @@ class Header extends Component {
                             </div>
                         </div>
                     </div>
+                    {/* ************ */}
 
 
                     <a className="navigation__rubric--page"
@@ -148,8 +206,6 @@ class Header extends Component {
                     </a>
                 </div>
 
-                {/* {this.is_logged(this.state.log)} */}
-                {/* <LogginPopup state={this.state}/> */}
                 <this.connectionButton />
             </div>
 

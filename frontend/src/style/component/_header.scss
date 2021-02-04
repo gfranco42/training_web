@@ -14,8 +14,6 @@
     height: 100%;
     color: white;
     text-decoration: none;
-
-
     #{$el}__background {
         @include flex-centered();
         justify-content: flex-start;
@@ -28,7 +26,6 @@
             width: 50%;
         }
     }
-
     #{$el}__wave {
         // padding: 10px;
         // border: red solid 4px;
@@ -40,33 +37,60 @@
 
 
 
+    // NAVBAR RELATED
     #{$el}__navigation {
         height: 50px;
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         // background: white;
         // box-shadow: 0px 10px 20px #909090;
         position: fixed;
         top: 0;
         z-index: 100;
 
+        // LOGO
         &--logo {
             z-index: 2;
             height: 50px;
-            position: relative;
-            left: 50px;
+            position: absolute;
+            left: 15px;
             top: 15px;
             padding-right: 35px;
             cursor: pointer;
         }
 
+        .account-block {
+            // border: blue solid 3px;
+            display: flex;
+            &__pipe {
+                height: 30px;
+                position: relative;
+                top: 10px;
+                border: solid white 1px;
+                margin-right: 30px;
+            }
+            &__avatar {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                // border: green solid 1px;
+            }
+
+            &__menu {
+                // border: purple solid 2px;
+                margin-left: 50px;
+            }
+
+
+        }
 
         .navigation__rubric {
             display: flex;
             justify-content: space-around;
             width: 1300px;
             min-width: 600px;
+            margin-left: 60px;
             
 
             &--page {
@@ -178,7 +202,8 @@
 
         }
         .navigation__button {
-            min-width: 290px;
+            min-width: 100px;
+            border-radius: 10px;
             display: flex;
             justify-content: space-around;
             align-items: center;

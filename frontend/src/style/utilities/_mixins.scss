@@ -56,15 +56,17 @@ $standard-font: gotham, bold;
     justify-content: center;
     align-items: center;
     height: 35px;
-    width: 100px;
+    width: auto;
+    padding: 0 20px 0 20px;
     // /!\ CHANGEMENT DE SAISON ICI /!\
     // background: $fall-button;
     // background: $summer-button;
     // background: $winter-button;
-    background: $spring-button;
-    border: none;
-    border-radius: 50px;
-    color: white;
+    background: white;
+    border: black solid 3px;
+    border-radius: 10px;
+    color: rgba(101, 158, 229, 1);
+    font-weight: bold;
 }
 
 
