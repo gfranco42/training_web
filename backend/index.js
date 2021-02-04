@@ -11,18 +11,16 @@ app.use(cors());
 
 // ROUTES
 
+// articles
+app.use('/articles', require('./routes/articles'))
 // register and login routes
 app.use('/auth', require('./routes/auth'));
-
 // dashboard routes
 app.use('/profil', require('./routes/profil'));
-
 // images
 app.use('/img', require('./routes/img'));
-
 // users
 app.use('/users', require('./routes/users'));
-
 // youtube videos
 app.use('/ytvideos', require('./routes/ytVideos'));
 
