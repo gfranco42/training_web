@@ -70,7 +70,6 @@ router.put('/:id', async(req, res) => {
 router.post('/avatar/:id', async (req, res) => {
     try {
         const {id} = req.params;
-        console.log(id)
         const {avatar} = req.body;
         const user = await pool.query("UPDATE users SET avatar = $1 WHERE id = $2", [avatar, id])
         res.json(200);
