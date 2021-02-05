@@ -32,7 +32,7 @@ class Admin_ytvideosManagement extends Component {
 
     render () {
         return (
-        <div className="">
+        <div className="admin__component">
             <AddYtVideo />
             <ShowYTVideos />
 

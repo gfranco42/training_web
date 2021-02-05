@@ -1,0 +1,26 @@
+@import "../utilities/mixins";
+
+.news {
+    $el: &;
+    @include flex-centered();
+    width: 100%;
+
+    #{$el}__current-article {
+        width: 100%;
+        @include flex-centered();
+        justify-content: space-around;
+
+        #{$el}__texts {
+            @include flex-centered();
+            flex-direction: column;
+        }
+
+        #{$el}__img {
+            img {
+                width: 300px;
+            }
+        }
+
+    }
+
+}

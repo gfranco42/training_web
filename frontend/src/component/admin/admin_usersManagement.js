@@ -57,7 +57,7 @@ class Admin_usersManagement extends Component {
 
     render () {
         return (
-        <div>
+        <div className="admin__component">
             <ShowUsers />
 
             {/* <div className="adminform__form">

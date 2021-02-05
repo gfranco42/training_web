@@ -6,6 +6,9 @@ import wave_body from "../img/gifs/wave_body.gif";
 // REACT PLAYER
 import ReactPlayer from "react-player";
 
+// COMPONENT
+import News from "./news.js"
+
 class HomeBody extends Component {
     constructor(props) {
         super(props)
@@ -19,6 +22,9 @@ class HomeBody extends Component {
             <div className="home-body">
                 <div className="home-header">
                     <h1 className="home-header__title">Bienvenue sur le site Asylum Heroes !</h1>
+                </div>
+                <div className="home-main">
+                    <News />
                 </div>
                 <div className="home-foot">
                     <img src={wave_body} alt="wave_gif" className="home-foot__wave"/>

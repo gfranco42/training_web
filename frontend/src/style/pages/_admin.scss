@@ -7,7 +7,15 @@
     #{$el}__body {
         width: 100%;
         margin-bottom: 200px;
+        #{$el}__component {
+            @include flex-centered();
+            flex-direction: column;
+            padding: 20px;
+            margin: 20px;
+            border: red solid 3px;
+        }
     }
+
 
     #{$el}__title {
         padding-top: 62px;

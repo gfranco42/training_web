@@ -121,6 +121,9 @@ export class ShowUsers extends Component {
             const data = this.state.users;
             this.setState({users: data.filter(user => user.id !== id)});
             const parseRes = await response.json();// Message: "Modification reussi !"
+            
+
+            // TOAST
             parseRes === "Utilisateur supprimé !" ?
                 toast.success(parseRes, {
                     className: "toast",

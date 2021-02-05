@@ -14,6 +14,17 @@
         text-transform: uppercase;
     }
 
+    .home-main {
+        width: 100%;
+        .news {
+            margin: 200px 0 200px 0;
+            .time {
+                border: red 3px solid;
+                margin: 20px;
+            }
+        }
+    }
+
     .home-foot {
         background: #ECECEC;
         width: 100%;

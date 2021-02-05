@@ -19,10 +19,6 @@ class TWGallery extends Component {
         this.state = {
             videos: null,
             category: "TW",
-            opts: {
-                height: '390',
-                width: '640',
-            },
             loading: false,
             display: null,
             index: 0,
@@ -93,14 +89,12 @@ class TWGallery extends Component {
                                             <h2>{item.title}</h2>
                                             <ReactPlayer url={item.url}
                                                 controls={true}
-                                                volume={0.5}
-                                                />
+                                                volume={0.5}/>
                                         </div>
                                     </div>
                                 )
                             })}
                         </Slide>
-                            {/* <YouTube videoId={getYoutubeID(item.url)} opts={this.state.opts} /> */}
                     </div>
                     <div className="videoGallery__navigation">
                         <button name="description" onClick={this.handleClick}>Description</button>

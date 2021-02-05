@@ -1,4 +1,6 @@
 // PREMIER CONTOUR
+@import "../utilities/mixins";
+
 html, body {
     margin: 0;
     // border: 10px solid orange;
@@ -21,6 +23,8 @@ html, body {
 }
 
 .toast {
+    @include flex-centered();
     position: fixed;
     top: 50px;
+    padding: 10px;
 }
