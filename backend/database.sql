@@ -9,7 +9,8 @@ CREATE TABLE users(
     pseudo VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     status VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL 
+    password VARCHAR(255) NOT NULL,
+    avatar VARCHAR(255) 
 );
 
 CREATE TABLE images(
@@ -34,9 +35,11 @@ CREATE TABLE articles(
     text_content TEXT,
     img_content TEXT[],
     video_content TEXT[],
+    date TIMESTAMP DEFAULT NOW()
 );
 
 INSERT INTO articles (title, image, description, text_content, img_content, video_content) VALUES ('test',
 'https://asylum-heroes.s3.eu-west-3.amazonaws.com/test-img.png',
 'test description', 'Content text test',
-'{"https://asylum-heroes.s3.eu-west-3.amazonaws.com/bob.gif", "https://asylum-heroes.s3.eu-west-3.amazonaws.com/giphy.gif"}', '{"https://www.youtube.com/watch?v=iDZA-cps21o", "https://www.youtube.com/watch?v=w7ejDZ8SWv8"}');
+'{"https://asylum-heroes.s3.eu-west-3.amazonaws.com/bob.gif", "https://asylum-heroes.s3.eu-west-3.amazonaws.com/giphy.gif"}', '{"https://www.youtube.com/watch?v=iDZA-cps21o", "https://www.youtube.com/watch?v=w7ejDZ8SWv8"}',
+'2021-02-05r');
