@@ -7,7 +7,7 @@ import Popup from 'reactjs-popup';
 /* IMG */
 
 /* ADMIN EDIT POPUP */
-class EditPopup extends Component {
+class EditUser extends Component {
 
     editUser = async (e, id) => {
         e.preventDefault();
@@ -104,5 +104,5 @@ class EditPopup extends Component {
 }
 
 export {
-    EditPopup,
+    EditUser,
 };

@@ -2,54 +2,11 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
 /* MODULES */
-import { EditPopup } from './editUser'
+import { EditUser } from './editUser'
 import _ from 'lodash';
 
 // FUNCTIONS
-import {translate_date} from "../../utils"
-
-
- /******************************************************** EXAMPLE ********************************************************/
-// class Child extends Component {
-//     render() {
-//         return (
-//             <div>
-//                 <div>I am Child</div>
-//                 <input type="text" 
-//                  placeholder="Write text" onChange={(e) => this.props.updateTextCB(e, 'yolo')} />
-//             </div>
-//         )
-//     }
-// }
-
-// class Parent extends Component {
-//     constructor(props) {
-//         super(props)
-//         this.state = {text: "Initial Text"}
-//         // this.updateText1 = this.updateText1
-//     }
-
-//     updateText1 = (e, text) => {
-//         e.preventDefault();
-//         this.setState({ text: text })
-//     }
-
-//     render() {
-//         return (
-//             <div>
-//                 <div>I am Parent</div>
-//                 <div>{this.state.text}</div>
-//                 <Child updateTextCB={this.updateText1} />
-//             </div>
-//         )
-//     }
-// }
-
- /******************************************************** EXAMPLE ********************************************************/
-
-
-
-
+import {translate_date} from "../../../utils"
 
 
 /* CLASS SHOWUSERS */
@@ -185,7 +142,7 @@ export class ShowUsers extends Component {
                                 <th className="">{user.email}</th>
                                 <th className="">{user.status}</th>
                                 <th className="">
-                                    <EditPopup
+                                    <EditUser
                                         updateUserInfo={this.updateUserInfo}
                                         userId={user.id}
                                         age={this.state.age}

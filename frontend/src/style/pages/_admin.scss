@@ -1,8 +1,6 @@
 .admin {
-    // border: green 10px solid;
     height: 100%;
     $el: &;
-    // margin-top: 100px;
 
     #{$el}__body {
         width: 100%;
@@ -16,8 +14,9 @@
         }
     }
 
-
     #{$el}__title {
         padding-top: 62px;
+        @include flex-centered();
+        font-size: 50px;
     }
 }

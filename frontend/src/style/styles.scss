@@ -1,21 +1,23 @@
 @charset 'utf-8';
 
 // component
-@import "./component/adminform";
 @import "./component/articleContent";
 @import "./component/dashboard";
-@import "./component/header";
 @import "./component/popup";
 @import "./component/errorComponent";
 @import "./component/imgGallery";
 @import "./component/videoGallery";
-@import "./component/footer";
 @import "./component/home_body";
 @import "./component/aboutComponent";
 @import "./component/news";
-@import "./component/admin_article";
 
-// container
+// admin
+@import "./component/admin/adminform";
+@import "./component/admin/admin_article";
+
+// layout
+@import "./component/layout/header";
+@import "./component/layout/footer";
 
 // global
 @import "./global/app";

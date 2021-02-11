@@ -111,10 +111,42 @@ class AddArticle extends Component {
         this.setState({img_content: tab})
     }
 
+
+    // ********************************** IMGS RELATED **********************************
+    removeImg = (e, idx) => {
+        e.preventDefault();
+        const data = this.state.img_content;
+        this.setState({img_content: data.filter( (name, index) => index !== idx) });
+    }
+
+    selectedImgs = () => {
+        if (this.state.img_content) {
+            return (
+                <div className="bottom__previsual--list left-list">
+                    {this.state.img_content.map( ( item, index ) =>
+                        <div className="list-item" key={index}>
+                            <div className="list-item__url url-img">{item}</div>
+                            <button onClick={(e) => this.removeImg(e, index)}>Enlever</button>
+                        </div>)}
+                </div>)}
+        else
+            return null;
+    }
+    // ********************************** ************ **********************************
+
+
+    // ********************************** LINK RELATED **********************************
     addLink = (e) => {
         e.preventDefault();
         const {current_video} = this.state;
-        this.setState({video_content: [...this.state.video_content, current_video]})
+        current_video ? this.setState({video_content: [...this.state.video_content, current_video]})
+        : toast.error("Aucune URL renseignée !", {
+            className: "toast",
+            position: "top-center",
+            hideProgressBar: true,
+            closeButton: false,
+        })
+    
     }
 
     removeLink = (e, idx) => {
@@ -123,25 +155,20 @@ class AddArticle extends Component {
         this.setState({video_content: data.filter( (name, index) => index !== idx) });
     }
 
-
-
-    // PREVISUALISATION DE L'ARTICLE
     selectedVideos = () => {
         if (this.state.video_content) {
             return (
-                <div>
+                <div className="bottom__previsual--list right-list">
                     {this.state.video_content.map( ( item, index ) =>
-                        <div key={index}>
-                            {item}
+                        <div className="list-item" key={index}>
+                            <div className="list-item__url">{item}</div>
                             <button onClick={(e) => this.removeLink(e, index)}>Enlever</button>
                         </div>)}
                 </div>)}
         else
             return null;
     }
-
-    componentDidMount = () => {
-    }
+    // ********************************** ************ **********************************
 
     render() {
         const slideProps = {
@@ -152,85 +179,98 @@ class AddArticle extends Component {
         };
         return (
             <div className="adm-article">
-                <p className="">Ajouter un article:</p>
-                <form onSubmit={(e) => this.addArticle(e, this.state)}>
-                    <label>
-                        Titre
-                        <input type="text"
-                            value={this.state.title}
-                            onChange={(e) => {this.handleChange(e)}}
-                            name="title"
-                            placeholder="ex. True Warriors 16"
-                            className=""
-                            required
-                            >
-                        </input>
-                    </label>
-                    <label htmlFor="uploadBtn">
-                        Image de présentation:
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => {this.handleChangeFile(e)}}
-                            className=""
-                            name="image"
-                            required>
-                        </input>
-                    </label>
-                    <label>
-                        Description:
-                        <textarea
-                            value={this.state.description}
-                            onChange={(e) => {this.handleChange(e)}}
-                            name="description"
-                            placeholder="ex: Dans cette vidéo, vous verrez comment arroser des Hamsters..."
-                            className=""
-                            required>
-                        </textarea>
-                    </label>
-                    <label>
-                        Contenu de l'article type texte:
-                        <textarea
-                            value={this.state.text_content}
-                            onChange={(e) => {this.handleChange(e)}}
-                            name="text_content"
-                            placeholder="ex: Il était une fois..."
-                            className="">
-                        </textarea>
-                    </label>
-                    <label>
-                        Image(s) de l'article:
-                        <input
-                            type="file"
-                            accept="image/*"
-                            onChange={(e) => {this.handleChangeMultipleFiles(e)}}
-                            className=""
-                            name="img_content"
-                            multiple>
-                        </input>
-                    </label>
-                    <label>
-                        Vidéos(s) de l'article:
-                        <input
-                            type="text"
-                            onChange={(e) => {this.handleChange(e)}}
-                            className=""
-                            name="current_video">
-                        </input>
-                        <button onClick={(e) => this.addLink(e)}>Ajouter un lien</button>
-                        <this.selectedVideos />
-                    </label>
+
+                {/* ADD ARTICLE */}
+                <p className="adm-article__title">Ajouter un article:</p>
+                <form className="adm-article__adding"
+                    onSubmit={(e) => this.addArticle(e, this.state)}>
+
+                    <div className="top">
+                        <label className="top__title">
+                            Titre
+                            <input type="text"
+                                value={this.state.title}
+                                onChange={(e) => {this.handleChange(e)}}
+                                name="title"
+                                placeholder="ex. True Warriors 16"
+                                className=""
+                                required>
+                            </input>
+                        </label>
+                        <label className="top__img">
+                            Image de présentation
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => {this.handleChangeFile(e)}}
+                                className=""
+                                name="image"
+                                required>
+                            </input>
+                        </label>
+                        <label className="top__description">
+                            Description
+                            <textarea
+                                value={this.state.description}
+                                onChange={(e) => {this.handleChange(e)}}
+                                name="description"
+                                placeholder="ex: Dans cette vidéo, vous verrez comment arroser des Hamsters..."
+                                className=""
+                                required>
+                            </textarea>
+                        </label>
+                    </div>
+{/* ************************************************************************************************* */}
+                    <div className="bottom">
+                        <label className="bottom__text">
+                            Texte de l'article
+                            <textarea
+                                value={this.state.text_content}
+                                onChange={(e) => {this.handleChange(e)}}
+                                name="text_content"
+                                placeholder="ex: Il était une fois..."
+                                className="">
+                            </textarea>
+                        </label>
+                        <label className="bottom__img">
+                            Image(s) de l'article
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={(e) => {this.handleChangeMultipleFiles(e)}}
+                                className=""
+                                name="img_content"
+                                multiple>
+                            </input>
+                        </label>
+                        <label className="bottom__video">
+                            Vidéos(s) de l'article
+                            <input
+                                type="text"
+                                onChange={(e) => {this.handleChange(e)}}
+                                className=""
+                                name="current_video"
+                                placeholder="ex: https://video.com">
+                            </input>
+                            <button onClick={(e) => this.addLink(e)}>Ajouter un lien</button>
+                        </label>
+                        <div className="bottom__previsual">
+                            <this.selectedImgs />
+                            <this.selectedVideos />
+                        </div>
+                    </div>
                     <input type="submit"
                         value="Et zé partiiiii !"
-                        className="">
+                        className="adm-article__adding--input">
                     </input>
                 </form>
 
 
+                {/* SHOW ARTICLE */}
                 <div className="adm-article__previsualisation">
                     <div>{this.state.title}</div>
                     <div>{this.state.description}</div>
-                    <img alt="img" src={this.state.image}></img>
+                    <img alt="presentation_img" src={this.state.image}></img>
                     <div className="adm-article__content">
                         <div className="section">
                             <h3>TEXT_CONTENT</h3>

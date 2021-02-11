@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 /* MODULES */
-import { EditPopup } from './editYtVideos'
+import { EditYtVideo } from './editYtVideos'
 import _ from 'lodash';
 
 export class ShowYTVideos extends Component {
@@ -99,7 +99,7 @@ export class ShowYTVideos extends Component {
                                 <th className="">{video.ep_nb}</th>
                                 <th className="">{video.description}</th>
                                 <th className="">
-                                    <EditPopup
+                                    <EditYtVideo
                                         // updateVideoInfo={this.updateVideoInfo}
                                         videoId={video.id}
                                         title={video.title}

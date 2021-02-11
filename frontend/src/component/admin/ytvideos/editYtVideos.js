@@ -6,7 +6,7 @@ import Popup from 'reactjs-popup';
 
 
 /* ADMIN EDIT POPUP */
-class EditPopup extends Component {
+class EditYtVideo extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -136,5 +136,5 @@ class EditPopup extends Component {
 }
 
 export {
-    EditPopup,
+    EditYtVideo,
 };
