@@ -8,13 +8,21 @@ import AddArticle from './addArticle.js';
 class Admin_ArticlesManagement extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            display: "none"
+        }
+    }
+
+    triggerElement = (e) => {
+        e.preventDefault();
+        this.setState({display: this.state.display === 'none' ? 'flex' : 'none'})
     }
 
     render () {
         return (
             <div className="admin__component">
-                <AddArticle />
+                <h2  className="admin__component--title" onClick={this.triggerElement}>Section creation d'articles</h2>
+                <AddArticle display={this.state.display}/>
             </div>
         )
     }

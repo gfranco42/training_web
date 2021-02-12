@@ -9,14 +9,22 @@ import { AddYtVideo } from './addYtVideo';
 class Admin_ytvideosManagement extends Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            display: 'none'
+        }
+    }
+
+    triggerElement = (e) => {
+        e.preventDefault();
+        this.setState({display: this.state.display === 'none' ? 'flex' : 'none'})
     }
 
     render () {
         return (
             <div className="admin__component">
-                <AddYtVideo />
-                <ShowYTVideos />
+                <h2 className="admin__component--title" onClick={this.triggerElement}>Section gestion des videos Youtube</h2>
+                <AddYtVideo display={this.state.display}/>
+                <ShowYTVideos  display={this.state.display}/>
             </div>
         )
     }

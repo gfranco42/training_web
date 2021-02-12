@@ -122,7 +122,7 @@ export class ShowUsers extends Component {
             return <div className="">Aucun utilisateur enregistré !</div>
         else {
             return (
-                <table className="">
+                <table className="" style={{display: this.props.display}}>
                     <caption className="">Liste des utilisateurs: </caption>
                     <thead>
                         <tr className="">

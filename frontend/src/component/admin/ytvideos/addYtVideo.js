@@ -55,7 +55,7 @@ export class AddYtVideo extends Component {
 
     render() {
         return (
-            <div className="">
+            <div className="" style={{display: this.props.display}}>
                 <p className="">Ajouter une vidéo Youtube:</p>
                 <form onSubmit={(e) => this.addVideo(e, this.state)}>
                     <label>

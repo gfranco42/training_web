@@ -34,7 +34,7 @@ const Router = () => (
             <Route exact path="/videos/lol" component={LeagueOfLesglands}/>
             <Route exact path="/videos/hs" component={HorsSeries}/>
             <Route exact path="/about" component={About}/>
-            <Route exact path="/article" component={Article}/>
+            <Route exact path="/articles" component={Article}/>
             <Route exact path="/error" component={ErrorPage}/>
             <Route path="/" component={ErrorPage} />
         </Switch>

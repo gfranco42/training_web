@@ -10,7 +10,14 @@
             flex-direction: column;
             padding: 20px;
             margin: 20px;
-            border: red solid 3px;
+
+            &--title {
+                @include flex-centered();
+                padding: 10px 0 10px 0;
+                width: 100%;
+                border: solid 1px #444;
+                font-size: 40px;
+            }
         }
     }
 

@@ -186,7 +186,7 @@ class AddArticle extends Component {
             autoplay: false,
         };
         return (
-            <div className="adm-article">
+            <div style={{display: this.props.display}} className="adm-article">
 
                 {/* ADD ARTICLE */}
                 <div>
