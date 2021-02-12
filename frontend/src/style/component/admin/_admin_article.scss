@@ -1,15 +1,17 @@
 
 @import "../../utilities/mixins";
+$title-size: 35px;
 
 .adm-article {
     width: 100%;
     $el: &;
     @include flex-centered();
-    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-start;
 
     #{$el}__title {
         @include flex-centered();
-        font-size: 35px;
+        font-size: $title-size;
         text-decoration: underline;
     }
 
@@ -19,6 +21,7 @@
         flex-direction: column;
         height: auto;
 
+//                                 --   T O P   --
         .top {
             width: 100%;
             display: flex;
@@ -35,6 +38,19 @@
                 width: 350px;
             }
 
+            &__title {
+                height: 60px;
+                justify-content: space-around;
+                input {
+                    padding: 5px;
+                    width: 200px;
+                    border-radius: 5px;
+                    border: 1px solid #444;
+                    height: 25px;
+                    font-size: 15px;
+                }
+            }
+
             &__img {
                 @include standard-btn();
                 input {
@@ -44,22 +60,33 @@
             }
 
             &__description {
-                width: 100%;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
                 height: 150px;
+                width: 100%;
+                margin-bottom: 20px;
                 textarea {
+                    font-family: sans-serif;
+                    padding: 5px;
+                    font-size: 15px;
                     box-shadow: 5px 5px 10px #444;
                     border-radius: 10px;
+                    border: solid 1px #444;
+                    align-self: center;
                     height: 100%;
-                    width: 90%;
+                    width: 75%;
                 }
             }
         }
 
+//                                 --   B O T T O M   --
         .bottom {
             width: 100%;
             display: flex;
             flex-wrap: wrap;
-            justify-content: space-around;
+            justify-content: space-between;
             padding-top: 20px;
 
             &__text, &__img, &__video {
@@ -70,18 +97,23 @@
             &__text {
                 display: flex;
                 align-items: center;
-                justify-content: space-around;
+                justify-content: space-between;
                 height: 150px;
                 width: 100%;
+                margin-bottom: 20px;
                 textarea {
+                    white-space: pre-wrap;
+                    font-family: sans-serif;
+                    padding: 5px;
+                    font-size: 15px;
                     box-shadow: 5px 5px 10px #444;
                     border-radius: 10px;
+                    border: solid 1px #444;
                     align-self: center;
                     height: 100%;
                     width: 75%;
                 }
             }
-
 
             &__img {
                 @include standard-btn();
@@ -92,7 +124,6 @@
                 }
             }
 
-
             &__video {
                 @include flex-centered();
                 flex-direction: column;
@@ -102,8 +133,13 @@
                 
 
                 input {
+                    padding: 5px;
                     width: 300px;
                     margin: 0 20px 0 20px;
+                    border-radius: 5px;
+                    border: 1px solid #444;
+                    height: 25px;
+                    font-size: 15px;
                 }
 
                 button {
@@ -141,7 +177,6 @@
                             font-size: 9px;
                         }
 
-
                         &__img {
                             width: 50px;
                         }
@@ -156,8 +191,6 @@
 
             }
         }
-
-
         &--input {
             @include standard-btn();
             margin-top: 20px;
@@ -165,26 +198,74 @@
     }
 
 
+
+//                                 --   p r e v i s u a l i s a t i o n   --
     #{$el}__previsualisation {
-        margin-top: 100px;
-        width: 100%;
+        width: 800px;
         @include flex-centered();
         flex-direction: column;
-
-        #{$el}__content{
+        height: auto;
+        padding: 40px;
+        &--title {
             width: 100%;
             @include flex-centered();
+            font-size: $title-size;
+            text-decoration: underline;
+        }
+
+        #{$el}__presentation {
+            @include flex-centered();
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+
+            &__texts {
+                @include flex-centered();
+                flex-direction: column;
+                max-width: 300px;
+            }
+
+            &--title {
+                font-size: 25px;
+            }
+
+            &--description {
+                margin-top: 10px;
+                max-height: 200px;
+                font-size: 12px;
+             }
+
+            &--img {
+                width: 400px;
+                height: 225px;
+            }
+        }
+
+        #{$el}__pipe {
+            width: 100%;
+            border-bottom: solid #444 2px;
+
+            margin-top: 20px;
+        }
+
+        #{$el}__content{
+            @include flex-centered();
+            flex-direction: column;
+
+             h3 {
+                 margin: 0;
+                 font-size: 25px;
+             }
 
             .section {
-                width: 800px;
                 overflow-x: wrap;
+                width: 800px;
+                margin: 20px 0 20px 0;
             }
         }
 
         .slide-container {
-            border: red solid 2px;
             z-index: 0;
-            width: 800px;
 
             .each-slide {
                 border: green solid 5px;

@@ -20,3 +20,14 @@ export const translate_date = (date) => {
     }
     return (age_now);
 }
+
+export const LineBreakMaker = (string) => {
+    string.split("\n").map((item, idx) => {
+      return (
+        <span key={idx}>
+          {item}
+          <br />
+        </span>
+      )
+    })
+}
