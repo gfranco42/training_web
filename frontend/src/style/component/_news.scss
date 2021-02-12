@@ -3,24 +3,65 @@
 .news {
     $el: &;
     @include flex-centered();
+    flex-direction: column;
     width: 100%;
+    margin-top: 100px;
 
     #{$el}__current-article {
         width: 100%;
         @include flex-centered();
-        justify-content: space-around;
 
         #{$el}__texts {
             @include flex-centered();
             flex-direction: column;
+            max-width: 500px;
+            margin-right: 100px;
+
+            #{$el}__title {
+                font-size: 35px;
+                margin-bottom: 20px;
+                align-self: flex-start;
+            }
+
+            #{$el}__description {
+                font-style: oblique;
+            }
         }
 
         #{$el}__img {
             img {
-                width: 300px;
+                width: 1200px;
             }
         }
+    }
 
+
+    #{$el}__old-article {
+        @include flex-centered();
+        justify-content: space-between;
+        margin-top: 150px;
+        width: 1800px;
+        
+        .old-article {
+            background: white;
+            border: solid 1px #444;
+            @include flex-centered();
+            justify-content: space-between;
+            width: 350px;
+            outline: none;
+            text-decoration: none;
+            color: #444;
+
+            &--img {
+                width: 100px;
+                padding: 5px 0 5px 0;
+            }
+
+            &--title {
+                @include flex-centered();
+                width: 250px;
+            }
+        }
     }
 
 }
