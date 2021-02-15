@@ -61,21 +61,23 @@ class EditYtVideo extends Component {
         else {
             return (
                 <Popup
-                    trigger={<button className="">Modifier</button>}
+                    trigger={<button className="adm-ytvideos--button">Modifier</button>}
                     modal
                     nested
                 >
                     {close => (
-                        <div className="">
-                            <div>Modifier une video</div>
+                        <div className="edit-popup">
+                            <button className="edit-popup--closeCross" onClick={close}>
+                                &times;
+                            </button>
+                            <div className="edit-popup--title">Modifier une video</div>
                             <form onSubmit={(e) => {this.editVideo(e, this.props.videoId)}}>
                                 <label>
                                     Titre: 
                                     <input type="text"
                                         value={this.state.title}
                                         onChange={(e) => {this.updateVideoInfo(e)}}
-                                        name="title"
-                                        >
+                                        name="title">
                                     </input>
                                 </label>
                                 <label>
@@ -83,29 +85,28 @@ class EditYtVideo extends Component {
                                     <input type="text"
                                         value={this.state.url}
                                         onChange={(e) => {this.updateVideoInfo(e)}}
-                                        name="url"
-                                        >
+                                        name="url">
                                     </input>
                                 </label>
                                 <label>
-                                   Catégorie: 
-                                    <select value={this.state.category}
-                                    onChange={(e) => {this.updateVideoInfo(e)}}
-                                    name="category"
-                                    >
-                                        <option value="">Catégorie de la vidéo...</option>
-                                        <option value="TW">True Warriors</option>
-                                        <option value="LOL">League of Lesglands</option>
-                                        <option value="HS">Hors-Série</option>
-                                    </select>
+                                    Catégorie: 
+                                    <div className="edit-popup--select-field">
+                                        <select value={this.state.category}
+                                            onChange={(e) => {this.updateVideoInfo(e)}}
+                                            name="category">
+                                            <option value="">Catégorie de la vidéo...</option>
+                                            <option value="TW">True Warriors</option>
+                                            <option value="LOL">League of Lesglands</option>
+                                            <option value="HS">Hors-Série</option>
+                                        </select>
+                                    </div>
                                 </label>
                                 <label>
                                     Nº de l'épisode:
                                     <input type="number"
                                         value={this.state.ep_nb}
                                         onChange={(e) => {this.updateVideoInfo(e)}}
-                                        name="ep_nb"
-                                        >
+                                        name="ep_nb">
                                     </input>
                                 </label>
                                 <label>
@@ -113,21 +114,20 @@ class EditYtVideo extends Component {
                                     <textarea
                                         value={this.state.description}
                                         onChange={(e) => {this.updateVideoInfo(e)}}
-                                        name="description"
-                                        >
+                                        name="description">
                                     </textarea>
                                 </label>
                                 <input
-                                className="registrationpopup__form--submit"
-                                type="submit"
-                                value="Modifier"
-                                onClick={(e) => {
-                                    this.editVideo(e, this.props.videoId);
-                                    close()
-                                }}
-                                ></input>
+                                    className="edit-popup--submit"
+                                    type="submit"
+                                    value="Modifier"
+                                    onClick={(e) => {
+                                        this.editVideo(e, this.props.videoId);
+                                        close()
+                                }}>
+                                </input>
                             </form>
-                            <button onClick={close}>Close</button>
+                            <button className="edit-popup--closeBtn" onClick={close}>Close</button>
                         </div>
                     )}
             </Popup>

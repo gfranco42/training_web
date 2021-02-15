@@ -1,4 +1,3 @@
-
 @import "../../utilities/mixins";
 $title-size: 35px;
 
@@ -11,19 +10,19 @@ $title-size: 35px;
     border: solid red 2px;
     height: auto;
 
+    #{$el}--title {
+        width: 100%;
+        @include flex-centered();
+        font-size: $title-size;
+        text-decoration: underline;
+        margin: 50px 0 50px 0;
+    }
 
+    // ADDING SECTION
     #{$el}__adding {
         @include flex-centered();
         flex-wrap: wrap;
         width: 100%;
-
-        #{$el}--title {
-            width: 100%;
-            @include flex-centered();
-            font-size: $title-size;
-            text-decoration: underline;
-            margin: 50px 0 50px 0;
-        }
 
         &--field {
             @include flex-centered();
@@ -38,7 +37,7 @@ $title-size: 35px;
         }
 
         // SELECT RELATED
-        &--select-field {
+        &--select-field {// must be a div
             @include select-field();
         }
         &--select-field::after {
@@ -72,6 +71,7 @@ $title-size: 35px;
     }
 
 
+    // SHOW YTVIDEOS SECTION
     thead {
         width: 100%;
         #{$el}__tab-title {
@@ -80,11 +80,10 @@ $title-size: 35px;
             justify-content: space-between;
 
             th {
-               width: 16.7%; 
-               font-size: 20px;
-               font-style: oblique;
-               padding: 15px 0 15px 0;
-               text-decoration: underline;
+                font-size: 20px;
+                font-style: oblique;
+                padding: 15px 0 15px 0;
+                text-decoration: underline;
             }
         }
     }
@@ -98,17 +97,50 @@ $title-size: 35px;
             justify-content: space-between;
 
             th {
-               width: 16.7%; 
-               height: 45px;
-               @include flex-centered();
-               border-bottom: solid 1px #444;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                height: 45px;
+                border-bottom: solid 1px #444;
+                @include flex-centered();
             }
+
         }
 
         #{$el}--button {
             @include standard-btn();
         }
     }
+
+    .YOLO {
+        border: red solid 10px;
+    }
+    .title-column {
+        width: 20%;
+    }
+    .link-column {
+        width: 32%;
+        font-size: 13px;
+    }
+    .description-column {
+        width: 12%;
+        &--button {
+            @include standard-btn();
+        }
+        // DESCRIPTION POPUP:: IMPOSSIBLE TO STYLE HERE
+        // &--text {
+        //     max-width: 400px;
+        //     background: white;
+        //     border: solid 2px #444;
+        // }
+    }
+    .category-column, .ep_nb-column {
+        width: 10%;
+    }
+    .edit-column, .delete-column {
+        width: 8%;
+    }
+
 
 
 

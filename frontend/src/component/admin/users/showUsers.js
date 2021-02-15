@@ -126,10 +126,10 @@ export class ShowUsers extends Component {
                     <caption className="adm-users--title">Liste des utilisateurs: </caption>
                     <thead>
                         <tr className="adm-users__tab-title">
-                            <th className="" onClick={ (e) => {this.tableSort(e, "pseudo")}}>Pseudo</th>
-                            <th className="" onClick={ (e) => {this.tableSort(e, "age")}}>Âge</th>
-                            <th className="" onClick={ (e) => {this.tableSort(e, "email")}}>Email</th>
-                            <th className="" onClick={ (e) => {this.tableSort(e, "status")}}>Status</th>
+                            <th onClick={ (e) => {this.tableSort(e, "pseudo")}}>Pseudo</th>
+                            <th onClick={ (e) => {this.tableSort(e, "age")}}>Âge</th>
+                            <th onClick={ (e) => {this.tableSort(e, "email")}}>Email</th>
+                            <th onClick={ (e) => {this.tableSort(e, "status")}}>Status</th>
                             <th></th>
                             <th></th>
                         </tr>

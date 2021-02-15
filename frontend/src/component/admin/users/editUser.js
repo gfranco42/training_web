@@ -23,14 +23,14 @@ class EditUser extends Component {
             if (response === null)
                 console.log(response);
             const parseRes = await response.json();// Message: "Modification reussi !"
-            parseRes === "Modification réussi !" ?
-                toast.success(parseRes, {
+            parseRes === 200 ?
+                toast.success("Modification réussie !", {
                     className: "toast",
                     position: "top-center",
                     hideProgressBar: true,
                     closeButton: false,
                 })
-                : toast.error(parseRes, {
+                : toast.error("Echec de la modification !", {
                     className: "toast",
                     position: "top-center",
                     hideProgressBar: true,
@@ -53,16 +53,18 @@ class EditUser extends Component {
                     
                 >
                     {close => (
-                        <div className="editpopup">
-                            <div>Modifier un utilisateur</div>
+                        <div className="edit-popup">
+                            <button className="edit-popup--closeCross" onClick={close}>
+                                &times;
+                            </button>
+                            <div className="edit-popup--title">Modifier un utilisateur</div>
                             <form onSubmit={(e) => {this.editUser(e, this.props.userId)}}>
                                 <label>
                                     Âge: 
                                     <input type="date"
                                         value={this.props.users.age}
                                         onChange={(e) => {this.props.updateUserInfo(e, "age")}}
-                                        name="age"
-                                        >
+                                        name="age">
                                     </input>
                                 </label>
                                 <label>
@@ -70,8 +72,7 @@ class EditUser extends Component {
                                     <input type="text"
                                         value={this.props.users.pseudo}
                                         onChange={(e) => {this.props.updateUserInfo(e, "pseudo")}}
-                                        name="pseudo"
-                                        >
+                                        name="pseudo">
                                     </input>
                                 </label>
                                 <label>
@@ -79,23 +80,31 @@ class EditUser extends Component {
                                     <input type="text"
                                         value={this.props.users.email}
                                         onChange={(e) => {this.props.updateUserInfo(e, "email")}}
-                                        name="email"
-                                        >
+                                        name="email">
                                     </input>
                                 </label>
                                 <label>
                                     Statut:
-                                    <select value={this.props.users.status}
-                                    onChange={(e) => {this.props.updateUserInfo(e, "status")}}
-                                    >
-                                        <option value="">Statut de l'utilisateur...</option>
-                                        <option value="admin">Admin</option>
-                                        <option value="common">Common</option>
-                                    </select>
+                                    <div className="edit-popup--select-field">
+                                        <select value={this.props.users.status}
+                                        onChange={(e) => {this.props.updateUserInfo(e, "status")}}>
+                                            <option value="">Statut de l'utilisateur...</option>
+                                            <option value="admin">Admin</option>
+                                            <option value="common">Common</option>
+                                        </select>
+                                    </div>
                                 </label>
-                                <button>Submit</button>
+                                <input
+                                    className="edit-popup--submit"
+                                    type="submit"
+                                    value="Modifier"
+                                    onClick={(e) => {
+                                        this.editUser(e, this.props.userId)
+                                        close()
+                                    }}>
+                                </input>
                             </form>
-                            <button onClick={close}>Close</button>
+                            <button className="edit-popup--closeBtn" onClick={close}>Close</button>
                         </div>
                     )}
             </Popup>

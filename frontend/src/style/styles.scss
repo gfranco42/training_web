@@ -3,7 +3,7 @@
 // component
 @import "./component/articleContent";
 @import "./component/dashboard";
-@import "./component/popup";
+@import "./component/auth_popup";
 @import "./component/errorComponent";
 @import "./component/imgGallery";
 @import "./component/videoGallery";
@@ -16,6 +16,7 @@
 @import "./component/admin/admin_article";
 @import "./component/admin/admin_users";
 @import "./component/admin/admin_ytvideos";
+@import "./component/admin/admin_editPopup";
 
 // layout
 @import "./component/layout/header";

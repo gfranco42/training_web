@@ -4,6 +4,10 @@ import React, { Component } from 'react';
 import { EditYtVideo } from './editYtVideos'
 import _ from 'lodash';
 
+/* POPUP */
+import Popup from 'reactjs-popup';
+
+
 export class ShowYTVideos extends Component {
     constructor(props) {
         super(props)
@@ -71,6 +75,16 @@ export class ShowYTVideos extends Component {
     }
 
     render () {
+        const style = {
+            "maxWidth": "400px",
+            "border": "solid 1px white",
+            "padding": "20px",
+            "borderRadius": "10px",
+            "boxShadow": "5px 5px 10px #444",
+            "fontFamily": "Gotham Bold",
+            "background": "#444",
+            "color": "white",
+        }
         if (this.state.loading === true)
             return <div className="">Chargement...</div>
         else if (this.state.videos === null || this.state.videos.length === 0)
@@ -78,27 +92,37 @@ export class ShowYTVideos extends Component {
         else {
             return (
                 <table className="adm-ytvideos" style={{display: this.props.display}}>
-                    <caption className="">Liste des utilisateurs: </caption>
+                    <caption className="adm-ytvideos--title">Liste des videos: </caption>
                     <thead>
-                        <tr className="">
-                            <th className="" onClick={ (e) => {this.tableSort(e, "title")}}>Titre</th>
-                            <th className="" onClick={ (e) => {this.tableSort(e, "url")}}>Lien</th>
-                            <th className="" onClick={ (e) => {this.tableSort(e, "category")}}>Catégorie</th>
-                            <th className="" onClick={ (e) => {this.tableSort(e, "ep_nb")}}>Nº de l'épisode</th>
-                            <th className="">Description</th>
-                            <th></th>
-                            <th></th>
+                        <tr className="adm-ytvideos__tab-title">
+                            <th className="title-column" onClick={ (e) => {this.tableSort(e, "title")}}>Titre</th>
+                            <th className="link-column"onClick={ (e) => {this.tableSort(e, "url")}}>Lien</th>
+                            <th className="category-column" onClick={ (e) => {this.tableSort(e, "category")}}>Catégorie</th>
+                            <th className="ep_nb-column" onClick={ (e) => {this.tableSort(e, "ep_nb")}}>Nº de l'épisode</th>
+                            <th className="description-column">Description</th>
+                            <th className="edit-column"></th>
+                            <th className="delete-column"></th>
                         </tr>
                     </thead>
                     <tbody>
                         {this.state.videos.map( (video) =>
-                            <tr className="" key={video.id}>
-                                <th className="">{video.title}</th>
-                                <th className="">{video.url}</th>
-                                <th className="">{video.category}</th>
-                                <th className="">{video.ep_nb}</th>
-                                <th className="">{video.description}</th>
-                                <th className="">
+                            <tr className="adm-ytvideos__tab-rows" key={video.id}>
+                                <th className="title-column">{video.title}</th>
+                                <th className="link-column">{video.url}</th>
+                                <th className="category-column">{video.category}</th>
+                                <th className="ep_nb-column">{video.ep_nb}</th>
+                                <th className="description-column">
+                                    <Popup trigger={open => (
+                                        <button className="description-column--button">
+                                            {open ? 'Cacher' : 'Afficher'}
+                                        </button>)}
+                                        position="left center"
+                                        closeOnDocumentClick
+                                    >
+                                        <div style={style}>{video.description}</div>
+                                    </Popup>
+                                </th>
+                                <th className="edit-column">
                                     <EditYtVideo
                                         // updateVideoInfo={this.updateVideoInfo}
                                         videoId={video.id}
@@ -110,10 +134,10 @@ export class ShowYTVideos extends Component {
                                         videos={video.videos}
                                     />
                                 </th>
-                                <th className="">
+                                <th className="delete-column">
                                     <button type="button" name="delete"
                                     onClick={(e) => this.deleteYtVideo(e, video.id)}
-                                    className="">
+                                    className="adm-ytvideos--button">
                                         Supprimer
                                     </button>
                                 </th>
