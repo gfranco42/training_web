@@ -12,6 +12,7 @@
             margin: 20px;
 
             &--title {
+                cursor: pointer;
                 @include flex-centered();
                 padding: 10px 0 10px 0;
                 width: 100%;

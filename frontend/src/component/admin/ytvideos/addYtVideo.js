@@ -55,10 +55,11 @@ export class AddYtVideo extends Component {
 
     render() {
         return (
-            <div className="" style={{display: this.props.display}}>
-                <p className="">Ajouter une vidéo Youtube:</p>
-                <form onSubmit={(e) => this.addVideo(e, this.state)}>
-                    <label>
+            <div className="adm-ytvideos" style={{display: this.props.display}}>
+                <form className="adm-ytvideos__adding"
+                    onSubmit={(e) => this.addVideo(e, this.state)}>
+                    <p className="adm-ytvideos--title">Ajouter une vidéo Youtube:</p>
+                    <label className="adm-ytvideos__adding--field">
                         Titre
                         <input type="text"
                             value={this.state.title}
@@ -70,8 +71,8 @@ export class AddYtVideo extends Component {
                             >
                         </input>
                     </label>
-                    <label>
-                        Lien:
+                    <label className="adm-ytvideos__adding--field">
+                        Lien
                         <input type="text"
                             value={this.state.url}
                             onChange={(e) => {this.handleChange(e)}}
@@ -82,21 +83,22 @@ export class AddYtVideo extends Component {
                             >
                         </input>
                     </label>
-                    <label>
-                        Catégorie:
-                        <select value={this.state.category}
-                        onChange={(e) => {this.handleChange(e)}}
-                        name="category"
-                        className=""
-                        required>
-                            <option value="">Catégorie de la vidéo...</option>
-                            <option value="TW">True Warriors</option>
-                            <option value="LOL">League of Lesglands</option>
-                            <option value="HS">Hors-Série</option>
-                        </select>
+                    <label className="adm-ytvideos__adding--field">
+                        Catégorie
+                        <div className="adm-ytvideos__adding--select-field">
+                            <select value={this.state.category}
+                            onChange={(e) => {this.handleChange(e)}}
+                            name="category"
+                            required>
+                                <option value="">Catégorie de la vidéo</option>
+                                <option value="TW">True Warriors</option>
+                                <option value="LOL">League of Lesglands</option>
+                                <option value="HS">Hors-Série</option>
+                            </select>
+                        </div>
                     </label>
-                    <label>
-                        Nº de l'épisode:
+                    <label className="adm-ytvideos__adding--field">
+                        Nº de l'épisode
                         <input type="number"
                             value={this.state.ep_nb}
                             onChange={(e) => {this.handleChange(e)}}
@@ -106,8 +108,8 @@ export class AddYtVideo extends Component {
                             >
                         </input>
                     </label>
-                    <label>
-                        Description:
+                    <label className="adm-ytvideos__adding--field description">
+                        Description
                         <textarea
                             value={this.state.description}
                             onChange={(e) => {this.handleChange(e)}}
@@ -119,7 +121,7 @@ export class AddYtVideo extends Component {
                     </label>
                     <input type="submit"
                         value="Et zé partiiiii !"
-                        className="">
+                        className="adm-ytvideos__adding--submit">
                     </input>
                 </form>
             </div>

@@ -47,7 +47,7 @@ class EditUser extends Component {
         else {
             return (
                 <Popup
-                    trigger={<button className="adminform__table__body--button">Modifier</button>}
+                    trigger={<button className="adm-users--button">Modifier</button>}
                     modal
                     nested
                     

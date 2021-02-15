@@ -77,7 +77,7 @@ export class ShowYTVideos extends Component {
             return <div className="">Aucun utilisateur enregistré !</div>
         else {
             return (
-                <table className="" style={{display: this.props.display}}>
+                <table className="adm-ytvideos" style={{display: this.props.display}}>
                     <caption className="">Liste des utilisateurs: </caption>
                     <thead>
                         <tr className="">

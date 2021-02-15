@@ -117,15 +117,15 @@ export class ShowUsers extends Component {
 
     render () {
         if (this.state.loading === true)
-            return <div className="">Chargement...</div>
+            return <div>Chargement...</div>
         else if (this.state.users === null || this.state.users.length === 0)
-            return <div className="">Aucun utilisateur enregistré !</div>
+            return <div>Aucun utilisateur enregistré !</div>
         else {
             return (
-                <table className="" style={{display: this.props.display}}>
-                    <caption className="">Liste des utilisateurs: </caption>
+                <table className="adm-users" style={{display: this.props.display}}>
+                    <caption className="adm-users--title">Liste des utilisateurs: </caption>
                     <thead>
-                        <tr className="">
+                        <tr className="adm-users__tab-title">
                             <th className="" onClick={ (e) => {this.tableSort(e, "pseudo")}}>Pseudo</th>
                             <th className="" onClick={ (e) => {this.tableSort(e, "age")}}>Âge</th>
                             <th className="" onClick={ (e) => {this.tableSort(e, "email")}}>Email</th>
@@ -136,12 +136,12 @@ export class ShowUsers extends Component {
                     </thead>
                     <tbody>
                         {this.state.users.map( (user) =>
-                            <tr className="" key={user.id}>
+                            <tr className="adm-users__tab-rows" key={user.id}>
                                 <th className="">{user.pseudo}</th>
                                 <th className="">{translate_date(user.age)}</th>
                                 <th className="">{user.email}</th>
                                 <th className="">{user.status}</th>
-                                <th className="">
+                                <th>
                                     <EditUser
                                         updateUserInfo={this.updateUserInfo}
                                         userId={user.id}
@@ -152,10 +152,10 @@ export class ShowUsers extends Component {
                                         users={this.state.users}
                                     />
                                 </th>
-                                <th className="">
+                                <th>
                                     <button type="button" name="delete"
-                                    onClick={(e) => this.DeleteUsers(e, user.id)}
-                                    className="">
+                                        onClick={(e) => this.DeleteUsers(e, user.id)}
+                                        className="adm-users--button">
                                         Supprimer
                                     </button>
                                 </th>

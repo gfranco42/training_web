@@ -43,6 +43,8 @@ $summer-background: linear-gradient(#FFFE52, #b2b8f9);
 $fall-background: linear-gradient(#96C2F4, #b2b8f9);
 
 $standard-font: gotham, bold;
+$title-size: 35px;
+$select-focus: lightblue;
 
 @mixin flex-centered() {
     display: flex;
@@ -50,6 +52,47 @@ $standard-font: gotham, bold;
     justify-content: center;
 }
 
+// SELECT TAG RELATED
+@mixin reset-select() {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    width: 100%;
+    font-size: inherit;
+    cursor: inherit;
+    line-height: inherit;
+
+}
+@mixin select-field {
+    @include standard-input();
+    @include flex-centered();
+    border: 1px solid #444;
+    cursor: pointer;
+    select {
+        @include flex-centered();
+        @include reset-select();
+        color: #444;
+        position: relative;
+        z-index: 10;
+    }
+}
+@mixin select-field-after {
+    content: "";
+    width: 15px;
+    height: 8px;
+    margin-right: 3px;
+    background-color: #777;
+    clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+    position: relative;
+    right: 10px;
+    z-index: 5;
+}
+//************************
+
+// STANDARD BUTTON
 @mixin standard-btn() {
     cursor: pointer;
     display: flex;
@@ -65,15 +108,29 @@ $standard-font: gotham, bold;
     padding: 0 10px 0 10px;
     border-radius: 10px;
     background: transparent;
-    color: black;
+    color: #444;
     font-weight: bold;
 }
+//************************
+
+
+// STANDARD INPUT
+@mixin standard-input() {
+    padding: 5px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #444;
+    height: 25px;
+    font-size: 15px;
+}
+//************************
+
+
 
 @mixin body-background() {
     // /!\ CHANGEMENT DE SAISON ICI /!\
     background: white;
 }
-
 
 // FONTS
 @font-face {

@@ -1,0 +1,62 @@
+
+@import "../../utilities/mixins";
+$title-size: 35px;
+
+.adm-users {
+    $el: &;
+
+    width: 1200px;
+    @include flex-centered();
+    flex-direction: column;
+    border: solid red 2px;
+
+
+    #{$el}--title {
+        @include flex-centered();
+        font-size: $title-size;
+        text-decoration: underline;
+        margin: 50px 0 50px 0;
+    }
+
+    thead {
+        width: 100%;
+        #{$el}__tab-title {
+            width: 100%;
+            @include flex-centered();
+            justify-content: space-between;
+
+            th {
+               width: 16.7%; 
+               font-size: 20px;
+               font-style: oblique;
+               padding: 15px 0 15px 0;
+               text-decoration: underline;
+            }
+        }
+    }
+
+    tbody {
+        width: 100%;
+        #{$el}__tab-rows {
+            width: 100%;
+            height: auto;
+            @include flex-centered();
+            justify-content: space-between;
+
+            th {
+               width: 16.7%; 
+               height: 45px;
+               @include flex-centered();
+               border-bottom: solid 1px #444;
+            }
+        }
+
+        #{$el}--button {
+            @include standard-btn();
+        }
+    }
+
+
+
+
+}

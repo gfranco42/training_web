@@ -1,11 +1,10 @@
 
 @import "../../utilities/mixins";
-$title-size: 35px;
 
 .adm-article {
-    display: none;
-    width: 100%;
     $el: &;
+
+    width: 100%;
     @include flex-centered();
     justify-content: space-around;
     align-items: flex-start;
