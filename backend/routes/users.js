@@ -46,17 +46,34 @@ router.put('/:id', async(req, res) => {
     const {id} = req.params;
     const {age, pseudo, email, status, avatar} = req.body;
     let updateUser;
-    if (age !== "" && age !== null)
-      updateUser = await pool.query("UPDATE users SET age = $1 WHERE id = $2", [age, id]);
-    if (pseudo !== "" && pseudo !== null)
-      updateUser = await pool.query("UPDATE users SET pseudo = $1 WHERE id = $2", [pseudo, id]);
-    if (email !== "" && email !== null)
-      updateUser = await pool.query("UPDATE users SET email = $1 WHERE id = $2", [email, id]);
-    if (status !== "" && status !== null)
-      updateUser = await pool.query("UPDATE users SET status = $1 WHERE id = $2", [status, id]);
-    if (avatar !== "" && avatar !== null)
-      updateUser = await pool.query("UPDATE users SET avatar = $1 WHERE id = $2", [avatar, id]);
-    res.json("Modification réussi !");
+    let count = 0;
+    console.log(age);
+    if (age !== "" && age !== null && !age && typeof age !== 'undefined')
+    {
+      console.log("AAA")
+      updateUser = await pool.query("UPDATE users SET age = $1 WHERE id = $2", [age, id]) && count++;
+    }
+    if (pseudo !== "" && pseudo !== null && !pseudo && typeof pseudo !== 'undefined')
+    {
+      console.log("BBB")
+      updateUser = await pool.query("UPDATE users SET pseudo = $1 WHERE id = $2", [pseudo, id]) && count++;
+    }
+    if (email !== "" && email !== null && !email && typeof email !== 'undefined')
+    {
+      console.log("CCC")
+      updateUser = await pool.query("UPDATE users SET email = $1 WHERE id = $2", [email, id]) && count++;
+    }
+    if (status !== "" && status !== null && !status && typeof status !== 'undefined')
+    {
+      console.log("DDD")
+      updateUser = await pool.query("UPDATE users SET status = $1 WHERE id = $2", [status, id]) && count++;
+    }
+    if (avatar !== "" && avatar !== null && !avatar && typeof avatar !== 'undefined')
+    {
+      console.log(avatar)
+      updateUser = await pool.query("UPDATE users SET avatar = $1 WHERE id = $2", [avatar, id]) && count++;
+    }
+    count > 0 ? res.json(200) : res.json(201);
   } catch (error) {
     console.error(error.message);
   }
