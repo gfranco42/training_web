@@ -1,34 +1,33 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { toast } from 'react-toastify';
 
-/* POPUP */
-import Popup from 'reactjs-popup';
+import Popup from 'reactjs-popup'
 
 
-/* ADMIN EDIT POPUP */
-class EditYtVideo extends Component {
+class EditArticle extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             title: props.title,
-            url: props.url,
-            category: props.category,
-            ep_nb: props.ep_nb,
+            image: props.image,
             description: props.description,
+            text_content: props.text_content,
+            img_content: props.img_content,
+            video_content: props.video_content,
         }
     }
 
-    updateVideoInfo = (e) => {
+    updateArticleInfo = (e) => {
         e.preventDefault();
         this.setState({[e.target.name]: e.target.value});
     }
 
-    editVideo = async (e, id) => {
+    editArticle = async (e, id) => {
         e.preventDefault();
         try {
-            const {title, url, category, ep_nb, description} = this.state;
-            let body = {title, url, category, ep_nb, description};
-            const response = await fetch(`http://localhost:9000/ytvideos/${id}`, {
+            const {title, image, description, text_content, img_content, video_content} = this.state;
+            let body = {title, image, description, text_content, img_content, video_content};
+            const response = await fetch(`http://localhost:9000/articles/${id}`, {
                 method: 'PUT',
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify(body) 
@@ -36,14 +35,14 @@ class EditYtVideo extends Component {
             if (response === null)
                 console.log(response);
             const parseRes = await response.json();// Message: "Modification reussi !"
-            parseRes === "Modification réussi !" ?
-                toast.success(parseRes, {
+            parseRes === 200 ?
+                toast.success("Modification réussi !", {
                     className: "toast",
                     position: "top-center",
                     hideProgressBar: true,
                     closeButton: false,
                 })
-                : toast.error(parseRes, {
+                : toast.error("Echec de la modification !", {
                     className: "toast",
                     position: "top-center",
                     hideProgressBar: true,
@@ -54,63 +53,65 @@ class EditYtVideo extends Component {
         }
     }
 
-
-    render() {
+    render() { 
         return (
             <Popup
-                trigger={<button className="adm-ytvideos--button">Modifier</button>}
+                trigger={<button className="adm-article--button">Modifier</button>}
                 modal
                 nested
             >
                 {close => (
-                    <div className="edit-popup">
-                        <button className="edit-popup--closeCross" onClick={close}>
+                    <div>
+                        <button>
                             &times;
                         </button>
-                        <div className="edit-popup--title">Modifier une video</div>
+                        <div className="edit-popup--title">Modifier un article</div>
                         <form onSubmit={(e) => {this.editVideo(e, this.props.videoId)}}>
                             <label>
                                 Titre: 
                                 <input type="text"
                                     value={this.state.title}
-                                    onChange={(e) => {this.updateVideoInfo(e)}}
+                                    onChange={(e) => {this.updateArticleInfo(e)}}
                                     name="title">
                                 </input>
                             </label>
                             <label>
-                                Lien: 
-                                <input type="text"
-                                    value={this.state.url}
-                                    onChange={(e) => {this.updateVideoInfo(e)}}
-                                    name="url">
+                                Miniature: 
+                                <input type="file"
+                                    value={this.state.image}
+                                    onChange={(e) => {this.updateArticleInfo(e)}}
+                                    name="image">
                                 </input>
                             </label>
                             <label>
-                                Catégorie: 
-                                <div className="edit-popup--select-field">
-                                    <select value={this.state.category}
-                                        onChange={(e) => {this.updateVideoInfo(e)}}
-                                        name="category">
-                                        <option value="">Catégorie de la vidéo...</option>
-                                        <option value="TW">True Warriors</option>
-                                        <option value="LOL">League of Lesglands</option>
-                                        <option value="HS">Hors-Série</option>
-                                    </select>
-                                </div>
+                                Description: 
+                                <textarea
+                                    value={this.state.description}
+                                    onChange={(e) => {this.updateArticleInfo(e)}}
+                                    name="description">
+                                </textarea>
                             </label>
                             <label>
-                                Nº de l'épisode:
+                                Contenu texte:
                                 <input type="number"
                                     value={this.state.ep_nb}
-                                    onChange={(e) => {this.updateVideoInfo(e)}}
+                                    onChange={(e) => {this.updateArticleInfo(e)}}
                                     name="ep_nb">
                                 </input>
                             </label>
                             <label>
-                                Description:
+                                Contenu image:
                                 <textarea
                                     value={this.state.description}
-                                    onChange={(e) => {this.updateVideoInfo(e)}}
+                                    onChange={(e) => {this.updateArticleInfo(e)}}
+                                    name="description">
+                                </textarea>
+                            </label>
+                            <label>
+                                Contenu video:
+                                <textarea
+                                    value={this.state.description}
+                                    onChange={(e) => {this.updateArticleInfo(e)}}
                                     name="description">
                                 </textarea>
                             </label>
@@ -128,10 +129,8 @@ class EditYtVideo extends Component {
                     </div>
                 )}
             </Popup>
-        )
+        );
     }
 }
-
-export {
-    EditYtVideo,
-};
+ 
+export default EditArticle;

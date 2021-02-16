@@ -117,9 +117,9 @@ export class ShowUsers extends Component {
 
     render () {
         if (this.state.loading === true)
-            return <div>Chargement...</div>
+            return <div style={{display: this.props.display}}>Chargement...</div>
         else if (this.state.users === null || this.state.users.length === 0)
-            return <div>Aucun utilisateur enregistré !</div>
+            return <div style={{display: this.props.display}}>Aucun utilisateur enregistré !</div>
         else {
             return (
                 <table className="adm-users" style={{display: this.props.display}}>

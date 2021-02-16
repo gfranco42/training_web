@@ -15,7 +15,7 @@ export class ShowYTVideos extends Component {
             videos: null,
             loading: true,
             sort: true,
-            last: ""
+            last: "",
         }
     }
 
@@ -86,9 +86,9 @@ export class ShowYTVideos extends Component {
             "color": "white",
         }
         if (this.state.loading === true)
-            return <div className="">Chargement...</div>
+            return <div className="" style={{display: this.props.display}}>Chargement...</div>
         else if (this.state.videos === null || this.state.videos.length === 0)
-            return <div className="">Aucun utilisateur enregistré !</div>
+            return <div className="" style={{display: this.props.display}}>Aucun utilisateur enregistré !</div>
         else {
             return (
                 <table className="adm-ytvideos" style={{display: this.props.display}}>
