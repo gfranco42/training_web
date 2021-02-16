@@ -11,7 +11,7 @@ import ReactPlayer from 'react-player';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 
-// nl2bt
+// nl2br
 import nl2br from 'react-nl2br'
 
 // FUNCTIONS
@@ -202,11 +202,12 @@ class AddArticle extends Component {
                                     onChange={(e) => {this.handleChange(e)}}
                                     name="title"
                                     placeholder="ex. True Warriors 16"
+                                    maxLength="30"
                                     required>
                                 </input>
                             </label>
                             <label className="top__img">
-                                Image de présentation
+                                Miniature
                                 <input
                                     type="file"
                                     accept="image/*"

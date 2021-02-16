@@ -33,16 +33,18 @@ $title-size: 35px;
         color: #444;
     }
 
-    #{$el}--closeBtn, #{$el}--submit {
+    #{$el}--closeBtn, #{$el}--submit, #{$el}--button {
         @include standard-btn();
         border-color: white;
         color: white;
     }
 
     #{$el}--title {
+        @include flex-centered();
         width: 100%;
         font-size: 35px;
         text-transform: uppercase;
+        align-self: center;
     }
 
     form {
@@ -56,6 +58,7 @@ $title-size: 35px;
             width: 100%;
             @include flex-centered();
             justify-content: space-between;
+            // flex-wrap: wrap;
 
             input {
                 @include standard-input();
@@ -87,9 +90,53 @@ $title-size: 35px;
             #{$el}--select-field::after {
                 @include select-field-after();
             }
+        }
 
+        #{$el}--linkAdding {
+            @include standard-btn();
+            align-self: flex-end;
+            border-color: white;
+            color: white;
+        }
+
+        // FILES INPUT RELATED
+        #{$el}__file {
+            width: 100%;
+            @include flex-centered();
+            justify-content: space-around;
+            &--input {
+                @include standard-btn();
+                margin: 10px 0 10px 0;
+                width: 300px;
+                border-color: white;
+                color: white;
+                align-self: center;
+                input {
+                    display: none;
+                }
+            }
+            &--show {
+                @include standard-btn();
+                width: 40px;
+                color: white;
+                border-color: white;
+                font-size: 11px;
+            }
         }
     }
+}
 
-
+.edit-popup__showImg {
+    background: #444;
+    padding: 30px;
+    border: solid 2px white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px #444;
+    color: white;
+    font-family: "Gotham Bold";
+    @include flex-centered();
+    flex-direction: column;
+    img {
+        width: 300px;
+    }
 }

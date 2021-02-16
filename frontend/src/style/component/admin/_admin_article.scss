@@ -13,6 +13,7 @@
         @include flex-centered();
         font-size: $title-size;
         text-transform: uppercase;
+        margin: 50px;
     }
 
     #{$el}__adding {
@@ -216,6 +217,8 @@
             text-transform: uppercase;
         }
 
+        // TITLE DESCRIPTION AND IMAGE
+
         #{$el}__presentation {
             @include flex-centered();
             justify-content: space-around;
@@ -230,12 +233,17 @@
 
             &--title {
                 font-size: 25px;
+                max-width: 250px;
+                max-height: 200px;
+                overflow-wrap: break-word;
             }
 
             &--description {
                 margin-top: 10px;
                 max-height: 200px;
                 font-size: 12px;
+                max-width: 300px;
+                overflow-wrap: break-word;
              }
 
             &--img {
@@ -243,6 +251,9 @@
                 height: 225px;
             }
         }
+
+
+        // CONTENT
 
         #{$el}__pipe {
             width: 100%;
@@ -264,6 +275,7 @@
                 overflow-x: wrap;
                 width: 800px;
                 margin: 20px 0 20px 0;
+                overflow-wrap: break-word;
             }
         }
 
@@ -290,12 +302,16 @@
     }
 //                                 --   a f f i c h a g e    a r t i c l e  --
     #{$el}__table {
-        width: 100%;
+        @include flex-centered();
+        flex-direction: column;
+        width: 1200px;
 
         thead {
             width: 100%;
+            text-transform: uppercase;
             tr {
                 @include flex-centered;
+                padding-bottom: 20px;
             }
         }
 
@@ -304,13 +320,66 @@
             @include flex-centered;
             flex-direction: column;
 
+            tr {
+                @include flex-centered;
+                width: 100%;
+                height: 100px;
+                border-top: solid 2px #444;
+                th {
+                    @include flex-centered;
+                    width: 100%;
+                }
+            }
+
+            button {
+                @include standard-btn();
+            }
+
             .image-column {
                 img {
-                    width: 100px;
+                    width: 80%;
                 }
             }
         }
+
+        .title-column {
+            max-width: 18%;
+            width: 18%;
+            .title-container {
+                width: 100%;
+                overflow-wrap: break-word;
+            }
+        }
+
+        .image-column, .popup-column, .edit-column, .delete-column {
+            width: 10%;
+        }
+
+        .date-column {
+            width: 12%;
+            // font-size: 13px;
+        }
+
     }
 
+
+}
+
+
+// POPUP RELATED
+
+.popup-column {
+    &__text_content, &__description {
+        overflow-wrap: break-word;
+    }
+    &__img_content, &__video-content {
+        .content-item {
+            margin: 10px;
+            width: 100px;
+            // white-space: nowrap;
+            // overflow: hidden;
+            // text-overflow: ellipsis;
+        }
+    }
 
 }

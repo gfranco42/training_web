@@ -7,6 +7,13 @@ import _ from 'lodash';
 /* POPUP */
 import Popup from 'reactjs-popup';
 
+/* FUNCTIONS */
+import { readableDate } from '../../../utils'
+import { stringCut } from '../../../utils'
+
+// nl2br
+import nl2br from 'react-nl2br'
+
 
 class ShowArticles extends Component {
     constructor(props) {
@@ -80,7 +87,7 @@ class ShowArticles extends Component {
 
     render() {
         const style = {
-            "maxWidth": "400px",
+            "maxWidth": "500px",
             "border": "solid 1px white",
             "padding": "20px",
             "borderRadius": "10px",
@@ -101,66 +108,76 @@ class ShowArticles extends Component {
                         <thead>
                             <tr className="adm-article__title-row">
                                 <th className="title-column" onClick={ (e) => {this.tableSort(e, "title")}}>Titre</th>
-                                <th className="image-column" >Miniature</th>
-                                <th className="description-column" >Description</th>
-                                <th className="text_content-column" >Contenu texte</th>
-                                <th className="img_content-column" >Contenu image</th>
-                                <th className="video_content-column" >Contenu vidéo</th>
+                                <th className="image-column">Miniature</th>
+                                <th className="popup-column">Description</th>
+                                <th className="popup-column">Contenu texte</th>
+                                <th className="popup-column">Contenu image</th>
+                                <th className="popup-column">Contenu vidéo</th>
                                 <th className="date-column" onClick={ (e) => {this.tableSort(e, "date")}}>Date</th>
-                                <th className="edit-column" ></th>
-                                <th className="delete-column" ></th>
+                                <th className="edit-column"></th>
+                                <th className="delete-column"></th>
                             </tr>
                         </thead>
                         <tbody>
                             {this.state.articles.map( (article) =>
                                 <tr key={article.id}>
-                                    <th className="title-column">{article.title}</th>     
+                                    <th className="title-column"><div className="title-container">{article.title}</div></th>     
                                     <th className="image-column"><img src={article.image} alt="miniature"></img></th>     
-                                    <th className="description-column">
+                                    <th className="popup-column">
                                         <Popup trigger={ open => (
-                                            <button className="description-column--button">
+                                            <button className="">
                                                 {open ? 'Cacher' : 'Afficher description'}
                                             </button>)}
                                             position="left center"
                                             closeOnDocumentClick
                                         >
-                                            <div style={style}>{article.description}</div>
+                                            <div className="popup-column__description"style={style}>{nl2br(article.description)}</div>
                                         </Popup>
                                     </th>     
-                                    <th className="text_content-column">
+                                    <th className="popup-column">
                                         <Popup trigger={ open => (
-                                            <button className="text_content-column--button">
+                                            <button className="">
                                                 {open ? 'Cacher' : 'Afficher texte'}
                                             </button>)}
                                             position="left center"
                                             closeOnDocumentClick
                                         >
-                                            <div style={style}>{article.text_content.length > 0 ? article.text_content : "aucun contenu"}</div>
+                                            <div className="popup-column__text_content" style={style}>{article.text_content.length > 0 ? nl2br(article.text_content) : "aucun contenu"}</div>
                                         </Popup>
                                     </th>     
-                                    <th className="img_content-column">
+                                    <th className="popup-column">
                                         <Popup trigger={ open => (
-                                            <button className="img_content-column--button">
+                                            <button className="">
                                                 {open ? 'Cacher' : 'Afficher img(s)'}
                                             </button>)}
                                             position="left center"
                                             closeOnDocumentClick
                                         >
-                                            <div style={style}>{article.img_content.length > 0 ? article.img_content : "aucun contenu"}</div>
+                                            <div className="popup-column__img_content" style={style}>{article.img_content.length === 0 ? "aucun contenu"
+                                            : article.img_content.map( (item, index) =>
+                                                    <img key={index} className="content-item" src={item} alt="article-img"></img>
+                                                    // <div key={index} className="content-item">{stringCut(item, 39)}</div>
+                                                )}
+                                            </div>
                                         </Popup>
                                     </th>     
-                                    <th className="video_content-column">
+                                    <th className="popup-column">
                                         <Popup trigger={ open => (
-                                            <button className="video_content-column--button">
+                                            <button className="">
                                                 {open ? 'Cacher' : 'Afficher vidéo(s)'}
                                             </button>)}
                                             position="left center"
                                             closeOnDocumentClick
                                         >
-                                            <div style={style}>{article.video_content.length > 0 ? article.video_content : "aucun contenu"}</div>
+                                            {/* <div className="popup-column__video-content" style={style}>{article.video_content.length > 0 ? article.video_content : "aucun contenu"}</div> */}
+                                            <div className="popup-column__video_content" style={style}>{article.video_content.length === 0 ? "aucun contenu"
+                                            : article.video_content.map( (item, index) =>
+                                                    <div key={index} className="content-item">{stringCut(item, 32)}</div>
+                                                )}
+                                            </div>
                                         </Popup>
                                     </th>     
-                                    <th className="date-column">{article.date}</th>     
+                                    <th className="date-column">{readableDate(article.date)}</th>     
                                     <th className="edit-column">
                                         <EditArticle 
                                             articleId={article.id}
