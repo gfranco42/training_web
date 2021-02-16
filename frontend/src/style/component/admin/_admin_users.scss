@@ -7,13 +7,12 @@ $title-size: 35px;
     width: 1200px;
     @include flex-centered();
     flex-direction: column;
-    border: solid red 2px;
 
 
     #{$el}--title {
         @include flex-centered();
         font-size: $title-size;
-        text-decoration: underline;
+        text-transform: uppercase;
         margin: 50px 0 50px 0;
     }
 
@@ -25,11 +24,9 @@ $title-size: 35px;
             justify-content: space-between;
 
             th {
-               width: 16.7%; 
-               font-size: 20px;
-               font-style: oblique;
-               padding: 15px 0 15px 0;
-               text-decoration: underline;
+                width: 16.7%; 
+                padding: 15px 0 15px 0;
+                text-transform: uppercase;
             }
         }
     }

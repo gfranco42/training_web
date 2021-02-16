@@ -7,14 +7,13 @@ $title-size: 35px;
     width: 1200px;
     @include flex-centered();
     flex-direction: column;
-    border: solid red 2px;
     height: auto;
 
     #{$el}--title {
         width: 100%;
         @include flex-centered();
         font-size: $title-size;
-        text-decoration: underline;
+        text-transform: uppercase;
         margin: 50px 0 50px 0;
     }
 
@@ -80,10 +79,9 @@ $title-size: 35px;
             justify-content: space-between;
 
             th {
-                font-size: 20px;
-                font-style: oblique;
+                font-size: 17px;
                 padding: 15px 0 15px 0;
-                text-decoration: underline;
+                text-transform: uppercase;
             }
         }
     }
@@ -112,17 +110,18 @@ $title-size: 35px;
         }
     }
 
-    .YOLO {
-        border: red solid 10px;
-    }
     .title-column {
-        width: 20%;
+        // border: red solid 1px;
+        width: 18%;
+        font-size: 13px;
     }
     .link-column {
-        width: 32%;
+        // border: red solid 1px;
+        width: 30%;
         font-size: 13px;
     }
     .description-column {
+        // border: red solid 1px;
         width: 12%;
         &--button {
             @include standard-btn();
@@ -135,9 +134,11 @@ $title-size: 35px;
         // }
     }
     .category-column, .ep_nb-column {
-        width: 10%;
+        // border: red solid 1px;
+        width: 12%;
     }
     .edit-column, .delete-column {
+        // border: red solid 1px;
         width: 8%;
     }
 

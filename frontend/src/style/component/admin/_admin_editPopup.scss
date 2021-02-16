@@ -15,6 +15,7 @@ $title-size: 35px;
     flex-direction: column;
 
     #{$el}--closeCross {
+        cursor: pointer;
         border-radius: 50%;
         background: #ECECEC;
         opacity: 0.9;
@@ -41,8 +42,7 @@ $title-size: 35px;
     #{$el}--title {
         width: 100%;
         font-size: 35px;
-        font-style: oblique;
-        text-decoration: underline;
+        text-transform: uppercase;
     }
 
     form {
