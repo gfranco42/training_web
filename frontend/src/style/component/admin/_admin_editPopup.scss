@@ -94,9 +94,9 @@ $title-size: 35px;
 
         #{$el}--linkAdding {
             @include standard-btn();
-            align-self: flex-end;
             border-color: white;
             color: white;
+            margin: 5px;
         }
 
         // FILES INPUT RELATED
@@ -126,7 +126,8 @@ $title-size: 35px;
     }
 }
 
-.edit-popup__showImg {
+.edit-popup__showContent {
+    max-width: 500px;
     background: #444;
     padding: 30px;
     border: solid 2px white;
@@ -135,8 +136,54 @@ $title-size: 35px;
     color: white;
     font-family: "Gotham Bold";
     @include flex-centered();
-    flex-direction: column;
+    // justify-content: space-around;
+    flex-wrap: wrap;
     img {
         width: 300px;
+    }
+    &--reset {
+        @include standard-btn();
+        width: 100%;
+        color: white;
+        border-color: white;
+        margin: 10px;
+        outline: none;
+
+    }
+    &--imgContent {
+        @include flex-centered();
+        justify-content: space-around;
+        width: 340px;
+        flex-wrap: wrap;
+    }
+    &--block {
+        width: 100px;
+        @include flex-centered();
+        flex-direction: column;
+        margin: 5px;
+        button {
+            @include standard-btn();
+            width: 22px;
+            height: 22px;
+            color: white;
+            border-color: white;
+            margin: 5px;
+        }
+        .img_content {
+            width: 100%;
+        }
+    }
+    .video-popup {
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+        color: white;
+        border-bottom: white solid 1px;
+        padding-bottom: 5px;
+
+        &--item {
+            @include flex-centered();
+        }
+
     }
 }

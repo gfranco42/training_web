@@ -281,14 +281,14 @@
 
         .slide-container {
             z-index: 0;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
 
             .each-slide {
-                border: green solid 5px;
                 height: 100%;
-                display: flex;
+                @include flex-centered();
                 flex-direction: column;
-                justify-content: center;
-                align-items: center;
 
                 img {
                     width: 100%;

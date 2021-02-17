@@ -22,10 +22,8 @@
 
         .each-slide {
             border: green solid 5px;
-            display: flex;
+            @include flex-centered();
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
 
             &__video {
                 border: blue solid 2px;
