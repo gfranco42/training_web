@@ -11,6 +11,19 @@ class News extends Component {
             oldArticles: "",
         }
     }
+    
+    oldArticleImg = (idx) => {
+        const {index} = idx;
+        const {oldArticles} = this.state;
+        return oldArticles[index] ? <img className="old-article--img" alt="article_img" src={oldArticles[index].image}/> : null
+    }
+
+    oldArticleTitle = (idx) => {
+        const {index} = idx;
+        const {oldArticles} = this.state;
+        return oldArticles[index] ? <div className="old-article--title">{oldArticles[index].title}</div> : null
+    }
+
 
     componentDidMount = async () => {
         try {
@@ -48,16 +61,16 @@ class News extends Component {
 
                     <div className="news__old-article">
                         <a className="old-article" href="/">
-                            <img className="old-article--img" alt="article_img" src={this.state.oldArticles[0].image}/>
-                            <div className="old-article--title">{this.state.oldArticles[0].title}</div>
+                            <this.oldArticleImg index={0}/>
+                            <this.oldArticleTitle index={0}/>
                         </a>
                         <a className="old-article" href="/">
-                            <img className="old-article--img" alt="article_img" src={this.state.oldArticles[1].image}/>
-                            <div className="old-article--title">{this.state.oldArticles[1].title}</div>
+                            <this.oldArticleImg index={1}/>
+                            <this.oldArticleTitle index={1}/>
                         </a>
                         <a className="old-article" href="/">
-                            <img className="old-article--img" alt="article_img" src={this.state.oldArticles[2].image}/>
-                            <div className="old-article--title">{this.state.oldArticles[2].title}</div>
+                            <this.oldArticleImg index={2}/>
+                            <this.oldArticleTitle index={2}/>
                         </a>
                     </div>
                 </div>

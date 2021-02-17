@@ -22,7 +22,7 @@ class Admin_ArticlesManagement extends Component {
     render () {
         return (
             <div className="admin__component">
-                <h2  className="admin__component--title" onClick={this.triggerElement}>Section creation d'articles</h2>
+                <h2  className="admin__component--title" onClick={this.triggerElement}>Section gestion d'articles</h2>
                 <AddArticle display={this.state.display}/>
                 <ShowArticles display={this.state.display}/>
             </div>

@@ -202,7 +202,7 @@ class AddArticle extends Component {
                                     onChange={(e) => {this.handleChange(e)}}
                                     name="title"
                                     placeholder="ex. True Warriors 16"
-                                    maxLength="30"
+                                    maxLength="50"
                                     required>
                                 </input>
                             </label>
