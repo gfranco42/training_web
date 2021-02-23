@@ -5,6 +5,7 @@
     display: flex;
     align-items: center;
     border: solid 3px blue;
+    margin: 100px;
 
     #{$el}__avatars {
         display: flex;

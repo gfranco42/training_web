@@ -6,6 +6,7 @@ export const stringCut = (url, len) => {
 }
 
 export const translate_date = (date) => {
+  if (date) {
     const localTime = moment.utc().format('YYYY-MM-DD')
     const today = new Date(localTime);
     const birthDate = new Date(date);
@@ -16,6 +17,9 @@ export const translate_date = (date) => {
         age_now--;
     }
     return (age_now);
+  }
+  else
+    return null;
 }
 
 export const readableDate = (date) => {

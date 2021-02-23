@@ -1,28 +1,10 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 
-export class ArticleContent extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            article: null,
-            loading: true,
-        }
-    }
-
-
-
-
-    render() {
-        if (this.state.loading === true)
-            return <div>Chargement...</div>
-        else if (this.state.article === null || this.state.article.length === 0)
-            return <div>Aucun article disponible.</div>
-        else {
-            return (
-                <div>
-                    Voici le contenu de l'article
-                </div>
-            )
-        }
-    }
+export const ArticleContent = () => {
+    const [count, setCount] = useState(0)
+    return (
+        <button onClick={() => setCount(count => count + 1)}>
+            Count {count}
+        </button>
+    )
 }

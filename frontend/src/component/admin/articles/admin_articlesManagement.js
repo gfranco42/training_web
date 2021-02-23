@@ -20,11 +20,12 @@ class Admin_ArticlesManagement extends Component {
     }
 
     render () {
+        const {display} = this.state;
         return (
             <div className="admin__component">
                 <h2  className="admin__component--title" onClick={this.triggerElement}>Section gestion d'articles</h2>
-                <AddArticle display={this.state.display}/>
-                <ShowArticles display={this.state.display}/>
+                <AddArticle display={display}/>
+                <ShowArticles display={display}/>
             </div>
         )
     }
