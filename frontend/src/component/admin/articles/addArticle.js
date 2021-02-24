@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState } from 'react'
 import { toast } from 'react-toastify';
 
 // URL GENERATOR
@@ -14,7 +14,6 @@ import 'react-slideshow-image/dist/styles.css';
 // nl2br
 import nl2br from 'react-nl2br'
 
-import image from '../../../img/facebook.jpg'
 
 // draft
 // import {Editor, EditorState, RichUtils, convertFromRaw, convertToRaw} from 'draft-js'
