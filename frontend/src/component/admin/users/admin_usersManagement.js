@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 /* COMPONENT */
 
-import { ShowUsers } from "./showUsers.js"
+import ShowUsers from "./showUsers.js"
 
 
 class Admin_usersManagement extends Component {

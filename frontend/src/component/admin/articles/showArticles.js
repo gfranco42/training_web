@@ -36,13 +36,6 @@ const ShowArticles = (display) => {
             setArticles(newState)
             setLoading(false)
             setSort({sorted: true, last: type})
-            // setState({
-            //     articles: newState.reverse(),
-            //     loading: false,
-            //     sort: true,
-            //     last: type
-            // });               
-            // on met a jour le state local pour pouvoir afficher
         }
     }
 
@@ -70,16 +63,12 @@ const ShowArticles = (display) => {
             console.log(response)
             const data = await response.json();                         // les infos sont lisibles en json
             const newData = _.sortBy(data, ['date']);
-            // setState({articles: newData.reverse(), loading: false});               // on met a jour le state local pour pouvoir afficher
             newData.reverse();
             setArticles(newData)
             setLoading(false)
         }
         getArticles();
     }, [])
-
-
-
 
 
     const style = {
@@ -175,16 +164,7 @@ const ShowArticles = (display) => {
                                 </th>     
                                 <th className="date-column">{readableDate(item.date)}</th>     
                                 <th className="edit-column">
-                                    <EditArticle 
-                                        props={item}
-                                        // articleId={item.id}
-                                        // title={item.title}
-                                        // image={item.image}
-                                        // description={item.description}
-                                        // text_content={item.text_content}
-                                        // img_content={item.img_content}
-                                        // video_content={item.video_content}
-                                    />
+                                    <EditArticle props={item}/>
                                 </th>     
                                 <th className="delete-column">
                                     <button onClick={ (e) => deleteArticle(e, item.id)}>

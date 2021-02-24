@@ -10,22 +10,6 @@ import S3FileUpload from 'react-s3';
 // import { stringCut } from '../../../utils'
 
 
-
-// class EditArticle extends Component {
-//     constructor(props) {
-//         super(props);
-//         state = {
-//             title: props.title,
-//             image: props.image,
-//             description: props.description,
-//             text_content: props.text_content,
-//             img_content: props.img_content,
-//             oldImg_content: props.img_content,
-//             video_content: props.video_content,
-//             oldVideo_content: props.video_content,
-//             current_video: "",
-//         }
-//     }
 const EditArticle = (props) => {
 
     const [article, setArticle] = useState(props.props)

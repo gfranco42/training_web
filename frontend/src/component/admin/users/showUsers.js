@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { toast } from 'react-toastify';
 
 /* MODULES */
-import { EditUser } from './editUser'
+import EditUser from './editUser'
 import _ from 'lodash';
 
 // FUNCTIONS
@@ -10,160 +10,136 @@ import {translate_date} from "../../../utils"
 
 
 /* CLASS SHOWUSERS */
-export class ShowUsers extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            users: null, 
-            loading: true,
-            age: "",
-            pseudo: "",
-            email: "",
-            status: "",
-            sort: true,
-            last: ""
-        }
-    }
+
+const ShowUsers = (display) => {
+
+    const [users, setUsers] = useState()
+    const [userTmp, setUserTmp] = useState()
+    const [sort, setSort] = useState({sorted: true, last: ""})
+    const [loading, setLoading] = useState(true)
 
     // UPDATE AN INFORMATION OF ONE USER
-    updateUserInfo = (e, type) => {
+    const updateUserInfo = (e, type) => {
         e.preventDefault();
-        try {
-            if (type === "age")
-                this.setState({age: e.target.value});
-            else if (type === "pseudo")
-                this.setState({pseudo: e.target.value});
-            else if (type === "email")
-                this.setState({email: e.target.value});
-            else if (type === "status")
-                this.setState({status: e.target.value});
-        } catch (error) {
-            console.error(error.message);        
-        }
+        setUserTmp({...userTmp, [e.target.name]: [e.target.value]})
     }
 
-    tableSort = (e, type) => {
+    const tableSort = (e, type) => {
         e.preventDefault();
-        const {sort, last} = this.state;
-        const data = this.state.users;
+        const {sorted, last} = sort;
+        const data = users;
         const newState = _.sortBy(data, [type]);
-        if (sort === true || last !== type) {
-            this.setState({
-                users: newState,
-                loading: false,
-                sort: false,
-                last: type
-            });               // on met a jour le state local pour pouvoir afficher
+        if (sorted === true || last !== type) {
+            setUsers(newState)
+            setLoading(false)
+            setSort({sorted: false, last: type})
         }
-        else if (sort === false || last === type) {
-            this.setState({
-                users: newState.reverse(),
-                loading: false,
-                sort: true,
-                last: type
-            });               // on met a jour le state local pour pouvoir afficher
+        else if (sorted === false || last === type) {
+            setUsers(newState.reverse())
+            setLoading(false)
+            setSort({sorted: true, last: type})
         }
     }
     
     // DELETE USER
-    DeleteUsers = async (e, id) => {
+    const deleteUsers = async (e, id) => {
         e.preventDefault();
-        try {
-            const response = await fetch(
-                `http://localhost:9000/users/${id}`, {
-                    method: "DELETE"
-                });
-            if (response === null)
-                console.log(response);
-            const data = this.state.users;
-            this.setState({users: data.filter(user => user.id !== id)});
-            const parseRes = await response.json();// Message: "Modification reussi !"
-            
+        const response = await fetch(
+            `http://localhost:9000/users/${id}`, {
+                method: "DELETE"
+            });
+        if (response === null)
+            console.log(response);
+        const data = users;
+        setUsers(data.filter(user => user.id !== id))
+        const parseRes = await response.json();// Message: "Modification reussi !"
 
-            // TOAST
-            parseRes === "Utilisateur supprimé !" ?
-                toast.success(parseRes, {
-                    className: "toast",
-                    position: "top-center",
-                    hideProgressBar: true,
-                    closeButton: false,
-                })
-                : toast.error(parseRes, {
-                    className: "toast",
-                    position: "top-center",
-                    hideProgressBar: true,
-                    closeButton: false,
-                });
-        } catch (error) {
-            console.error(error.message); 
-        }
+        // TOAST
+        parseRes === "Utilisateur supprimé !" ?
+            toast.success(parseRes, {
+                className: "toast",
+                position: "top-center",
+                hideProgressBar: true,
+                closeButton: false,
+            })
+            : toast.error(parseRes, {
+                className: "toast",
+                position: "top-center",
+                hideProgressBar: true,
+                closeButton: false,
+            });
     }
 
     // UPDATE USER LIST FROM DB
-    async componentDidMount() {
-        try {
+    
+    useEffect( () => {
+        const getUsers = async () => {
             const response = await fetch("http://localhost:9000/users");// recup les infos de la DB
+            if (response === null)
+                console.log(response);
             const data = await response.json();                         // les infos sont lisibles en json
             const newData = _.sortBy(data, 'name', function(n) {
                 return Math.sin(n);
             });
-            this.setState({users: newData, loading: false});               // on met a jour le state local pour pouvoir afficher
-            if (response === null)
-                console.log(response);
-        } catch (error) {
-            console.error(error.message);
+            setUsers(newData)
+            setLoading(false)
         }
-    }
+        getUsers();
+    }, [])
 
-    render () {
-        if (this.state.loading === true)
-            return <div style={{display: this.props.display}}>Chargement...</div>
-        else if (this.state.users === null || this.state.users.length === 0)
-            return <div style={{display: this.props.display}}>Aucun utilisateur enregistré !</div>
-        else {
-            return (
-                <table className="adm-users" style={{display: this.props.display}}>
-                    <caption className="adm-users--title">Liste des utilisateurs: </caption>
-                    <thead>
-                        <tr className="adm-users__tab-title">
-                            <th onClick={ (e) => {this.tableSort(e, "pseudo")}}>Pseudo</th>
-                            <th onClick={ (e) => {this.tableSort(e, "age")}}>Âge</th>
-                            <th onClick={ (e) => {this.tableSort(e, "email")}}>Email</th>
-                            <th onClick={ (e) => {this.tableSort(e, "status")}}>Status</th>
-                            <th></th>
-                            <th></th>
+
+    // console.log(userTmp)
+    if (loading === true)
+        return <div style={{display: display.display}}>Chargement...</div>
+    else if (users === null || users.length === 0)
+        return <div style={{display: display.display}}>Aucun utilisateur enregistré !</div>
+    else {
+        return (
+            <table className="adm-users" style={{display: display.display}}>
+                <caption className="adm-users--title">Liste des utilisateurs: </caption>
+                <thead>
+                    <tr className="adm-users__tab-title">
+                        <th onClick={ (e) => {tableSort(e, "pseudo")}}>Pseudo</th>
+                        <th onClick={ (e) => {tableSort(e, "age")}}>Âge</th>
+                        <th onClick={ (e) => {tableSort(e, "email")}}>Email</th>
+                        <th onClick={ (e) => {tableSort(e, "status")}}>Status</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {users.map( (user) =>
+                        <tr className="adm-users__tab-rows" key={user.id}>
+                            <th className="">{user.pseudo}</th>
+                            <th className="">{translate_date(user.age)}</th>
+                            <th className="">{user.email}</th>
+                            <th className="">{user.status}</th>
+                            <th>
+                                <EditUser
+                                    updateUserInfo={updateUserInfo}
+                                    // userTmp={userTmp}
+                                    user={user}
+                                    // userId={user.id}
+                                    // age={this.state.age}
+                                    // pseudo={this.state.pseudo}
+                                    // email={this.state.email}
+                                    // status={this.state.status}
+                                    // users={this.state.users}
+                                />
+                            </th>
+                            <th>
+                                <button type="button" name="delete"
+                                    onClick={(e) => deleteUsers(e, user.id)}
+                                    className="adm-users--button">
+                                    Supprimer
+                                </button>
+                            </th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.users.map( (user) =>
-                            <tr className="adm-users__tab-rows" key={user.id}>
-                                <th className="">{user.pseudo}</th>
-                                <th className="">{translate_date(user.age)}</th>
-                                <th className="">{user.email}</th>
-                                <th className="">{user.status}</th>
-                                <th>
-                                    <EditUser
-                                        updateUserInfo={this.updateUserInfo}
-                                        userId={user.id}
-                                        age={this.state.age}
-                                        pseudo={this.state.pseudo}
-                                        email={this.state.email}
-                                        status={this.state.status}
-                                        users={this.state.users}
-                                    />
-                                </th>
-                                <th>
-                                    <button type="button" name="delete"
-                                        onClick={(e) => this.DeleteUsers(e, user.id)}
-                                        className="adm-users--button">
-                                        Supprimer
-                                    </button>
-                                </th>
-                            </tr>
-                        )}
-                    </tbody>
-                </table>
-            )
-        }
+                    )}
+                </tbody>
+            </table>
+        )
     }
 };
+
+export default ShowUsers;
