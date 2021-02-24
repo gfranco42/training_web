@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { ShowYTVideos } from './showYtVideos';
-import { AddYtVideo } from './addYtVideo';
+import ShowYTVideos from './showYtVideos';
+import AddYtVideo from './addYtVideo';
 
 
 /* COMPONENT */

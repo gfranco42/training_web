@@ -270,7 +270,6 @@ const EditArticle = (props) => {
                                             Réinitialiser
                                         </button>
                                         {article.video_content.length > 0 ?
-                                            // <div className="edit-popup__showContent--block video-popup">
                                                 article.video_content.map( (item, index) => 
                                                     <div className="edit-popup__showContent--block video-popup" key={index}>
                                                         <div className="video-popup--item">{item}</div>

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { toast } from 'react-toastify';
 
 /* POPUP */
@@ -6,130 +6,117 @@ import Popup from 'reactjs-popup';
 
 
 /* ADMIN EDIT POPUP */
-class EditYtVideo extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            title: props.title,
-            url: props.url,
-            category: props.category,
-            ep_nb: props.ep_nb,
-            description: props.description,
-        }
+const EditYtVideo = (props) => {
+
+    const [video, setVideo] = useState(props.props)
+
+    const updateVideoInfo = (e) => {
+        e.preventDefault();
+        // setState({[e.target.name]: e.target.value});
+        setVideo({...video, [e.target.name]: e.target.value})
     }
 
-    updateVideoInfo = (e) => {
+    const editVideo = async (e, id) => {
         e.preventDefault();
-        this.setState({[e.target.name]: e.target.value});
-    }
-
-    editVideo = async (e, id) => {
-        e.preventDefault();
-        try {
-            const {title, url, category, ep_nb, description} = this.state;
-            let body = {title, url, category, ep_nb, description};
-            const response = await fetch(`http://localhost:9000/ytvideos/${id}`, {
-                method: 'PUT',
-                headers: {"Content-type": "application/json"},
-                body: JSON.stringify(body) 
+        const {title, url, category, ep_nb, description} = video;
+        let body = {title, url, category, ep_nb, description};
+        const response = await fetch(`http://localhost:9000/ytvideos/${id}`, {
+            method: 'PUT',
+            headers: {"Content-type": "application/json"},
+            body: JSON.stringify(body) 
+        });
+        if (response === null)
+            console.log(response);
+        const parseRes = await response.json();// Message: "Modification reussi !"
+        parseRes === "Modification réussi !" ?
+            toast.success(parseRes, {
+                className: "toast",
+                position: "top-center",
+                hideProgressBar: true,
+                closeButton: false,
+            })
+            : toast.error(parseRes, {
+                className: "toast",
+                position: "top-center",
+                hideProgressBar: true,
+                closeButton: false,
             });
-            if (response === null)
-                console.log(response);
-            const parseRes = await response.json();// Message: "Modification reussi !"
-            parseRes === "Modification réussi !" ?
-                toast.success(parseRes, {
-                    className: "toast",
-                    position: "top-center",
-                    hideProgressBar: true,
-                    closeButton: false,
-                })
-                : toast.error(parseRes, {
-                    className: "toast",
-                    position: "top-center",
-                    hideProgressBar: true,
-                    closeButton: false,
-                });
-        } catch (error) {
-           console.error(error.message); 
-        }
     }
 
 
-    render() {
-        return (
-            <Popup
-                trigger={<button className="adm-ytvideos--button">Modifier</button>}
-                modal
-                nested
-            >
-                {close => (
-                    <div className="edit-popup">
-                        <button className="edit-popup--closeCross" onClick={close}>
-                            &times;
-                        </button>
-                        <div className="edit-popup--title">Modifier une video</div>
-                        <form onSubmit={(e) => {this.editVideo(e, this.props.videoId)}}>
-                            <label>
-                                Titre: 
-                                <input type="text"
-                                    value={this.state.title}
-                                    onChange={(e) => {this.updateVideoInfo(e)}}
-                                    name="title">
-                                </input>
-                            </label>
-                            <label>
-                                Lien: 
-                                <input type="text"
-                                    value={this.state.url}
-                                    onChange={(e) => {this.updateVideoInfo(e)}}
-                                    name="url">
-                                </input>
-                            </label>
-                            <label>
-                                Catégorie: 
-                                <div className="edit-popup--select-field">
-                                    <select value={this.state.category}
-                                        onChange={(e) => {this.updateVideoInfo(e)}}
-                                        name="category">
-                                        <option value="">Catégorie de la vidéo...</option>
-                                        <option value="TW">True Warriors</option>
-                                        <option value="LOL">League of Lesglands</option>
-                                        <option value="HS">Hors-Série</option>
-                                    </select>
-                                </div>
-                            </label>
-                            <label>
-                                Nº de l'épisode:
-                                <input type="number"
-                                    value={this.state.ep_nb}
-                                    onChange={(e) => {this.updateVideoInfo(e)}}
-                                    name="ep_nb">
-                                </input>
-                            </label>
-                            <label>
-                                Description:
-                                <textarea
-                                    value={this.state.description}
-                                    onChange={(e) => {this.updateVideoInfo(e)}}
-                                    name="description">
-                                </textarea>
-                            </label>
-                            <input
-                                className="edit-popup--submit"
-                                type="submit"
-                                value="Modifier"
-                                onClick={(e) => {
-                                    this.editVideo(e, this.props.videoId);
-                                    close()
-                            }}>
+    return (
+        <Popup
+            trigger={<button className="adm-ytvideos--button">Modifier</button>}
+            modal
+            nested
+        >
+            {close => (
+                <div className="edit-popup">
+                    <button className="edit-popup--closeCross" onClick={close}>
+                        &times;
+                    </button>
+                    <div className="edit-popup--title">Modifier une video</div>
+                    <form onSubmit={(e) => {editVideo(e, video.id)}}>
+                        <label>
+                            Titre: 
+                            <input type="text"
+                                value={video.title}
+                                onChange={(e) => {updateVideoInfo(e)}}
+                                name="title">
                             </input>
-                        </form>
-                        <button className="edit-popup--closeBtn" onClick={close}>Fermer</button>
-                    </div>
-                )}
-            </Popup>
-        )
-    }
+                        </label>
+                        <label>
+                            Lien: 
+                            <input type="text"
+                                value={video.url}
+                                onChange={(e) => {updateVideoInfo(e)}}
+                                name="url">
+                            </input>
+                        </label>
+                        <label>
+                            Catégorie: 
+                            <div className="edit-popup--select-field">
+                                <select value={video.category}
+                                    onChange={(e) => {updateVideoInfo(e)}}
+                                    name="category">
+                                    <option value="">Catégorie de la vidéo...</option>
+                                    <option value="TW">True Warriors</option>
+                                    <option value="LOL">League of Lesglands</option>
+                                    <option value="HS">Hors-Série</option>
+                                </select>
+                            </div>
+                        </label>
+                        <label>
+                            Nº de l'épisode:
+                            <input type="number"
+                                value={video.ep_nb}
+                                onChange={(e) => {updateVideoInfo(e)}}
+                                name="ep_nb">
+                            </input>
+                        </label>
+                        <label>
+                            Description:
+                            <textarea
+                                value={video.description}
+                                onChange={(e) => {updateVideoInfo(e)}}
+                                name="description">
+                            </textarea>
+                        </label>
+                        <input
+                            className="edit-popup--submit"
+                            type="submit"
+                            value="Modifier"
+                            onClick={(e) => {
+                                editVideo(e, video.id);
+                                close()
+                        }}>
+                        </input>
+                    </form>
+                    <button className="edit-popup--closeBtn" onClick={close}>Fermer</button>
+                </div>
+            )}
+        </Popup>
+    )
 }
 
 export {
