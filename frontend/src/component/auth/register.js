@@ -14,8 +14,6 @@ const RegisterPopup = () => {
 
     const [register, setRegister] = useState("")
 
-
-
     const handleChange = (e) => {
         e.preventDefault();
         setRegister({...register, [e.target.name]: e.target.value})

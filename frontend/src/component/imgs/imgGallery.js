@@ -1,17 +1,12 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import ShowImgs from './showImgs';
 import ImgUpload from './addImg';
 
-class ImgGallery extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            user: null,
-        }
-    }
 
-    componentDidMount = async () => {
-        try {
+const ImgGallery = () => {
+
+    useEffect( () => {
+        const tokenVerify = async () => {
             if (!localStorage.token){
                 localStorage.setItem("error", "Vous n'êtes pas autorisé à pénétrer cet espace !!")
                 window.location = "/error";
@@ -23,27 +18,22 @@ class ImgGallery extends Component {
                 headers: {token: localStorage.token}
             });
             const parseResVerify = await responseVerify.json();
-            console.log(parseResVerify)
             if (!parseResVerify || parseResVerify === "Not Authorized"){
                 localStorage.removeItem("token");
                 localStorage.setItem("error", "Vous n'êtes pas autorisé à pénétrer cet espace !!")
                 window.location = "/error";
             }
+        }
+        tokenVerify();
+    }, [])
 
-        } catch (error) {
-            console.error(error.message); 
-        }       
-    }
-
-    render() {
-        return (
-            <div className="gallery">
-                <h1 className="gallery--title">Gallerie de photos Asylum Heroes</h1>
-                <ShowImgs />
-                <ImgUpload />
-            </div>
-        )
-    }
+    return (
+        <div className="gallery">
+            <h1 className="gallery--title">Gallerie de photos Asylum Heroes</h1>
+            <ShowImgs />
+            <ImgUpload />
+        </div>
+    )
 }
 
 

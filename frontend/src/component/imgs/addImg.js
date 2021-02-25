@@ -1,20 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
 import S3FileUpload from 'react-s3';
 
-class ImgUpload extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            access_key: process.env.REACT_APP_ACCESS_KEY,
-            secret_key: process.env.REACT_APP_SECRET_KEY,
-            bucket_name: process.env.REACT_APP_BUCKET,
-            region: process.env.REACT_APP_REGION,
-        }
+const ImgUpload = () => {
+
+    const configuration = {
+        access_key: process.env.REACT_APP_ACCESS_KEY,
+        secret_key: process.env.REACT_APP_SECRET_KEY,
+        bucket_name: process.env.REACT_APP_BUCKET,
+        region: process.env.REACT_APP_REGION,
     }
 
-    uploadingImg = async (e) => {
+    const uploadingImg = async (e) => {
         e.preventDefault();
-        const {access_key, secret_key, bucket_name, region} = this.state;
+        const {access_key, secret_key, bucket_name, region} = configuration;
         const config = {
             bucketName: bucket_name,
             dirName: "",
@@ -41,24 +39,22 @@ class ImgUpload extends Component {
     }
 
 
-    render() {
-        return (
-            <div className="gallery__upload">
-                <label
+    return (
+        <div className="gallery__upload">
+            <label
                 className="gallery__upload--label"
                 htmlFor="uploadBtn">
-                    Selectionner une image</label>
-                <input
-                    type="file"
-                    accept="image/*"
-                    onChange={this.uploadingImg}
-                    className="gallery__upload--input"
-                    id="uploadBtn"
-                    name="upload"
-                    multiple/>
-            </div>
-        )
-    }
+                Sélectionner une image</label>
+            <input
+                type="file"
+                accept="image/*"
+                onChange={uploadingImg}
+                className="gallery__upload--input"
+                id="uploadBtn"
+                name="upload"
+                multiple/>
+        </div>
+    )
 }
 
 export default ImgUpload;
