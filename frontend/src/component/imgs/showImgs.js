@@ -26,7 +26,7 @@ const ShowImgs = () => {
         if (response === null)
             console.log(response);
         const data = user.img;
-        this.setState({img: data.filter(img => img.id !== id)});
+        setImg(data.filter(img => img.id !== id))
     }
 
     const deleteButton = (itemId) => {
@@ -34,7 +34,7 @@ const ShowImgs = () => {
             return (
                 <button
                 type="button"
-                onClick={ (e) => {this.deleteImg(e, itemId)}}
+                onClick={ (e) => {deleteImg(e, itemId)}}
                 className="gallery__list__item--delete"
                 name="delete">
                     Supprimer
@@ -56,9 +56,6 @@ const ShowImgs = () => {
                 headers: {token: localStorage.token}
             });
             const parseRes = await response.json();
-            // const {id, age, pseudo, email, status} = parseRes;
-            // this.setState({img: data, loading: false});
-            // this.setState({user: parseRes, img: data, loading: false});
             setUser(parseRes)
             setLoading(false)
             setImg(data)
