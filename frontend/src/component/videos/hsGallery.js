@@ -26,7 +26,8 @@ const HSGallery = () => {
 
     const [videos, setVideos] = useState()
     const [loading, setLoading] = useState(true)
-    const [opts, setOpts] = useState({height: '390', width: '640'})
+    // const [opts, setOpts] = useState({height: '390', width: '640'})
+    const opts = {height: '390', width: '640'}
     const category = 'HS'
     const slideProps = {
         transitionDuration: 500,

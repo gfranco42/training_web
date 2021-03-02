@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux'
 
 // reducers
-import { getUser } from './users'
-import { getYtVideos } from './ytVideos'
+import { user } from './users'
+import { ytVideos } from './ytVideos'
+import { test } from './test'
+import { log } from './log'
 
-const allReducers = combineReducers({
-    getUser,
-    getYtVideos,
+export const initStore = combineReducers({
+    user,
+    ytVideos,
+    test,
+    log,
 })
-
-export default allReducers;

@@ -8,15 +8,29 @@ import ah_logo from "../../img/ah_logo.png";
 import ah_title from "../../img/ah_title.png";
 
 // GIFS
+
+//REDUX
+import { useSelector, useDispatch } from 'react-redux'
+import { getUser, deleteUser, setLog } from '../../actions'
+
 import wave_header from "../../img/gifs/wave_header.gif";
 
 const Header = () => {
 
-    const [log, setLog] = useState(false);
-    const [navStyle, setNavStyle] = useState({});
-    const [avatar, setAvatar] = useState('');
-    const [status, setStatus] = useState('')
+    // const [log, setLog] = useState(false);
+    // const [avatar, setAvatar] = useState('');
+    // const [status, setStatus] = useState('')
+    
+    const dispatch = useDispatch()
 
+    const logState = useSelector(state => state.log)
+    const {log} = logState;
+
+    const userState = useSelector(state => state.user)
+    const {user} = userState;
+    
+    // NAV BAR STYLE
+    const [navStyle, setNavStyle] = useState({});
     const sticky_nav = () => {
         if (window.scrollY > ( window.innerWidth * 45.6 / 100) )
             setNavStyle({ 'background':  'rgba(0, 0, 0, 0.5)' })
@@ -29,26 +43,27 @@ const Header = () => {
         e.preventDefault();
         localStorage.removeItem("token");
         window.location = "/";
+        dispatch(deleteUser())
     }
 
-    const updateLogState = async (bool) => {
-        setLog(bool);
-        if (bool === true) {
-            // RECUP USER AVATAR
-            const response = await fetch("http://localhost:9000/profil/", {
-                method: "GET",
-                headers: {token: localStorage.token}
-            })
-            const parseRes = await response.json();
-            // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
-            const {avatar, status} = parseRes;
-            setAvatar(avatar);
-            setStatus(status);
-        }
-    }
+    // const updateLogState = async (bool) => {
+    //     setLog(bool);
+    //     if (bool === true) {
+    //         // RECUP USER AVATAR
+    //         const response = await fetch("http://localhost:9000/profil/", {
+    //             method: "GET",
+    //             headers: {token: localStorage.token}
+    //         })
+    //         const parseRes = await response.json();
+    //         // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
+    //         const {avatar, status} = parseRes;
+    //         setAvatar(avatar);
+    //         setStatus(status);
+    //     }
+    // }
 
     const AdminRubric = () => {
-        if (status === 'admin') {
+        if (user && user.status === 'admin') {
             return (
                 <div className="menu__choice">
                     <a className="title"
@@ -68,14 +83,17 @@ const Header = () => {
         if (log === false)
             return (
                 <div className="navigation__button">
-                    <LoginPopup updateLogState={updateLogState}/>
+                    {/* <LoginPopup updateLogState={updateLogState}/> */}
+                    <LoginPopup />
                 </div>
             )
         else {
             return (
                 <div className="account-block">
                     <div className="account-block__pipe"></div>
-                    <img src={avatar} className="account-block__avatar" alt="avatar_img"/>
+                    {user
+                        ? <img src={user.avatar} className="account-block__avatar" alt="avatar_img"/>
+                        : <div></div>}
                     <div className="navigation__rubric--page account-block__menu">
                         <div className="rubric-title">
                             Profil
@@ -117,6 +135,7 @@ const Header = () => {
     // USE EFFECT
     useEffect( () => {
         window.addEventListener('scroll', sticky_nav);
+        console.log('hook')
 
             // VERIFY TOKEN
         const getProfile = async () => {
@@ -127,10 +146,12 @@ const Header = () => {
             const parseResVerify = await responseVerify.json();
             if (!parseResVerify || parseResVerify === "Not Authorized"){
                 localStorage.removeItem("token");
-                setLog(false);
+                // setLog(false);
+                dispatch(setLog(false))
             }
             else {
-                setLog(true)
+                // setLog(true)
+                dispatch(setLog(true))
                 // RECUP USER AVATAR
                 const response = await fetch("http://localhost:9000/profil/", {
                     method: "GET",
@@ -138,14 +159,15 @@ const Header = () => {
                 })
                 const parseRes = await response.json();
                 // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
-                const {avatar, status} = parseRes;
-                setAvatar(avatar);
-                setStatus(status);
+                // const {avatar, status} = parseRes;
+                // setAvatar(avatar);
+                // setStatus(status);
+                dispatch(getUser(parseRes))
             }
         }
 
         getProfile();
-    }, [])
+    }, [dispatch])
 
     return (
         <div className="header">

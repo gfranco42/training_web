@@ -43,7 +43,12 @@ const LoginPopup = (props) => {
                     hideProgressBar: true,
                     closeButton: false,
                 });
-                props.updateLogState(true);
+                setInterval( () => {
+                    // setUser({...user, avatar: body})
+                    // dispatch(setAvatar(body))
+                    window.location.reload()}, 1500);
+
+                // props.updateLogState(true);
             }
             else {
                 toast.error(parseRes, {
@@ -52,7 +57,7 @@ const LoginPopup = (props) => {
                     hideProgressBar: true,
                     closeButton: false,
                 });
-                props.updateLogState(false);
+                // props.updateLogState(false);
             }
     } 
 

@@ -7,11 +7,13 @@ import "./style/styles.scss";
 
 // REDUX
 import { createStore } from 'redux'
-import allReducers from './reducers'
 import { Provider } from 'react-redux'
+import { initStore } from './reducers/index'
+// import rootReducer from './reducers/rootReducer'
+// import { getUser } from './reducers/users'
 
 const store = createStore(
-  allReducers,
+  initStore,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 

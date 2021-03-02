@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import S3FileUpload from 'react-s3';
 
+//redux
+import { useSelector, useDispatch } from 'react-redux'
+import { setAvatar } from '../actions'
+
 
 // TOAST
 import { toast } from "react-toastify";
 
 // UTILS FUNCTION
-import {translate_date} from "../utils"
+import { translate_date } from "../utils"
 
 
 export const Dashboard = () => {
-    const [user, setUser] = useState(
-        // {
-        //     id: "",
-        //     age: "",
-        //     pseudo: "",
-        //     email: "",
-        //     status: "",
-        //     avatar: ""
-        // }
-        []
-    )
+    // const [user, setUser] = useState([])
+    const userState = useSelector(state => state.user)
+    const {user} = userState
+    const dispatch = useDispatch()
 
     const bucket = {
         access_key: process.env.REACT_APP_ACCESS_KEY,
@@ -56,7 +53,7 @@ export const Dashboard = () => {
         const avatar = data.location;
         const body = {avatar};
         const response = await fetch(
-            `http://localhost:9000/users/avatar/${this.state.id}`, {
+            `http://localhost:9000/users/avatar/${user.id}`, {
                 method: "POST",
                 headers: {"Content-type": "application/json"},
                 body: JSON.stringify(body)
@@ -76,68 +73,72 @@ export const Dashboard = () => {
                 closeButton: false,
             })
         setInterval( () => {
-            setUser(...user, {avatar: body})
+            // setUser({...user, avatar: body})
+            dispatch(setAvatar(body))
             window.location.reload()}, 1500);
     }
 
     useEffect(() => {
-        console.log('hook call')
-        const getProfile = async () => {
+        // const getProfile = async () => {
                 if (!localStorage.token) {
                     localStorage.setItem("error", "Vous n'êtes pas autorisé à pénétrer cet espace !!")
                     window.location = "/error";
                 }
 
                 // VERIFY TOKEN
-                const responseVerify = await fetch("http://localhost:9000/auth/token-verify", {
-                    method: "GET",
-                    headers: {token: localStorage.token}
-                });
-                const parseResVerify = await responseVerify.json();
-                if (!parseResVerify || parseResVerify === "Not Authorized"){
-                    localStorage.removeItem("token");
-                    localStorage.setItem("error", "Vous n'êtes pas autorisé.e à pénétrer cet espace !!")
-                    window.location = "/error"
-                }
+        //         const responseVerify = await fetch("http://localhost:9000/auth/token-verify", {
+        //             method: "GET",
+        //             headers: {token: localStorage.token}
+        //         });
+        //         const parseResVerify = await responseVerify.json();
+        //         if (!parseResVerify || parseResVerify === "Not Authorized"){
+        //             localStorage.removeItem("token");
+        //             localStorage.setItem("error", "Vous n'êtes pas autorisé.e à pénétrer cet espace !!")
+        //             window.location = "/error"
+        //         }
 
-                // RECUP USER
-                const response = await fetch("http://localhost:9000/profil/", {
-                    method: "GET",
-                    headers: {token: localStorage.token}
-                })
-                const parseRes = await response.json();
-                // const {id, age, pseudo, email, status, avatar} = parseRes;
-                // setUser({...user, id: id, age: age, pseudo: pseudo, email: email, status: status, avatar: avatar});
-                setUser(parseRes)
-        }
+        //         // RECUP USER
+        //         const response = await fetch("http://localhost:9000/profil/", {
+        //             method: "GET",
+        //             headers: {token: localStorage.token}
+        //         })
+        //         const parseRes = await response.json();
+        //         // const {id, age, pseudo, email, status, avatar} = parseRes;
+        //         // setUser({...user, id: id, age: age, pseudo: pseudo, email: email, status: status, avatar: avatar});
+        //         setUser(parseRes)
+        // }
 
-        getProfile();
+        // getProfile();
     }, [])
 
-    return (
-        <div className="dashboard">
-            <h1 className="dashboard__title">Profil</h1>
-            <div className="dashboard__infos">
-                <div>{user.id}</div>
-                <div>{translate_date(user.age)}</div>
-                <div>{user.pseudo}</div>
-                <div>{user.email}</div>
-                <div>{user.status}</div>
-                <div className="dashboard__upload">
-                    <img src={user.avatar} alt="avatar" className="dashboard__upload--avatar"/>
-                    <label
-                        className="dashboard__upload--label" htmlFor="uploadBtn">
-                        Modifier mon avatar</label>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={uploadingAvatar}
-                        className="dashboard__upload--input"
-                        id="uploadBtn"
-                        name="upload"/>
+    if (user) {
+        return (
+            <div className="dashboard">
+                <h1 className="dashboard__title">Profil</h1>
+                <div className="dashboard__infos">
+                    <div>{user.id}</div>
+                    <div>{translate_date(user.age)}</div>
+                    <div>{user.pseudo}</div>
+                    <div>{user.email}</div>
+                    <div>{user.status}</div>
+                    <div className="dashboard__upload">
+                        <img src={user.avatar} alt="avatar" className="dashboard__upload--avatar"/>
+                        <label
+                            className="dashboard__upload--label" htmlFor="uploadBtn">
+                            Modifier mon avatar</label>
+                        <input
+                            type="file"
+                            accept="image/*"
+                            onChange={uploadingAvatar}
+                            className="dashboard__upload--input"
+                            id="uploadBtn"
+                            name="upload"/>
+                    </div>
                 </div>
+                <AdminPage/>
             </div>
-            <AdminPage/>
-        </div>
-    )
+        )
+    }
+    else
+        return <div></div>
 }

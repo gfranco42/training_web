@@ -1,15 +1,14 @@
 import React from 'react';
 
-//redux
-// import { connect } from "react-redux"
 
 // IMG
 // import gj_avatar from '../../img/avatars/gj_avatar.png'
 // import nyra_avatar from '../../img/avatars/nyra_avatar.png'
 
 // REDUX
-import { useSelector, useDispatch } from 'react-redux'
-import { getUser } from '../../actions/index'
+// import { useSelector, useDispatch } from 'react-redux'
+// import { getTest, getUser } from '../../actions/index'
+// import { ACTIONS } from '../../constants/constants'
 
 // PERSONNES
 // import GreatJack from './greatJack_card';
@@ -17,13 +16,46 @@ import { getUser } from '../../actions/index'
 
 
 const AboutComponent = () => {
-    const user  = useSelector(state => state.getUser)
-    console.log(user)
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
+
+    // const userState = useSelector(state => state.user)
+    // const {user} = userState;
+    
+    // const testState = useSelector(state => state.test)
+    // const {count} = testState;
+
+    // const DisplayUser = () => {
+    //     return ( user
+    //         ? <div>
+    //             <div>{user.id}</div>
+    //             <div>{user.pseudo}</div>
+    //             <div>{user.email}</div>
+    //             <div>{user.age}</div>
+    //             <div>{user.status}</div>
+    //             <img src={user.avatar} alt="profile_img"></img>
+    //         </div>
+    //         : <div></div>)
+    // }
+
+    // useEffect( () => {
+    //     const getProfil = async () => {
+    //         const response = await fetch("http://localhost:9000/profil/", {
+    //             method: "GET",
+    //             headers: {token: localStorage.token}
+    //         })
+    //         const parseRes = await response.json();
+    //         dispatch( getUser(parseRes) )
+    //         console.log('yolo')
+    //     }
+    //     getProfil();
+    // }, [dispatch])
+
     return (
         <div className="about">
-            {/* {pseudo} */}
-            <button onClick={ () => {dispatch(getUser())} }>+</button>
+            <h1>user:</h1>
+            {/* <DisplayUser/>
+            <div>Count: {count}</div>
+            <button onClick={ () => { dispatch(getTest()) }}>+</button> */}
         </div>
     )
 }

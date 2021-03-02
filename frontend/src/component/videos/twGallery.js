@@ -16,6 +16,7 @@ const TWGallery = () => {
     const [loading, setLoading] = useState(true)
     const [display, setDisplay] = useState()
     const [index, setIndex] = useState(0)
+    const category = 'TW'
     const slideProps = {
         transitionDuration: 250,
         indicators: true,
@@ -56,7 +57,6 @@ const TWGallery = () => {
                 console.log(response);
             const data = await response.json();
             const newData = _.sortBy(data, ['ep_nb']);
-            this.setState({videos: newData, loading: false})
             setVideos(newData)
             setLoading(false)
         }
