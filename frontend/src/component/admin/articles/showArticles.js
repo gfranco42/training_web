@@ -60,7 +60,7 @@ const ShowArticles = (display) => {
         const getArticles = async () => {
             const response = await fetch("http://localhost:9000/articles");// recup les infos de la DB
             if (response === null)
-            console.log(response)
+                console.log(response)
             const data = await response.json();                         // les infos sont lisibles en json
             const newData = _.sortBy(data, ['date']);
             newData.reverse();

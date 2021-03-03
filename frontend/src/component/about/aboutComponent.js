@@ -6,7 +6,7 @@ import React from 'react';
 // import nyra_avatar from '../../img/avatars/nyra_avatar.png'
 
 // REDUX
-// import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 // import { getTest, getUser } from '../../actions/index'
 // import { ACTIONS } from '../../constants/constants'
 
@@ -16,6 +16,9 @@ import React from 'react';
 
 
 const AboutComponent = () => {
+    const count = sessionStorage.getItem("Count")
+        ? sessionStorage.getItem("Count")
+        : 0; 
     // const dispatch = useDispatch()
 
     // const userState = useSelector(state => state.user)
@@ -52,7 +55,7 @@ const AboutComponent = () => {
 
     return (
         <div className="about">
-            <h1>user:</h1>
+            <h1>Count: {count}</h1>
             {/* <DisplayUser/>
             <div>Count: {count}</div>
             <button onClick={ () => { dispatch(getTest()) }}>+</button> */}

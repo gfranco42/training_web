@@ -164,7 +164,7 @@ const EditArticle = (props) => {
                             <input type="text"
                                 value={article.title}
                                 onChange={(e) => {updateArticleInfo(e)}}
-                                maxLength="30"
+                                maxLength="50"
                                 name="title">
                             </input>
                         </label>

@@ -7,7 +7,9 @@ const initialState = {
 export const test = (state = initialState, action) => {
     switch(action.type) {
         case ACTIONS.TEST:
-            return {count: state.count + 1};
+            const newCount = state.count + 1;
+            sessionStorage.setItem("Count", newCount)
+            return {count: newCount};
         default:
             return state;
     }

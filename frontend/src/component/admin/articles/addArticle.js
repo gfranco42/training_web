@@ -80,7 +80,6 @@ const AddArticle = (display) => {
 
     const handleChange = (e) => {
         e.preventDefault();
-        console.log(e.target.value)
         setArticle({...article, [e.target.name]: [e.target.value]})
     }
 
