@@ -7,19 +7,60 @@ import Popup from "reactjs-popup";
 // IMG
 import ah_logo from "../../img/ah_logo.png"
 
+//REDUX
+import { useSelector, useDispatch } from 'react-redux'
+import { setLog } from '../../actions'
 
 // COMPONENT
 import RegisterPopup from './register'
 
 /* HEADER LOGIN POPUP */
-const LoginPopup = (props) => {
+const LoginPopup = () => {
 
     const [login, setLogin] = useState({email: "", password: ""})
+    const dispatch = useDispatch()
+
+    const logState = useSelector(state => state.log)
+    const {log} = logState;
 
     const handleChange = (e) => {
         e.preventDefault();
         setLogin({...login, [e.target.name]: e.target.value})
     }
+
+    
+    const getProfile = async () => {
+        const responseVerify = await fetch("http://localhost:9000/auth/token-verify", {
+            method: "GET",
+            headers: {token: localStorage.token}
+        });
+        const parseResVerify = await responseVerify.json();
+        if (!parseResVerify || parseResVerify === "Not Authorized"){
+            localStorage.removeItem("token");
+            sessionStorage.log = "false";
+            delete sessionStorage.user;
+            // setLog(false);
+            // dispatch(setLog(false))
+        }
+        else {
+            // setLog(true)
+            // dispatch(setLog(true))
+            sessionStorage.log = "true";
+            // RECUP USER AVATAR
+            const response = await fetch("http://localhost:9000/profil/", {
+                method: "GET",
+                headers: {token: localStorage.token}
+            })
+            const parseRes = await response.json();
+            // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
+            // const {avatar, status} = parseRes;
+            // setAvatar(avatar);
+            // setStatus(status);
+            sessionStorage.user = JSON.stringify(parseRes)
+        }
+    }
+
+    // getProfile();
 
     const toggleLogin = async (e) => {
         e.preventDefault();
@@ -37,16 +78,17 @@ const LoginPopup = (props) => {
     
             if (parseRes.token) {
                 localStorage.setItem("token", parseRes.token);
+                getProfile();
                 toast.success(`Bon retour !`, {
                     className: "toast",
                     position: "top-center",
                     hideProgressBar: true,
                     closeButton: false,
                 });
-                setInterval( () => {
+                // setInterval( () => {
                     // setUser({...user, avatar: body})
                     // dispatch(setAvatar(body))
-                    window.location.reload()}, 1500);
+                    // window.location.reload()}, 1500);
 
                 // props.updateLogState(true);
             }

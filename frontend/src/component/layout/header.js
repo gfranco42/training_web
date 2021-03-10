@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 // COMPONENT
 import LoginPopup from "../auth/login.js"
 
+// REACT ROUTER
+import { Link, useHistory } from 'react-router-dom';
+
 // IMGS
 import ah_logo from "../../img/ah_logo.png";
 import ah_title from "../../img/ah_title.png";
@@ -11,7 +14,7 @@ import ah_title from "../../img/ah_title.png";
 
 //REDUX
 import { useSelector, useDispatch } from 'react-redux'
-import { getUser, deleteUser, setLog } from '../../actions'
+import { deleteUser } from '../../actions'
 
 import wave_header from "../../img/gifs/wave_header.gif";
 
@@ -22,12 +25,18 @@ const Header = () => {
     // const [status, setStatus] = useState('')
     
     const dispatch = useDispatch()
+    const history = useHistory();
 
-    const logState = useSelector(state => state.log)
-    const {log} = logState;
+    const log = sessionStorage.log;
+    console.log(log)
 
-    const userState = useSelector(state => state.user)
-    const {user} = userState;
+    // const userState = useSelector(state => state.user)
+    // const {user} = userState;
+
+    const currentUser = sessionStorage.user
+    ? JSON.parse(sessionStorage.user)
+    : null;
+    // console.log(sessionStorage.user)
     
     // NAV BAR STYLE
     const [navStyle, setNavStyle] = useState({});
@@ -42,8 +51,11 @@ const Header = () => {
     const logout = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
-        window.location = "/";
-        dispatch(deleteUser())
+        delete sessionStorage.user;
+        sessionStorage.log = "false";
+        // window.location = "/";
+        history.push("/")
+        // dispatch(deleteUser())
     }
 
     // const updateLogState = async (bool) => {
@@ -63,13 +75,13 @@ const Header = () => {
     // }
 
     const AdminRubric = () => {
-        if (user && user.status === 'admin') {
+        if (currentUser && currentUser.status === 'admin') {
             return (
                 <div className="menu__choice">
-                    <a className="title"
-                        href="/admin">
+                    <Link className="title"
+                        to="/admin">
                             Admin
-                    </a>
+                    </Link>
                 </div>
             )
         }
@@ -80,7 +92,7 @@ const Header = () => {
 
     const ConnectionButton = () => {
 
-        if (log === false)
+        if (log === "false" || !log)
             return (
                 <div className="navigation__button">
                     {/* <LoginPopup updateLogState={updateLogState}/> */}
@@ -91,8 +103,8 @@ const Header = () => {
             return (
                 <div className="account-block">
                     <div className="account-block__pipe"></div>
-                    {user
-                        ? <img src={user.avatar} className="account-block__avatar" alt="avatar_img"/>
+                    {currentUser
+                        ? <img src={currentUser.avatar} className="account-block__avatar" alt="avatar_img"/>
                         : <div></div>}
                     <div className="navigation__rubric--page account-block__menu">
                         <div className="rubric-title">
@@ -101,16 +113,16 @@ const Header = () => {
                         </div>
                         <div className="menu">
                             <div className="menu__choice first">
-                                <a className="title"
-                                    href="/profil">
+                                <Link className="title"
+                                    to="/profil">
                                         Mon compte
-                                </a>
+                                </Link>
                             </div>
                             <div className="menu__choice">
-                                <a className="title"
-                                    href="/">
+                                <Link className="title"
+                                    to="/">
                                         Mes messages
-                                </a>
+                                </Link>
                             </div>
                             <AdminRubric />
                             <div className="menu__choice">
@@ -138,43 +150,14 @@ const Header = () => {
         console.log('hook')
 
             // VERIFY TOKEN
-        const getProfile = async () => {
-            const responseVerify = await fetch("http://localhost:9000/auth/token-verify", {
-                method: "GET",
-                headers: {token: localStorage.token}
-            });
-            const parseResVerify = await responseVerify.json();
-            if (!parseResVerify || parseResVerify === "Not Authorized"){
-                localStorage.removeItem("token");
-                // setLog(false);
-                dispatch(setLog(false))
-            }
-            else {
-                // setLog(true)
-                dispatch(setLog(true))
-                // RECUP USER AVATAR
-                const response = await fetch("http://localhost:9000/profil/", {
-                    method: "GET",
-                    headers: {token: localStorage.token}
-                })
-                const parseRes = await response.json();
-                // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
-                // const {avatar, status} = parseRes;
-                // setAvatar(avatar);
-                // setStatus(status);
-                dispatch(getUser(parseRes))
-            }
-        }
-
-        getProfile();
     }, [dispatch])
 
     return (
         <div className="header">
 
-            <a className="header__background" href={'http://localhost:3000/'}>
+            <Link className="header__background" to="/">
                 <img className="header__background--title" alt="title" src={ah_title}/>
-            </a>
+            </Link>
 
 
 
@@ -182,18 +165,23 @@ const Header = () => {
 
 
                             {/* LOGO SECTION  */}
-                <a  href={'http://localhost:3000/'}>
+                <Link  to="/">
                     <img className="header__navigation--logo" src={ah_logo} alt="ah_logo"/>
-                </a>
+                </Link>
 
 
                             {/* RUBRICS SECTION */}
                 <div className="navigation__rubric">
-                    <a className="navigation__rubric--page"
+                    <Link className="navigation__rubric--page"
+                        to="/about">
+                        Qui sommes nous?
+                        <div className="underline"></div>
+                    </Link>
+                    {/* <Link className="navigation__rubric--page"
                         href="/about">
                         Qui sommes nous?
                         <div className="underline"></div>
-                    </a>
+                    </Link> */}
 
                     {/* VIDEO MENU */}
                     <div className="navigation__rubric--page videos-rubric">
@@ -203,43 +191,43 @@ const Header = () => {
                         </div>
                         <div className="menu">
                             <div className="menu__choice first">
-                                <a className="title"
-                                    href="/videos/tw">
+                                <Link className="title"
+                                    to="/videos/tw">
                                         True Warriors
-                                </a>
+                                </Link>
                             </div>
                             <div className="menu__choice">
-                                <a className="title"
-                                    href="/videos/lol">
+                                <Link className="title"
+                                    to="/videos/lol">
                                         League of Lesglands
-                                </a>
+                                </Link>
                             </div>
                             <div className="menu__choice">
-                                <a className="title"
-                                    href="/videos/hs">
+                                <Link className="title"
+                                    to="/videos/hs">
                                         Hors-Séries
-                                </a>
+                                </Link>
                             </div>
                         </div>
                     </div>
                     {/* ************ */}
 
 
-                    <a className="navigation__rubric--page"
-                        href="/gallery">
+                    <Link className="navigation__rubric--page"
+                        to="/gallery">
                         Gallerie
                         <div className="underline"></div>
-                    </a>
-                    <a className="navigation__rubric--page"
-                        href="/">
+                    </Link>
+                    <Link className="navigation__rubric--page"
+                        to="/">
                         Autres projets
                         <div className="underline"></div>
-                    </a>
-                    <a className="navigation__rubric--page"
-                        href="/">
+                    </Link>
+                    <Link className="navigation__rubric--page"
+                        to="/">
                         Forum
                         <div className="underline"></div>
-                    </a>
+                    </Link>
                 </div>
                 <ConnectionButton />
             </div>

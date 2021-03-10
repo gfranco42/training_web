@@ -6,7 +6,7 @@ import React from 'react';
 // import nyra_avatar from '../../img/avatars/nyra_avatar.png'
 
 // REDUX
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 // import { getTest, getUser } from '../../actions/index'
 // import { ACTIONS } from '../../constants/constants'
 
