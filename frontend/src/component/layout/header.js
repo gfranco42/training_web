@@ -10,11 +10,9 @@ import { Link, useHistory } from 'react-router-dom';
 import ah_logo from "../../img/ah_logo.png";
 import ah_title from "../../img/ah_title.png";
 
-// GIFS
-
 //REDUX
 import { useSelector, useDispatch } from 'react-redux'
-import { deleteUser } from '../../actions'
+import { deleteUser, setLog } from '../../actions'
 
 import wave_header from "../../img/gifs/wave_header.gif";
 
@@ -27,17 +25,12 @@ const Header = () => {
     const dispatch = useDispatch()
     const history = useHistory();
 
-    const log = sessionStorage.log;
-    console.log(log)
 
-    // const userState = useSelector(state => state.user)
-    // const {user} = userState;
+    const logState = useSelector(state => state.log)
+    const {log} = logState;
+    const userState = useSelector(state => state.user)
+    const {user} = userState;
 
-    const currentUser = sessionStorage.user
-    ? JSON.parse(sessionStorage.user)
-    : null;
-    // console.log(sessionStorage.user)
-    
     // NAV BAR STYLE
     const [navStyle, setNavStyle] = useState({});
     const sticky_nav = () => {
@@ -51,31 +44,13 @@ const Header = () => {
     const logout = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
-        delete sessionStorage.user;
-        sessionStorage.log = "false";
-        // window.location = "/";
+        dispatch(deleteUser())
+        dispatch(setLog(false))
         history.push("/")
-        // dispatch(deleteUser())
     }
 
-    // const updateLogState = async (bool) => {
-    //     setLog(bool);
-    //     if (bool === true) {
-    //         // RECUP USER AVATAR
-    //         const response = await fetch("http://localhost:9000/profil/", {
-    //             method: "GET",
-    //             headers: {token: localStorage.token}
-    //         })
-    //         const parseRes = await response.json();
-    //         // ON PEUT RECUP TOUTES LES INFOS DU PROFIL SI BESOIN
-    //         const {avatar, status} = parseRes;
-    //         setAvatar(avatar);
-    //         setStatus(status);
-    //     }
-    // }
-
     const AdminRubric = () => {
-        if (currentUser && currentUser.status === 'admin') {
+        if (user && user.status === 'admin') {
             return (
                 <div className="menu__choice">
                     <Link className="title"
@@ -95,7 +70,6 @@ const Header = () => {
         if (log === "false" || !log)
             return (
                 <div className="navigation__button">
-                    {/* <LoginPopup updateLogState={updateLogState}/> */}
                     <LoginPopup />
                 </div>
             )
@@ -103,8 +77,8 @@ const Header = () => {
             return (
                 <div className="account-block">
                     <div className="account-block__pipe"></div>
-                    {currentUser
-                        ? <img src={currentUser.avatar} className="account-block__avatar" alt="avatar_img"/>
+                    {user
+                        ? <img src={user.avatar} className="account-block__avatar" alt="avatar_img"/>
                         : <div></div>}
                     <div className="navigation__rubric--page account-block__menu">
                         <div className="rubric-title">
@@ -147,9 +121,6 @@ const Header = () => {
     // USE EFFECT
     useEffect( () => {
         window.addEventListener('scroll', sticky_nav);
-        console.log('hook')
-
-            // VERIFY TOKEN
     }, [dispatch])
 
     return (

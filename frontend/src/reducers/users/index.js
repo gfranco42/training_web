@@ -6,7 +6,7 @@ const initialState = {
 
 export const user = (state = initialState, action) => {
     switch(action.type) {
-        case ACTIONS.GET_USER:
+        case ACTIONS.SET_USER:
             return {...state, user: action.user};
         case ACTIONS.DELETE_USER:
             return {user: null};
@@ -14,10 +14,3 @@ export const user = (state = initialState, action) => {
             return state;
     }
 }
-
-
-// .  FAIRE LE FETCH DANS LE COMPONENT DIRECTEMENT
-
-//      MOFIIER LE STATE ICI EN PASSANT LE USER EN PARAMETRES
-
-//      UNE FONCTION PAR REDUCER

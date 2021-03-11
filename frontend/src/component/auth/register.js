@@ -9,10 +9,14 @@ import Popup from "reactjs-popup";
 // TOAST
 import { toast } from 'react-toastify';
 
+// REACT ROUTER
+import { useHistory } from 'react-router-dom';
+
 
 const RegisterPopup = () => {
 
     const [register, setRegister] = useState("")
+    const history = useHistory();
 
     const handleChange = (e) => {
         e.preventDefault();
@@ -47,7 +51,8 @@ const RegisterPopup = () => {
                 hideProgressBar: true,
                 closeButton: false,
             });
-        setInterval( () => window.location.reload(), 1500);
+        // setInterval( () => window.location.reload(), 1500);
+        history.push("/")
     }
 
 

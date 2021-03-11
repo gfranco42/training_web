@@ -1,8 +1,8 @@
 import { ACTIONS } from "../constants/constants"
 
-export const getUser = (user) => {
+export const setUser = (user) => {
     return {
-        type: ACTIONS.GET_USER,
+        type: ACTIONS.SET_USER,
         user: user,
     }
 }
