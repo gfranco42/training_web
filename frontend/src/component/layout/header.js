@@ -44,6 +44,7 @@ const Header = () => {
     const logout = (e) => {
         e.preventDefault();
         localStorage.removeItem("token");
+        sessionStorage.removeItem("persist:root");
         dispatch(deleteUser())
         dispatch(setLog(false))
         history.push("/")

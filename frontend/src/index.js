@@ -12,12 +12,13 @@ import { initStore } from './reducers/index'
 
 // REDUX PERSIST
 import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
+// import storage from 'redux-persist/lib/storage'
+import storageSession from 'redux-persist/lib/storage/session'
 import { PersistGate } from 'redux-persist/integration/react'
 
 const persistConfig = {
   key: 'root',
-  storage,
+  storage: storageSession,
 }
 const persistedReducer = persistReducer(persistConfig, initStore)
 
