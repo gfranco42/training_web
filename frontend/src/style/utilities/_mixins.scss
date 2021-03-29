@@ -1,3 +1,5 @@
+@import "./breakpoints";
+
 // Small devices
 @mixin sm {
     @media (min-width: #{$screen-sm-min}) {
@@ -22,6 +24,13 @@
 // Extra large devices
 @mixin xl {
    @media (min-width: #{$screen-xl-min}) {
+       @content;
+   }
+}
+
+// Very Extra large devices
+@mixin xxl {
+   @media (min-width: #{$screen-xxl-min}) {
        @content;
    }
 }

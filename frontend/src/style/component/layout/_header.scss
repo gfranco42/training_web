@@ -26,27 +26,47 @@
         }
     }
     #{$el}__wave {
-        // padding: 10px;
-        // border: red solid 4px;
         width: 100%;
-        height: 100px;
+        height: 25px;
         position: relative;
-        bottom: 100px;
+        bottom: 25px;
+        @include sm {
+            height: 50px;
+            bottom: 50px;    
+        }
+        @include md {
+            height: 75px;
+            bottom: 75px;    
+        }
+        @include lg {
+            height: 100px;
+            bottom: 100px;    
+        }
     }
 
 
-
-    // NAVBAR RELATED
+    // *********************
+    //    NAVBAR RELATED
+    // *********************
     #{$el}__navigation {
         height: 50px;
-        width: 100%;
         display: flex;
-        justify-content: space-around;
-        // background: white;
-        // box-shadow: 0px 10px 20px #909090;
+        flex-direction: column;
         position: fixed;
+        left: 0;
+        align-items: flex-end;
         top: 0;
         z-index: 100;
+        width: 100%;
+        font-size: 12px;
+        // border: solid green 2px;
+        @include sm {
+            font-size: 14px;
+        }
+        @include md {
+            flex-direction: row;
+            justify-content: space-around;
+        }
 
         // LOGO
         &--logo {
@@ -59,44 +79,81 @@
             cursor: pointer;
         }
 
-        .account-block {
-            // border: blue solid 3px;
+        // <<<<<<<<<<<< TRIGGER RELATED ************
+        .navigation__menu-trigger {
+            // background: black;// delete
             display: flex;
-            margin-right: 50px;
-            &__pipe {
-                height: 30px;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            cursor: pointer;
+            // width: 100%;
+            // line-height: 50px;
+            min-height: 50px;
+            margin-right: 40px;
+            padding-right: 20px;
+            @include sm {
+                margin-right: 52px;
+                padding-right: 33px;
+            }
+            .underline {
                 position: relative;
-                top: 10px;
-                border: solid white 1px;
-                margin-right: 30px;
+                right: -20px;
+                height: 3px; // epaisseur
+                width: 70px; // largeur
+                background: linear-gradient(0.25turn, #f2dce7, #ddc2d5, #5e9ce5);
+                opacity: 0;
             }
-            &__avatar {
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                margin: 5px;
-                // border: green solid 1px;
+            &:hover {
+                .underline {
+                    animation: fadein 0.5s forwards;
+                }
             }
-
-            &__menu {
-                // border: purple solid 2px;
-                margin-left: 50px;
+            @include md {
+                display: none;
             }
-
-
         }
+        //************ TRIGGER RELATED >>>>>>>>>>>>>>>>>
 
+        
+
+        // <<<<<<<<<<<< NAVIGATION MENU RELATED ************
         .navigation__rubric {
-            display: flex;
-            justify-content: space-around;
-            width: 1300px;
-            min-width: 600px;
-            margin-left: 60px;
-            
+            // border: solid red 2px;
+            display: none;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 100px;
+            margin-right: 20px;
+            background:  rgba(0, 0, 0, 0.5);
+            padding: 0 5px 0 5px;
+            // border: solid red 2px;
+            @include sm {
+                width: 150px;
+            }
+            @include md {
+                display: flex;
+                flex-direction: row;
+                font-size: 12px;
+                margin: 0;
+                background: none;
+                // border: solid red 1px;
+                width: auto;
+                height: 50px;
+                justify-content: space-between;
+                align-items: center;
+                margin-left: 90px;
+            }
+            @include xl {
+                font-size: 14px;
+                width: 100%;
+            }
+
 
             &--page {
                 outline: none;
                 text-decoration: none;
+                // border: solid 1px red;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
@@ -104,7 +161,22 @@
                 position: relative;
                 padding-top: 14px;
                 cursor: pointer;
-                width: 150px;
+                width: 100px;
+                @include sm {
+                    width: 150px;
+                }
+                @include md {
+                    width: 100px;
+                    margin: 0 5px 0 5px;
+                    padding: 0;
+                }
+                @include xl {
+                    width: 150px;
+                }
+                @include xxl {
+                    font-size: 18px;
+                    width: 200px;
+                }
                 color: white;
 
                 // *********** RUBRICS GENERAL ***********
@@ -125,67 +197,75 @@
                     width: 100%;
                     @include flex-centered();
                     flex-direction: column;
+                    @include md {
+                        height: 50px;
+                    }
                 }
                 // *********** ************** ***********
 
 
                 // HIDE MENU
                 .menu {
-                    opacity: 0;
+                    // opacity: 1;
                     display: none;
-                    width: 150%;
+                    width: 100%;
                     text-decoration: none;
                     outline: none;
-                    margin-top: 12px;
+                    // margin-top: 12px;
                 }
-
-                &:hover{
+                
+                &:hover {
                     height: auto;
-
-                    
-                    .first {
-                        border-top: solid 2px #444;
-                    }
-
                     .underline {
                         animation: fadein 0.5s forwards;
                     }
+                }
+                .first {
+                    border-top: solid 2px #444;
+                }
+                .menu {
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: space-between;
+                    // animation: fadein 0.5s forwards;
+                    position: absolute;
+                    right: 100px;
+                    top: 2px;
+                    @include sm {
+                        right: 150px;
+                    }
+                    @include md {
+                        right: 0;
+                        top: 50px;
+                    }
 
-                    // MENU RELATED
-                    .menu {
-                        display: flex;
+                    &__choice {
+                        @include flex-centered();
                         flex-direction: column;
-                        align-items: center;
-                        justify-content: space-between;
-                        animation: fadein 0.5s forwards;
-
-                        &__choice {
-                            @include flex-centered();
-                            flex-direction: column;
-                            padding: 15px 0 15px 0;
-                            height: 30px;
+                        padding: 15px 0 15px 0;
+                        height: 20px;
+                        width: 100%;
+                        background: white;
+                        border-bottom: solid 2px #444;
+                        @include xxl {
+                            height: 40px;
+                        }
+    
+                        .title {
                             width: 100%;
-                            background: white;
-                            border-bottom: solid 2px #444;
-                            
+                            text-align: center;
+                            outline: none;
+                            text-decoration: none;
+                            color: #444;
+                        }
+                        &:hover {
+                            background: linear-gradient(0.25turn, #5e9ce5, #f2dce7);
                             .title {
-                                outline: none;
-                                text-decoration: none;
-                                color: #444;
-                            }
-                            &:hover {
-                                background: linear-gradient(0.25turn, #5e9ce5, #f2dce7);
-                                .title {
-                                    color: white;
-                                }
+                                color: white;
                             }
                         }
                     }
                 }
-
-                // *********** ************** ***********
-
-
 
                 // *********** KEYFRAMES FOR ANIMATIONS ***********
                 @keyframes fadein {
@@ -197,16 +277,95 @@
                     to {opacity: 0;}
                 }
             }
+
             // Recenter the rubric (menu)
-
-
         }
+        //************ NAVIGATION MENU RELATED >>>>>>>>>>>>>>>>>
+
+        .account-block {
+            display: none;
+            background:  rgba(0, 0, 0, 0.5);
+            padding: 0 5px 0 5px;
+            width: 100px;
+            margin-right: 20px;
+            height: 50px;
+            // border: solid green 1px;
+            @include sm {
+                width: 150px;
+            }
+            @include md {
+                background: none;
+                display: flex;
+                font-size: 12px;
+            }
+            @include xl {
+                font-size: 14px;
+                width: auto;
+            }
+
+            &__pipe {
+                @include xl {
+                    height: 30px;
+                    position: relative;
+                    top: 10px;
+                    border: solid white 1px;
+                    margin: 0 30px 0 30px;
+                }
+            }
+            &__avatar {
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                margin: 5px;
+                border: solid white 2px;
+                @include sm {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+
+            &__menu {
+                flex-direction: row;
+                justify-content: center;
+                align-items: center;
+                padding-top: 0;
+                // border: solid red 2px;
+                @include xl {
+                    // border: solid red 2px;
+                    width: 100%;
+                    margin-right: 20px;
+                }
+                .menu {
+                    right: 100px;
+                    @include sm {
+                        right: 150px;
+                    }
+                    @include md {
+                        right: 0;
+                        top: 50px;
+                    }
+                }
+                .rubric-title {
+                    display: none;
+                    @include xl {
+                        display: flex;       
+                        width: 150px;
+                    }
+                }
+            }
+        }
+        .hover-menu:hover {
+            .menu {
+                display: flex;
+            }
+        }
+
         .navigation__button {
-            min-width: 100px;
             border-radius: 10px;
             display: flex;
-            justify-content: space-around;
-            align-items: center;
+            background: black;
+            margin: 0 30px 0 10px;
+            
             &--login, &--signin, &--logout, &--profil-page {
                 @include standard-btn();
             }

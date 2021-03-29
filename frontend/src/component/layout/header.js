@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 // COMPONENT
 import LoginPopup from "../auth/login.js"
@@ -17,10 +17,11 @@ import { deleteUser, setLog } from '../../actions'
 import wave_header from "../../img/gifs/wave_header.gif";
 
 const Header = () => {
-
-    // const [log, setLog] = useState(false);
-    // const [avatar, setAvatar] = useState('');
-    // const [status, setStatus] = useState('')
+    
+    const [showRubrics, setShowRubrics] = useState(null)
+    const [showVideos, setShowVideos] = useState(null)
+    const [showProfile, setShowProfile] = useState(null)
+    const didMount = useRef(1);
     
     const dispatch = useDispatch()
     const history = useHistory();
@@ -38,7 +39,6 @@ const Header = () => {
             setNavStyle({ 'background':  'rgba(0, 0, 0, 0.5)' })
         else
             setNavStyle({ 'background':  'rgba(68, 68, 68, 0)' })
-
     }
 
     const logout = (e) => {
@@ -67,7 +67,7 @@ const Header = () => {
     }
 
     const ConnectionButton = () => {
-
+        console.log(showProfile)
         if (log === "false" || !log)
             return (
                 <div className="navigation__button">
@@ -76,17 +76,17 @@ const Header = () => {
             )
         else {
             return (
-                <div className="account-block">
+                <div className="account-block" style={showRubrics}>
                     <div className="account-block__pipe"></div>
-                    {user
-                        ? <img src={user.avatar} className="account-block__avatar" alt="avatar_img"/>
-                        : <div></div>}
-                    <div className="navigation__rubric--page account-block__menu">
+                    <div className="navigation__rubric--page account-block__menu hover-menu">
+                        {user
+                            ? <img src={user.avatar} className="account-block__avatar" alt="avatar_img" onClick={displayProfile}/>
+                            : <div onClick={displayProfile}></div>}
                         <div className="rubric-title">
                             Profil
                             <div className="underline"></div>
                         </div>
-                        <div className="menu">
+                        <div className="menu" style={showProfile}>
                             <div className="menu__choice first">
                                 <Link className="title"
                                     to="/profil">
@@ -113,16 +113,47 @@ const Header = () => {
             )
         }
     }
-        
-        // <button className="navigation__button--logout" onClick={this.logout}>Deconnexion</button>
-    // https://asylum-heroes.s3.eu-west-3.amazonaws.com/ending_tw.mp4
 
-
+    const displayProfile = () => {
+        if (showProfile === null && window.innerWidth < 768) {
+            setShowProfile({"display": "flex"})
+            setShowVideos(null)
+        }
+        else 
+            setShowProfile(null)
+    }
+    const displayVideos = () => {
+        if (showVideos === null && window.innerWidth < 768) {
+            setShowVideos({"display": "flex"})
+            setShowProfile(null)
+        }
+        else
+            setShowVideos(null)
+    }
+    const displayRubrics = () => {
+        if (showRubrics === null) {
+            setShowRubrics({"display": "flex"})
+            setShowVideos(null)
+            setShowProfile(null)
+        }
+        else
+            setShowRubrics(null)
+    }    
 
     // USE EFFECT
     useEffect( () => {
-        window.addEventListener('scroll', sticky_nav);
-    }, [dispatch])
+        didMount.current = 1;
+        if (didMount.current === 1) 
+            window.addEventListener('scroll', sticky_nav);
+
+        return () => {
+            didMount.current = 0;
+            window.removeEventListener('scroll', sticky_nav);
+        }
+    }, [])
+
+    if (didMount.current === 0)
+        return null;
 
     return (
         <div className="header">
@@ -143,25 +174,25 @@ const Header = () => {
 
 
                             {/* RUBRICS SECTION */}
-                <div className="navigation__rubric">
+                <div onClick={displayRubrics} className="navigation__menu-trigger">
+                    MENU
+                    <div className="underline"></div>
+                </div>
+                <div className="navigation__rubric menu" style={showRubrics}>
                     <Link className="navigation__rubric--page"
                         to="/about">
                         Qui sommes nous?
                         <div className="underline"></div>
                     </Link>
-                    {/* <Link className="navigation__rubric--page"
-                        href="/about">
-                        Qui sommes nous?
-                        <div className="underline"></div>
-                    </Link> */}
+
 
                     {/* VIDEO MENU */}
-                    <div className="navigation__rubric--page videos-rubric">
-                        <div className="rubric-title">
+                    <div className="navigation__rubric--page videos-rubric hover-menu">
+                        <div className="rubric-title" onClick={displayVideos}>
                             Videos
                             <div className="underline"></div>
                         </div>
-                        <div className="menu">
+                        <div className="menu" style={showVideos}>
                             <div className="menu__choice first">
                                 <Link className="title"
                                     to="/videos/tw">

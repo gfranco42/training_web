@@ -6,7 +6,7 @@ import React from 'react';
 // import nyra_avatar from '../../img/avatars/nyra_avatar.png'
 
 // REDUX
-import { useSelector } from 'react-redux'
+// import { useSelector } from 'react-redux'
 // import { getTest, getUser } from '../../actions/index'
 // import { ACTIONS } from '../../constants/constants'
 
@@ -18,8 +18,8 @@ import { useSelector } from 'react-redux'
 const AboutComponent = () => {
     // const dispatch = useDispatch()
 
-    const countState = useSelector(state => state.test)
-    const {count} = countState;
+    // const countState = useSelector(state => state.test)
+    // const {count} = countState;
     
 
     // alert(tmp);
@@ -54,7 +54,8 @@ const AboutComponent = () => {
 
     return (
         <div className="about">
-            <h1>Count: {count}</h1>
+            {/* <h1>Count: {count}</h1> */}
+            <p>Faire une présentation avec photos</p>
             {/* <DisplayUser/>
             <div>Count: {count}</div>
             <button onClick={ () => { dispatch(getTest()) }}>+</button> */}
